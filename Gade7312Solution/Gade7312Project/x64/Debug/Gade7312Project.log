@@ -1,0 +1,4 @@
+﻿Gade7312Project.cpp(6,10): : error : 'GL/glew.h' file not found
+  #include <GL/glew.h>
+           ^~~~~~~~~~~
+  1 error generated.
