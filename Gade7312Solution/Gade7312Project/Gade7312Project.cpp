@@ -5,6 +5,9 @@ using namespace std;
 #define GLEW_STATIC
 #include <GL/glew.h>
 
+//SOIL
+#include "SOIL2.h"
+
 // GLFW
 #include <GLFW/glfw3.h>
 
