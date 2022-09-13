@@ -82,7 +82,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glew32s.lib;glfw32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\glfw-3.3.8.bin.WIN32\lib-static-ucrt;$(SolutionDir)glfw-3.3.8.bin.WIN32\lib-vc2022;D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\glfw-3.3.8.bin.WIN32\lib-vc2019;D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\glfw-3.3.8.bin.WIN32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)glfw-3.3.8.bin.WIN32\lib-static-ucrt;$(SolutionDir)glfw-3.3.8.bin.WIN32\lib-vc2022;$(SolutionDir)glfw-3.3.8.bin.WIN32\lib-vc2019;$(SolutionDir)glfw-3.3.8.bin.WIN32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
