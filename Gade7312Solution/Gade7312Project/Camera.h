@@ -2,7 +2,7 @@
 
 // Std. Includes
 #include <vector>
-
+using namespace std;
 // GL Includes
 #define GLEW_STATIC
 #include <GL/glew.h>

@@ -1,0 +1,4 @@
+{
+  "enableCMake": true,
+  "sourceDirectory": "gade7312solution\\external libraries\\glm-master"
+}

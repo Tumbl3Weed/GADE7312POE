@@ -29,7 +29,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Intel C++ Compiler 2022</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -83,6 +83,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;soil2-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)External Libraries\SOIL2;$(SolutionDir)External Libraries\glm-master;$(SolutionDir)External Libraries\glm-master\glm;$(SolutionDir)External Libraries\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\lib-static-ucrt;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\lib-vc2022;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\lib-vc2019;$(SolutionDir)External Libraries\SOIL2\lib;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;MSVCRT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -144,9 +145,15 @@
     <None Include="core.vs" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\External Libraries\images\image1.jpg" />
-    <Image Include="..\External Libraries\images\image2.png" />
-    <Image Include="..\External Libraries\images\image3.png" />
+    <Image Include="image1.jpg">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="image2.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="image3.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\External Libraries\images\Flash Light Code.txt" />

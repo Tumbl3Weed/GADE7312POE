@@ -1,1 +1,15 @@
-﻿
+﻿  Gade7312Project.cpp
+D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(204,30): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(318,17): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(319,17): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(323,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(324,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(326,13): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(327,13): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(335,31): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\glew_static.pdb'; linking object as if no debug info
+soil2-debug.lib(SOIL2.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(SOIL2.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(image_DXT.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_DXT.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(image_helper.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_helper.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(wfETC.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(wfETC.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
+  Gade7312Project.vcxproj -> D:\Vega\Gade7312\Gade7312Solution\Debug\Gade7312Project.exe

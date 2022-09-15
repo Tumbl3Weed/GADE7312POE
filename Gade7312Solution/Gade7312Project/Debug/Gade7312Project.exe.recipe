@@ -2,10 +2,20 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\Debug\Gade7312Project.exe</FullPath>
+      <FullPath>D:\Vega\Gade7312\Gade7312Solution\Debug\Gade7312Project.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\image1.jpg</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\image2.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\image3.png</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>
