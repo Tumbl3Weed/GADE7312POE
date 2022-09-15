@@ -23,5 +23,35 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="core.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="core.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\External Libraries\images\image1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\External Libraries\images\image2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\External Libraries\images\image3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\External Libraries\images\Flash Light Code.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\External Libraries\images\SDLCameraCode.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

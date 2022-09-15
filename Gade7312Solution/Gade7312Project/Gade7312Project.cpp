@@ -1,207 +1,180 @@
 #include <iostream>
-using namespace std;
 
 // GLEW
 #define GLEW_STATIC
 #include <GL/glew.h>
 
-//SOIL
-#include "SOIL2.h"
-
 // GLFW
 #include <GLFW/glfw3.h>
 
-// Window Dimensions
-const GLint WIDTH = 800, HEIGHT = 600;
+// Other Libs
+#include "SOIL2.h"
 
-// Create shader for Triangle vertices
-const GLchar* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 position;\n"
-"void main()\n"
-"{\n"
-"gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
-"}\0";
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-// Create shader for Triangle colour & texture
-const GLchar* fragmentShaderSource = "#version 330 core\n"
-"out vec4 color;\n"
-"void main()\n"
-"{\n"
-"color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\0";
+// Other includes
+#include "Shader.h"
 
-// MAIN FUNCTION for MAIN GAME LOOP
+// Window dimensions
+const GLuint WIDTH = 800, HEIGHT = 600;
+
+// The MAIN function, from here we start the application and run the game loop
 int main()
 {
-	// Initialize GLFW
-	glfwInit();
+    // Init GLFW
+    glfwInit();
 
-	// Set all required options for GLFW
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    // Set all the required options for GLFW
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-	// Create our Window
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Tester", nullptr, nullptr);
+    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	// Actual screen resolution
-	int screenW, screenH;
+    // Create a GLFWwindow object that we can use for GLFW's functions
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "LearnOpenGL", nullptr, nullptr);
 
-	// Get screen resolution
-	glfwGetFramebufferSize(window, &screenW, &screenH);
+    int screenWidth, screenHeight;
+    glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
 
-	// Check if window was created successfully
-	if (nullptr == window)
-	{
-		cout << "Failed to create window." << endl;
-		glfwTerminate();
+    if (nullptr == window)
+    {
+        std::cout << "Failed to create GLFW window" << std::endl;
+        glfwTerminate();
 
-		return EXIT_FAILURE;
-	}
+        return EXIT_FAILURE;
+    }
 
-	glfwMakeContextCurrent(window); // Exit
+    glfwMakeContextCurrent(window);
 
-	// Enable GLEW
-	glewExperimental = GL_TRUE;
+    // Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
+    glewExperimental = GL_TRUE;
+    // Initialize GLEW to setup the OpenGL Function pointers
+    if (GLEW_OK != glewInit())
+    {
+        std::cout << "Failed to initialize GLEW" << std::endl;
+        return EXIT_FAILURE;
+    }
 
-	// Initialize GLEW
-	if (GLEW_OK != glewInit())
-	{
-		cout << "Failed to initialise GLEW." << endl;
-		return EXIT_FAILURE;
-	}
+    // Define the viewport dimensions
+    glViewport(0, 0, screenWidth, screenHeight);
 
-	// Setup OpenGL viewport
-	// Define viewport dimensions
-	glViewport(0, 0, screenW, screenH);
+    // enable alpha support
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	/* BUILD & COMPILE TRIANGLE */
+    // Build and compile our shader program
+    Shader ourShader("core.vs", "core.frag");
 
-	// Build Shader (Vertex Shader)
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER); // Creating the variable
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+    // Set up vertex data (and buffer(s)) and attribute pointers
+    GLfloat vertices[] =
+    {
+        // Positions          // Colors           // Texture Coords
+        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // Top Right
+        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // Bottom Right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // Bottom Left
+        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // Top Left
+    };
+    GLuint indices[] =
+    {  // Note that we start from 0!
+        0, 1, 3, // First Triangle
+        1, 2, 3  // Second Triangle
+    };
+    GLuint VBO, VAO, EBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
 
-	// Compile Shader (Vertex Shader)
-	glCompileShader(vertexShader);
+    glBindVertexArray(VAO);
 
-	// Create variables for error handling
-	GLint success;
-	GLchar infoLog[512];
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	// Compile vertex shader & store status in success variable
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	// Check if vertex compilation was successful
-	if (!success)
-	{
-		// Store compilation errors in infoLog variable
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << endl;
-	}
+    // Position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
+    glEnableVertexAttribArray(0);
+    // Color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(1);
+    // Texture Coordinate attribute
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(2);
 
-	// Build Shader (Fragment Shader)
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER); // Creating the variable
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+    glBindVertexArray(0); // Unbind VAO
 
-	// Compile Shader (Fragment Shader)
-	glCompileShader(fragmentShader);
+    // Load and create a texture
+    GLuint texture;
 
-	// Compile fragment shader & store status in success variable
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    int width, height;
 
-	// Check if fragment compilation was successful
-	if (!success)
-	{
-		// Store compilation errors in infoLog variable
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << endl;
-	}
 
-	// Link Shaders
-	GLuint shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
+    // ===================
+    // Texture
+    // ===================
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    // Set our texture parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // Set texture filtering
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    // Load, create texture and generate mipmaps
+    unsigned char* image = SOIL_load_image("image2.png", &width, &height, 0, SOIL_LOAD_RGBA);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    SOIL_free_image_data(image);
+    glBindTexture(GL_TEXTURE_2D, 0);
 
-	// Check for Linking errors and save it success variable
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    // Game loop
+    while (!glfwWindowShouldClose(window))
+    {
+        // Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
+        glfwPollEvents();
 
-	// Check if shaders were successfully linked
-	if (!success)
-	{
-		// Store linking errors in infoLog variable
-		//glGetShaderInfoLog(shaderProgram, 512, NULL, infoLog);
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << endl;
-	}
+        // Render
+        // Clear the colorbuffer
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
 
-	// Shaders linked successfully
-	// Remove individual shaders because they are now linked in shaderProgram
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+        // Draw the triangle
+        ourShader.Use();
 
-	// Set vertex data for our Triangle corners
-	GLfloat vertices[] =
-	{
-		-0.5f, -0.5f, 0.0f, // Left
-		0.5f, -0.5f, 0.0f, // Right
-		0.0f, 0.5f, 0.0f // Top
-	};
+        // Create transformations
+        glm::mat4 transform;
+        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+        transform = glm::rotate(transform, (GLfloat)glfwGetTime() * -5.0f, glm::vec3(0.0f, 0.0f, 1.0f));
 
-	// Generate vertex object and vertex buffer arrays and save them into the VOA, VBA variables
-	GLuint VOA, VBA;
-	glGenVertexArrays(1, &VOA);
-	glGenBuffers(1, &VBA);
+        // Get matrix's uniform location and set matrix
+        GLint transformLocation = glGetUniformLocation(ourShader.Program, "transform");
+        glUniformMatrix4fv(transformLocation, 1, GL_FALSE, glm::value_ptr(transform));
 
-	// Bind the vertex array object
-	glBindVertexArray(VOA);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture"), 0);
 
-	// Bind and set the vertex buffers
-	glBindBuffer(GL_ARRAY_BUFFER, VBA);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+        // Draw container
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
 
-	// Create the vertex pointer and enable the vertex array
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0);
-	glEnableVertexAttribArray(0);
+        // Swap the screen buffers
+        glfwSwapBuffers(window);
+    }
 
-	// Bind the buffer
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+    // Properly de-allocate all resources once they've outlived their purpose
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
 
-	// Unbind the vertex array to prevent strange bugs
-	glBindVertexArray(0);
+    // Terminate GLFW, clearing any resources allocated by GLFW.
+    glfwTerminate();
 
-	/* BUILD & COMPILE TRIANGLE */
-
-	// GAME LOOP
-	while (!glfwWindowShouldClose(window))
-	{
-		// Checks for events and calls corresponding response
-		glfwPollEvents();
-
-		//Render
-		// Clear the colour buffer
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		/* DRAW OUR TRIANGLE */
-		glUseProgram(shaderProgram);
-		glBindVertexArray(VOA);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		glBindVertexArray(0); // Unbinding
-		/* DRAW OUR TRIANGLE */
-
-		// Draw the OpenGl window/viewport
-		glfwSwapBuffers(window);
-	}
-
-	// Properly deallocate all resources
-	glDeleteVertexArrays(1, &VOA);
-	glDeleteBuffers(1, &VBA);
-
-	// Terminate GLFW and clear any resources from GLFW
-	glfwTerminate();
-
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
