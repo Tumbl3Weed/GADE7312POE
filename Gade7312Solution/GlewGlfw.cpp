@@ -1,5 +1,8 @@
+// *** CREATE 3D TERRAIN FROM HEIGHT MAP IMAGE ATTEMPT 2 *** //
 #include <iostream>
+#include <vector>
 using namespace std;
+
 // GLEW
 #define GLEW_STATIC
 #include <GL/glew.h>
@@ -7,363 +10,302 @@ using namespace std;
 // GLFW
 #include <GLFW/glfw3.h>
 
-// Other Libs
-#include "SOIL2.h"
+// SOIL2
+#include "SOIL2/SOIL2.h"
 
+// GLM
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-// Other includes
 #include "Shader.h"
+#include "Camera.h"
 
-// Window dimensions
-const GLuint WIDTH = 800, HEIGHT = 600;
+// Declare Callback Methods
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modifiers);
+void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+void MouseCallback(GLFWwindow* window, double xpos, double ypos);
+void ProcessInput(GLFWwindow* window);
 
-// The MAIN function, from here we start the application and run the game loop
+// Settings
+const GLint WIDTH = 800;
+const GLint HEIGHT = 600;
+int SCREEN_WIDTH, SCREEN_HEIGHT;
+
+// Camera - starting point
+Camera camera(glm::vec3(67.0f, 300.5f, 169.9f), glm::vec3(0.0f, 1.0f, 0.0f), -128.1f, -42.4f);
+GLfloat lastX = WIDTH / 2.0f;
+GLfloat lastY = HEIGHT / 2.0f;
+bool keys[1024]; // Array of 1024 different types of keys
+bool firstMouse = true; // Only handling one type of mouse, thus true
+
+// Timing
+GLfloat deltaTime = 0.0f;
+GLfloat lastFrame = 0.0f;
+
 int main()
 {
-    // Init GLFW
-    glfwInit();
+	// Initialize GLFW
+	glfwInit();
 
-    // Set all the required options for GLFW
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	// Set all required options for GLFW
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+	// Create our Window
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Tester", nullptr, nullptr);
 
-    // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "LearnOpenGL", nullptr, nullptr);
+	// Get screen resolution
+	glfwGetFramebufferSize(window, &SCREEN_WIDTH, &SCREEN_HEIGHT);
 
-    int screenWidth, screenHeight;
-    glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
+	// Check if window was created successfully
+	if (window == nullptr)
+	{
+		cout << "Failed to create window." << endl;
+		glfwTerminate();
 
-    if (nullptr == window)
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
+		return EXIT_FAILURE;
+	}
 
-        return EXIT_FAILURE;
-    }
+	glfwMakeContextCurrent(window); // Exit
 
-    glfwMakeContextCurrent(window);
+	// Set the required callback functions
+	glfwSetKeyCallback(window, KeyCallback);
+	glfwSetCursorPosCallback(window, MouseCallback);
+	glfwSetScrollCallback(window, ScrollCallback);
 
-    // Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
-    glewExperimental = GL_TRUE;
-    // Initialize GLEW to setup the OpenGL Function pointers
-    if (GLEW_OK != glewInit())
-    {
-        std::cout << "Failed to initialize GLEW" << std::endl;
-        return EXIT_FAILURE;
-    }
+	// Center cursor to window and Hide the cursor for a more immersive experience
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-    // Define the viewport dimensions
-    glViewport(0, 0, screenWidth, screenHeight);
+	// Enable GLEW
+	glewExperimental = GL_TRUE;
 
-    // enable alpha support
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	// Initialize GLEW
+	if (GLEW_OK != glewInit())
+	{
+		cout << "Failed to initialize GLEW" << endl;
+		return EXIT_FAILURE;
+	}
 
-    // Build and compile our shader program
-    Shader ourShader("core.frag", "core.vs" );
+	// Setup OpenGL viewport
+	// Define viewport dimensions
+	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); //***
 
-    // Set up vertex data (and buffer(s)) and attribute pointers
-    GLfloat vertices[] =
-    {
-        // Positions          // Colors           // Texture Coords
-        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // Top Right
-        0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // Bottom Right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // Bottom Left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // Top Left
-    };
-    GLuint indices[] =
-    {  // Note that we start from 0!
-        0, 1, 3, // First Triangle
-        1, 2, 3  // Second Triangle
-    };
-    GLuint VBO, VAO, EBO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
+	// Enable depth in the project
+	glEnable(GL_DEPTH_TEST);
 
-    glBindVertexArray(VAO);
+	//Build & Compile Shader Program
+	Shader ourShader("core.vs", "core.frag");
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	// Create and load texture replace it with your own image path.
+	int width, height, nrChannels;
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	unsigned char* data = SOIL_load_image("res/images/bitmapheightmap.png", &width, &height, &nrChannels, 0);
 
-    // Position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);
-    // Color attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(1);
-    // Texture Coordinate attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(2);
+	if (data)
+	{
+		cout << "Loaded heightmap of size " << height << " x " << width << endl;
+	}
+	else
+	{
+		cout << "Failed to load texture" << endl;
+	}
 
-    glBindVertexArray(0); // Unbind VAO
+	// set up vertex data (and buffer(s)) and configure vertex attributes
+	vector<GLfloat> vertices;
+	GLfloat yScale = 64.0f / 256.0f; //normalize the height map data and scale it to the desired height
+	GLfloat yShift = 16.0f; // translate the elevations to our final desired range
+	int rez = 1;
+	GLuint bytePerPixel = nrChannels;
 
-    // Load and create a texture
-    GLuint texture;
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			unsigned char* pixelOffset = data + (j + width * i) * bytePerPixel;
+			unsigned char y = pixelOffset[0];
 
-    int width, height;
+			// vertex
+			vertices.push_back(-height / 2.0f + height * i / (float)height); // vx
+			vertices.push_back((int)y * yScale - yShift); // vy
+			vertices.push_back(-width / 2.0f + width * j / (float)width); // vz
+		}
+	}
+	cout << "Loaded " << vertices.size() / 3 << " vertices" << endl;
+	SOIL_free_image_data(data);
 
+	vector<GLuint> indices;
+	for (int i = 0; i < height - 1; i += rez)
+	{
+		for (int j = 0; j < width; j += rez)
+		{
+			for (int k = 0; k < 2; k++)
+			{
+				indices.push_back(j + width * (i + k * rez));
+			}
+		}
+	}
+	cout << "Loaded " << indices.size() << " indices" << endl;
 
-    // ===================
-    // Texture
-    // ===================
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    // Set our texture parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // Set texture filtering
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // Load, create texture and generate mipmaps
-    unsigned char* image = SOIL_load_image("res/images/image2.png", &width, &height, 0, SOIL_LOAD_RGBA);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    SOIL_free_image_data(image);
-    glBindTexture(GL_TEXTURE_2D, 0);
+	const int numStrips = (height - 1) / rez;
+	const int numTrisPerStrip = (width / rez) * 2 - 2;
+	cout << "Created lattice of " << numStrips << " strips with " << numTrisPerStrip << " triangles each" << endl;
+	cout << "Created " << numStrips * numTrisPerStrip << " triangles total" << endl;
 
-    // Create transformations
-    glm::mat4 transform;
-    transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-    transform = glm::rotate(transform,glm::radians(90.0f), glm::vec3(0.0f,0.0f,1.0f));
-    transform = glm::scale(transform, glm::vec3(1.0f));
+	// Generate the vertex arrays, vertex buffers and index buffers and save them into variables
+	unsigned int VAO, VBO, IBO;
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
 
-    // Game loop
-    while (!glfwWindowShouldClose(window))
-    {
-        // Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
-        glfwPollEvents();
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices[0], GL_STATIC_DRAW);
 
-        // Render
-        // Clear the colorbuffer
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+	// Position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
 
-        // Draw the triangle
-        ourShader.Use();
+	glGenBuffers(1, &IBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned), &indices[0], GL_STATIC_DRAW);
 
-        
+	// GAME LOOP
+	while (!glfwWindowShouldClose(window))
+	{
+		// per-frame time logic
+		GLfloat currentFrame = glfwGetTime();
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
+		//cout << deltaTime << "ms (" << 1.0f / deltaTime << " FPS)" << endl; //Check FPS
 
-        // Get matrix's uniform location and set matrix
-        GLint transformLocation = glGetUniformLocation(ourShader.Program, "transform");
-        glUniformMatrix4fv(transformLocation, 1, GL_FALSE, glm::value_ptr(transform));
+		// Checks for events and calls corresponding response
+		glfwPollEvents();
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture"), 0);
+		// Handle the input
+		ProcessInput(window);
 
-        // Draw container
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
+		// Render
+		// Clear the colour buffer
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Swap the screen buffers
-        glfwSwapBuffers(window);
-    }
+		// Activate Shader
+		ourShader.Use();
 
-    // Properly de-allocate all resources once they've outlived their purpose
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &EBO);
+		// view/projection transformations
+		glm::mat4 projection = glm::perspective(glm::radians(camera.GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100000.0f);
+		glm::mat4 view = camera.GetViewMatrix();
+		GLint projLoc = glGetUniformLocation(ourShader.Program, "projection");
+		GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
 
-    // Terminate GLFW, clearing any resources allocated by GLFW.
-    glfwTerminate();
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-    return EXIT_SUCCESS;
+		// world transformation
+		glm::mat4 model = glm::mat4(1.0f);
+		GLint modelLoc = glGetUniformLocation(ourShader.Program, "model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		// Draw container
+		glBindVertexArray(VAO);
+
+		for (int strip = 0; strip < numStrips; strip++)
+		{
+			glDrawElements(GL_TRIANGLE_STRIP, // primitive type
+				numTrisPerStrip + 2, // number of indices to render
+				GL_UNSIGNED_INT, // index data type
+				(void*)(sizeof(GLuint) * (numTrisPerStrip + 2) * strip)); // offset to starting index
+		}
+
+		glBindVertexArray(0); // Unbinding
+
+		// Draw the OpenGl window/viewport
+		glfwSwapBuffers(window);
+	}
+
+	// Properly deallocate all resources
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &IBO);
+
+	// Terminate GLFW and clear any resources from GLFW
+	glfwTerminate();
+
+	return EXIT_SUCCESS;
 }
 
+// Moves/alters the camera positions based on user input
+// WASD and Arrow keys
+void ProcessInput(GLFWwindow* window)
+{
+	// Camera controls
+	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
+	{
+		camera.ProcessKeyboard(FORWARD, deltaTime);
+	}
 
+	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
+	{
+		camera.ProcessKeyboard(BACKWARD, deltaTime);
+	}
 
+	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
+	{
+		camera.ProcessKeyboard(LEFT, deltaTime);
+	}
 
-//// GlewGlfw.cpp : This file contains the 'main' function. Program execution begins and ends there.
-////
-//
-//
-//#include <iostream>
-//#define GLEW_STATIC
-//#include <GL/glew.h>
-//#include <GLFW/glfw3.h>
-//
-////Window Dimensions
-//const GLuint WIDTH = 800, HEIGHT = 600;
-//
-////Shaders
-//const GLchar* vertexShaderSource = "#version 330 core\n"
-//"layout (location = 0) in vec3 position; \n"
-//"void main()\n"
-//"f\n"
-//"gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
-//"E\0";
-//
-//const GLchar* fragmentShaderSource = "#version 330 core\n"
-//"out vec4 color;\n"
-//"void main()\n"
-//"{\n"
-//"color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-//"F\n\0";
-//
-//// The MAIN function, from here we start the application and run the game loop
-//int main()
-//{
-//	// Init GLFW
-//	glfwInit();
-//	// Set all the required options for GLFW
-//	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-//	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-//	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-//	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-//	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-//	// Create a GLFWwindow object that we can use for GLFW's functions
-//	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT,
-//		"LearnOpenGL", nullptr, nullptr);
-//	int screenWidth, screenHeight;
-//	glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
-//	if (nullptr == window)
-//	{
-//		std::cout << "Failed to create GLFW window" << std::endl;
-//		glfwTerminate();
-//		return EXIT_FAILURE;
-//	}
-//	glfwMakeContextCurrent(window);
-//	// Set this to true so GLEW knows to use a modern approach to retrieving function pointersand extensions
-//	glewExperimental = GL_TRUE;
-//	// Initialize GLEW to setup the OpenGL Function pointers
-//	if (GLEW_OK != glewInit())
-//	{
-//		std::cout << "Failed to initialize GLEW" << std::endl;
-//		return EXIT_FAILURE;
-//	}
-//	// Define the viewport dimensions
-//	glViewport(0, 0, screenWidth, screenHeight);
-//	// Build and compile our shader program
-//	// Vertex shader
-//	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-//	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-//	glCompileShader(vertexShader);
-//	// Check for compile time errors
-//	GLint success;
-//	GLchar infoLog[512];
-//	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-//	if (!success)
-//	{
-//		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-//		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-//	}
-//
-//	// Fragment shader
-//	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-//	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-//	glCompileShader(fragmentShader);
-//
-//	// Check for compile time errors
-//	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-//
-//	if (!success)
-//	{
-//		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-//		std::cout << "ERROR: : SHADER: : FRAGMENT: :COMPILATION_FAILED\n" <<
-//			infoLog << std::endl;
-//	}
-//
-//	// Link shaders
-//	GLuint shaderProgram = glCreateProgram();
-//	glAttachShader(shaderProgram, vertexShader);
-//	glAttachShader(shaderProgram, fragmentShader);
-//	glLinkProgram(shaderProgram);
-//
-//	// Check for linking errors
-//	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-//	if (!success)
-//	{
-//		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-//		std::cout << "ERROR: :SHADER: : PROGRAM: :LINKING_FAILED\n" << infoLog
-//			<< std::endl;
-//	}
-//	glDeleteShader(vertexShader);
-//	glDeleteShader(fragmentShader);
-//
-//	// Set up vertex data (and buffer(s)) and attribute pointers
-//	GLfloat vertices[] =
-//	{
-//		-0.5f, -0.5f, 0.0f, // Left
-//		0.5f, -0.5f, 0.0f, // Right
-//		0.0f, 0.5f, 0.0f // Top
-//	};
-//
-//	GLuint VBO, VAO;
-//	glGenVertexArrays(1, &VAO);
-//	glGenBuffers(1, &VBO);
-//
-//	// Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
-//	glBindVertexArray(VAO);
-//	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-//	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-//	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-//	glEnableVertexAttribArray(0);
-//
-//	glBindBuffer(GL_ARRAY_BUFFER, 0);
-//	// Note that this is allowed, the call to glVertexAttribPointer 
-//	//registered VBO as the currently bound vertex buffer object so 
-//	//afterwards we can safely unbind 
-//
-//	glBindVertexArray(0);
-//	// Unbind VAO (it's always a good thing to unbind any buffer/array
-//	//to prevent strange bugs) 
-//}
+	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
+	{
+		camera.ProcessKeyboard(RIGHT, deltaTime);
+	}
+}
 
+// Is called whenever a key is pressed/released via GLFW
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modifiers)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+	{
+		glfwSetWindowShouldClose(window, GL_TRUE);
+	}
 
+	if (key >= 0 && key < 1024)
+	{
+		if (action == GLFW_PRESS)
+		{
+			keys[key] = true;
+		}
+		else if (action == GLFW_RELEASE)
+		{
+			keys[key] = false;
+		}
+	}
+}
 
-//int main(void)
-//{
-//    GLFWwindow* window;
-//
-//    //init the glfw
-//    if (!glfwInit()) {
-//        return -1;
-//    }
-//
-//    //create a windowed mode and its OpenGL Context
-//    window = glfwCreateWindow(640, 480, "OpenGL Test", NULL, NULL);
-//
-//    if (!window) {
-//        glfwTerminate();
-//        return -1;
-//    }
-//
-//    //make the window's context current
-//
-//    //loop unil the user closes window
-//    while (!glfwWindowShouldClose(window))
-//    {
-//        glClear(GL_COLOR_BUFFER_BIT);
-//
-//        //render OpenGL here
-//
-//        //swap front and back buffers
-//        glfwSwapBuffers(window);
-//
-//        //poll for and process events
-//        glfwPollEvents();
-//    }
-//}
+// GLFW: whenever the mouse moves, this callback is called
+void MouseCallback(GLFWwindow* window, double xPos, double yPos)
+{
+	if (firstMouse)
+	{
+		lastX = xPos;
+		lastY = yPos;
+		firstMouse = false;
+	}
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+	GLfloat xOffset = xPos - lastX;
+	GLfloat yOffset = lastY - yPos;  // Reversed since y-coordinates go from bottom to left
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+	lastX = xPos;
+	lastY = yPos;
+
+	camera.ProcessMouseMovement(xOffset, yOffset);
+}
+
+// GLFW: whenever the mouse scroll wheel scrolls, this callback is called
+void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
+{
+	camera.ProcessMouseScroll(yOffset);
+}
+// *** CREATE 3D TERRAIN FROM HEIGHT MAP IMAGE ATTEMPT 2 *** //
