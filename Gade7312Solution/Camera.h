@@ -21,6 +21,11 @@ enum Camera_Movement
 	RIGHT
 };
 
+enum Camera_Location
+{
+	POSITION1,
+
+};
 // Default camera values
 const GLfloat YAW = -90.0f;
 const GLfloat PITCH = 0.0f;
@@ -38,6 +43,12 @@ private:
 	glm::vec3 right;
 	glm::vec3 worldUp;
 
+	glm::vec3 Position1 = glm::vec3(67.0f, 300.5f, 169.9f);
+	glm::vec3 Position2 = glm::vec3(-67.0f, 300.5f, 169.9f);
+	glm::vec3 Position3 = glm::vec3(-67.0f, 300.5f, -169.9f);
+	glm::vec3 centerWorld = glm::vec3(0.0f, 0.0f, 0.0f);
+
+	GLint positionCounter = 1;
 	// Eular Angles
 	GLfloat yaw;
 	GLfloat pitch;
@@ -99,57 +110,84 @@ public:
 		return glm::lookAt(this->position, this->position + this->front, this->up);
 	}
 
-	// Process keyboard input to detect which way the camera should move
-	void ProcessKeyboard(Camera_Movement direction, GLfloat deltaTime)
+	glm::mat4 GetViewMatrixCentre()
 	{
-		GLfloat velocity = this->movementSpeed * deltaTime;
+		return glm::lookAt(this->position, this->centerWorld + this->front, this->up);
+	}
 
-		if (direction == FORWARD)
-		{
-			this->position += this->front * velocity;
-		}
 
-		if (direction == BACKWARD)
-		{
-			this->position -= this->front * velocity;
-		}
+
+	int glfwGetKey(GLFWwindow* window, int key)	// Process keyboard input to detect which way the camera should move
+	{
+
+	}
+	void ProcessKeyboard(Camera_Movement direction)
+	{
+		GLfloat velocity = this->movementSpeed;
+
+		//if (direction == FORWARD)
+		//{
+		//	this->position += this->front * velocity;
+		//}
+
+		//if (direction == BACKWARD)
+		//{
+		//	this->position -= this->front * velocity;
+		//}
+
 
 		if (direction == LEFT)
 		{
-			this->position -= this->right * velocity;
+			positionCounter -= 1;
+
 		}
 
 		if (direction == RIGHT)
 		{
-			this->position += this->right * velocity;
+			positionCounter += 1;
+
 		}
+		if (positionCounter >= 4)
+			positionCounter = 1;
+		if (positionCounter <= 0)
+			positionCounter = 3;
+
+		if (positionCounter == 1)
+			this->position = Position1;
+		if (positionCounter == 2)
+			this->position = Position2;
+		if (positionCounter == 3)
+			this->position = Position3;
+
+
+
 	}
 
 	// Process Mouse input in x and y directions
 	void ProcessMouseMovement(GLfloat xOffset, GLfloat yOffset, GLboolean constrainPitch = true)
 	{
-		xOffset *= this->mouseSensitivity;
-		yOffset *= this->mouseSensitivity;
+		//xOffset *= this->mouseSensitivity;
+		//yOffset *= this->mouseSensitivity;
 
-		this->yaw += xOffset;
-		this->pitch += yOffset;
+		//this->yaw += xOffset;
+		//this->pitch += yOffset;
 
-		// Make sure that when pitch is out of bounds, screen doesn't get flipped
-		if (constrainPitch)
-		{
-			if (this->pitch > 89.0f)
-			{
-				this->pitch = 89.0f;
-			}
+		//// Make sure that when pitch is out of bounds, screen doesn't get flipped
+		//if (constrainPitch)
+		//{
+		//	if (this->pitch > 89.0f)
+		//	{
+		//		this->pitch = 89.0f;
+		//	}
 
-			if (this->pitch < -89.0f)
-			{
-				this->pitch = -89.0f;
-			}
-		}
+		//	if (this->pitch < -89.0f)
+		//	{
+		//		this->pitch = -89.0f;
+		//	}
+		//}
 
-		// Update front, right and up vectors using the updated Euler angles
-		this->updateCameraVectors();
+		//// Update front, right and up vectors using the updated Euler angles
+		//this->updateCameraVectors();
 	}
 
 	// Process mouse scroll for zooming

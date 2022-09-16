@@ -116,7 +116,7 @@ int main()
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	vector<GLfloat> vertices;
-	GLfloat yScale = 64.0f / 256.0f; //normalize the height map data and scale it to the desired height
+	GLfloat yScale = 50.0f / 512.0f; //normalize the height map data and scale it to the desired height
 	GLfloat yShift = 16.0f; // translate the elevations to our final desired range
 	int rez = 1;
 	GLuint bytePerPixel = nrChannels;
@@ -130,7 +130,7 @@ int main()
 
 			// vertex
 			vertices.push_back(-height / 2.0f + height * i / (float)height); // vx
-			vertices.push_back((int)y * yScale - yShift); // vy
+			vertices.push_back((float)y * yScale -6.0f); // vy
 			vertices.push_back(-width / 2.0f + width * j / (float)width); // vz
 		}
 	}
@@ -197,7 +197,7 @@ int main()
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100000.0f);
-		glm::mat4 view = camera.GetViewMatrix();
+		glm::mat4 view = camera.GetViewMatrixCentre();
 		GLint projLoc = glGetUniformLocation(ourShader.Program, "projection");
 		GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
 
@@ -242,25 +242,25 @@ int main()
 void ProcessInput(GLFWwindow* window)
 {
 	// Camera controls
-	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
-	{
-		camera.ProcessKeyboard(FORWARD, deltaTime);
-	}
+	//if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
+	//{
+	//	camera.ProcessKeyboard(FORWARD);
+	//}
 
-	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
-	{
-		camera.ProcessKeyboard(BACKWARD, deltaTime);
-	}
+	//if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
+	//{
+	//	camera.ProcessKeyboard(BACKWARD);
+	//}
 
-	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
-	{
-		camera.ProcessKeyboard(LEFT, deltaTime);
-	}
+	//if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT] )
+	//{
+	//	camera.ProcessKeyboard(LEFT);
+	//}
 
-	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
-	{
-		camera.ProcessKeyboard(RIGHT, deltaTime);
-	}
+	//if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
+	//{
+	//	camera.ProcessKeyboard(RIGHT);
+	//}
 }
 
 // Is called whenever a key is pressed/released via GLFW
@@ -276,9 +276,19 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modi
 		if (action == GLFW_PRESS)
 		{
 			keys[key] = true;
+
 		}
 		else if (action == GLFW_RELEASE)
 		{
+			if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
+			{
+				camera.ProcessKeyboard(LEFT);
+			}
+
+			if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
+			{
+				camera.ProcessKeyboard(RIGHT);
+			}
 			keys[key] = false;
 		}
 	}
