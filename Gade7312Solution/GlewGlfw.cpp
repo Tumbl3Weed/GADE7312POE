@@ -1,61 +1,55 @@
-// *** CREATE 3D TERRAIN FROM HEIGHT MAP IMAGE ATTEMPT 2 *** //
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// GLEW
+// GLEW library
 #define GLEW_STATIC
 #include <GL/glew.h>
 
-// GLFW
+// GLFW library
 #include <GLFW/glfw3.h>
 
-// SOIL2
+// SOIL2 library
 #include "SOIL2/SOIL2.h"
 
-// GLM
+// GLM library
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+//local header files
 #include "Shader.h"
 #include "Camera.h"
 
 // Declare Callback Methods
 void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modifiers);
-void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
-void MouseCallback(GLFWwindow* window, double xpos, double ypos);
-void ProcessInput(GLFWwindow* window);
 
-// Settings
+// Settings of the window height and width
 const GLint WIDTH = 800;
 const GLint HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
-// Camera - starting point
+// Camera initialized in the 3D space at a point
 Camera camera(glm::vec3(67.0f, 300.5f, 169.9f), glm::vec3(0.0f, 1.0f, 0.0f), -128.1f, -42.4f);
 GLfloat lastX = WIDTH / 2.0f;
 GLfloat lastY = HEIGHT / 2.0f;
-bool keys[1024]; // Array of 1024 different types of keys
-bool firstMouse = true; // Only handling one type of mouse, thus true
 
-// Timing
+bool keys[1024]; // Array of 1024 different types of keys, used for checks against their usage
+bool firstMouse = true; // We only handling one type of mouse input, thus its true
+
+// Variables used to track time for calculations
 GLfloat deltaTime = 0.0f;
 GLfloat lastFrame = 0.0f;
 
 int main()
 {
-	// Initialize GLFW
+	// Initialize opengl framework
 	glfwInit();
 
-	// Set all required options for GLFW
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	// Setting options of the window
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	// Create our Window
+	// Creating Window
 	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Tester", nullptr, nullptr);
 
 	// Get screen resolution
@@ -64,18 +58,18 @@ int main()
 	// Check if window was created successfully
 	if (window == nullptr)
 	{
+		//if the window wasn't created, write console line and exit
 		cout << "Failed to create window." << endl;
 		glfwTerminate();
 
 		return EXIT_FAILURE;
 	}
 
-	glfwMakeContextCurrent(window); // Exit
+	//Direct opengl to the window we using
+	glfwMakeContextCurrent(window); 
 
 	// Set the required callback functions
 	glfwSetKeyCallback(window, KeyCallback);
-	glfwSetCursorPosCallback(window, MouseCallback);
-	glfwSetScrollCallback(window, ScrollCallback);
 
 	// Center cursor to window and Hide the cursor for a more immersive experience
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -91,8 +85,8 @@ int main()
 	}
 
 	// Setup OpenGL viewport
-	// Define viewport dimensions
-	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); //***
+	// Define viewport dimensions within the scope if the system
+	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); 
 
 	// Enable depth in the project
 	glEnable(GL_DEPTH_TEST);
@@ -100,12 +94,12 @@ int main()
 	//Build & Compile Shader Program
 	Shader ourShader("core.vs", "core.frag");
 
-	// Create and load texture replace it with your own image path.
-	int width, height, nrChannels;
+	// Create and load texture using our image path
+	int width, height, numberOfChannels;
 
-	unsigned char* data = SOIL_load_image("res/images/bitmapheightmap.png", &width, &height, &nrChannels, 0);
+	unsigned char* imageData = SOIL_load_image("res/images/bitmapheightmap.png", &width, &height, &numberOfChannels, 0);
 
-	if (data)
+	if (imageData)
 	{
 		cout << "Loaded heightmap of size " << height << " x " << width << endl;
 	}
@@ -116,26 +110,25 @@ int main()
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	vector<GLfloat> vertices;
-	GLfloat yScale = 50.0f / 512.0f; //normalize the height map data and scale it to the desired height
-	GLfloat yShift = 16.0f; // translate the elevations to our final desired range
+	GLfloat yScale = 50.0f / 500.0f; //normalize the height map data and scale it to the desired height
 	int rez = 1;
-	GLuint bytePerPixel = nrChannels;
+	GLuint bytePerPixel = numberOfChannels;
 
 	for (int i = 0; i < height; i++)
 	{
 		for (int j = 0; j < width; j++)
 		{
-			unsigned char* pixelOffset = data + (j + width * i) * bytePerPixel;
+			unsigned char* pixelOffset = imageData + (j + width * i) * bytePerPixel;
 			unsigned char y = pixelOffset[0];
 
 			// vertex
-			vertices.push_back(-height / 2.0f + height * i / (float)height); // vx
-			vertices.push_back((float)y * yScale -6.0f); // vy
-			vertices.push_back(-width / 2.0f + width * j / (float)width); // vz
+			vertices.push_back(-height / 2.0f + height * i / (float)height); // vertex x pos
+			vertices.push_back((float)y * yScale-2.0f); // vertex y pos
+			vertices.push_back(-width / 2.0f + width * j / (float)width); // vertex z pos
 		}
 	}
 	cout << "Loaded " << vertices.size() / 3 << " vertices" << endl;
-	SOIL_free_image_data(data);
+	SOIL_free_image_data(imageData);
 
 	vector<GLuint> indices;
 	for (int i = 0; i < height - 1; i += rez)
@@ -179,13 +172,12 @@ int main()
 		GLfloat currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-		//cout << deltaTime << "ms (" << 1.0f / deltaTime << " FPS)" << endl; //Check FPS
+		cout << 1.0f / deltaTime << " FPS)" << endl; //Check FPS
 
 		// Checks for events and calls corresponding response
 		glfwPollEvents();
 
 		// Handle the input
-		ProcessInput(window);
 
 		// Render
 		// Clear the colour buffer
@@ -198,15 +190,15 @@ int main()
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100000.0f);
 		glm::mat4 view = camera.GetViewMatrixCentre();
-		GLint projLoc = glGetUniformLocation(ourShader.Program, "projection");
-		GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
+		GLint projLoc = glGetUniformLocation(ourShader.Program, "m4Projection");
+		GLint viewLoc = glGetUniformLocation(ourShader.Program, "m4View");
 
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
 		// world transformation
 		glm::mat4 model = glm::mat4(1.0f);
-		GLint modelLoc = glGetUniformLocation(ourShader.Program, "model");
+		GLint modelLoc = glGetUniformLocation(ourShader.Program, "m4Model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
 		// Draw container
@@ -237,31 +229,6 @@ int main()
 	return EXIT_SUCCESS;
 }
 
-// Moves/alters the camera positions based on user input
-// WASD and Arrow keys
-void ProcessInput(GLFWwindow* window)
-{
-	// Camera controls
-	//if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
-	//{
-	//	camera.ProcessKeyboard(FORWARD);
-	//}
-
-	//if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
-	//{
-	//	camera.ProcessKeyboard(BACKWARD);
-	//}
-
-	//if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT] )
-	//{
-	//	camera.ProcessKeyboard(LEFT);
-	//}
-
-	//if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
-	//{
-	//	camera.ProcessKeyboard(RIGHT);
-	//}
-}
 
 // Is called whenever a key is pressed/released via GLFW
 void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modifiers)
@@ -293,29 +260,3 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modi
 		}
 	}
 }
-
-// GLFW: whenever the mouse moves, this callback is called
-void MouseCallback(GLFWwindow* window, double xPos, double yPos)
-{
-	if (firstMouse)
-	{
-		lastX = xPos;
-		lastY = yPos;
-		firstMouse = false;
-	}
-
-	GLfloat xOffset = xPos - lastX;
-	GLfloat yOffset = lastY - yPos;  // Reversed since y-coordinates go from bottom to left
-
-	lastX = xPos;
-	lastY = yPos;
-
-	camera.ProcessMouseMovement(xOffset, yOffset);
-}
-
-// GLFW: whenever the mouse scroll wheel scrolls, this callback is called
-void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
-{
-	camera.ProcessMouseScroll(yOffset);
-}
-// *** CREATE 3D TERRAIN FROM HEIGHT MAP IMAGE ATTEMPT 2 *** //

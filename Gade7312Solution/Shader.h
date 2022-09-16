@@ -15,88 +15,88 @@ public:
 	Shader(const GLchar *vertexPath, const GLchar *fragmentPath)
 	{
 		//Retrieve vertex and fragment source code from file paths
-		string vertexCode;
-		string fragmentCode;
-		ifstream vShaderFile;
-		ifstream fShaderFile;
+		string vertexStringStream;
+		string fragmentShaderStream;
+		ifstream vShaderBuffer;
+		ifstream fShaderBuffer;
 
 		//Exception handling
-		vShaderFile.exceptions(ifstream::badbit);
-		fShaderFile.exceptions(ifstream::badbit);
+		vShaderBuffer.exceptions(ifstream::badbit);
+		fShaderBuffer.exceptions(ifstream::badbit);
 
 		try
 		{
 			//Open files
-			vShaderFile.open(vertexPath);
-			fShaderFile.open(fragmentPath);
+			vShaderBuffer.open(vertexPath);
+			fShaderBuffer.open(fragmentPath);
 
 			stringstream vShaderStream, fShaderStream;
 
 			//Store file contents into streams
-			vShaderStream << vShaderFile.rdbuf();
-			fShaderStream << fShaderFile.rdbuf();
+			vShaderStream << vShaderBuffer.rdbuf();
+			fShaderStream << fShaderBuffer.rdbuf();
 
 			//Close files
-			vShaderFile.close();
-			fShaderFile.close();
+			vShaderBuffer.close();
+			fShaderBuffer.close();
 
 			//Convert streams into strings
-			vertexCode = vShaderStream.str();
-			fragmentCode = fShaderStream.str();
+			vertexStringStream = vShaderStream.str();
+			fragmentShaderStream = fShaderStream.str();
 		}
 		catch (ifstream::failure e)
 		{
 			cout << "ERROR::SHADER::FILE_NOT_SUCCESSFULLY_READ" << endl;
 		}
 
-		const GLchar *vShaderCode = vertexCode.c_str();
-		const GLchar *fShaderCode = fragmentCode.c_str();
+		const GLchar *vShaderCode = vertexStringStream.c_str();
+		const GLchar *fShaderCode = fragmentShaderStream.c_str();
 
 		//BUILD AND COMPILE OUR SHADER PROGRAM
 
 		//Compile time errors variables
-		GLuint vertexShader, fragmentShader;
+		GLuint iVShader, iFShader;
 		GLint success;
 		GLchar infoLog[512];
 
 		//Build our vertex shader
-		vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource(vertexShader, 1, &vShaderCode, NULL);
+		iVShader = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(iVShader, 1, &vShaderCode, NULL);
 
 		//Compile our shader
-		glCompileShader(vertexShader);
+		glCompileShader(iVShader);
 
 		//Check for compile time errorsand save the status in success variable
-		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+		glGetShaderiv(iVShader, GL_COMPILE_STATUS, &success);
 
 		//Check if the shader has successfully compiled
 		if (!success)
 		{
-			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog); // Get compilation errors and save in infoLog variable
+			glGetShaderInfoLog(iVShader, 512, NULL, infoLog); // Get compilation errors and save in infoLog variable
 			cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << endl;
 		}
 
 		//Build our fragment shader
-		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fragmentShader, 1, &fShaderCode, NULL);
+		iFShader = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(iFShader, 1, &fShaderCode, NULL);
 
 		//Compile our fragment shader
-		glCompileShader(fragmentShader);
+		glCompileShader(iFShader);
 
 		//Check for compile time errorsand save the status in success variable
-		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+		glGetShaderiv(iFShader, GL_COMPILE_STATUS, &success);
 
 		//Check if the shader has successfully compiled
 		if (!success)
 		{
-			glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog); // Get compilation errors and save in infoLog variable
+			glGetShaderInfoLog(iFShader, 512, NULL, infoLog); // Get compilation errors and save in infoLog variable
 			cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << endl;
 		}
 
 		//Link the Shaders
 		this->Program = glCreateProgram();
-		glAttachShader(this->Program, vertexShader);
-		glAttachShader(this->Program, fragmentShader);
+		glAttachShader(this->Program, iVShader);
+		glAttachShader(this->Program, iFShader);
 		glLinkProgram(this->Program);
 
 		//Check for linking errorsand save in success variable
@@ -110,8 +110,8 @@ public:
 		}
 
 		//Shaders have linked successfullyand we can now delete the individual shaders as they are linked in shaderProgram
-		glDeleteShader(vertexShader);
-		glDeleteShader(fragmentShader);
+		glDeleteShader(iVShader);
+		glDeleteShader(iFShader);
 	}
 
 	void Use()
