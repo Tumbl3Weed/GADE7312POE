@@ -875,7 +875,7 @@ static void Decompress(AMTC_BLOCK_STRUCT *pCompressedData,
 
 }
 
-static void * stbi__pvr_load(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+static stbi_uc * stbi__pvr_load(stbi__context *s, int *x, int *y, int *comp, int req_comp)
 {
 	stbi_uc *pvr_data = NULL;
 	stbi_uc *pvr_res_data = NULL;
@@ -968,16 +968,16 @@ static void * stbi__pvr_load(stbi__context *s, int *x, int *y, int *comp, int re
 }
 
 #ifndef STBI_NO_STDIO
-void *stbi__pvr_load_from_file   (FILE *f,                  int *x, int *y, int *comp, int req_comp)
+stbi_uc *stbi__pvr_load_from_file   (FILE *f,                  int *x, int *y, int *comp, int req_comp)
 {
 	stbi__context s;
 	stbi__start_file(&s,f);
 	return stbi__pvr_load(&s,x,y,comp,req_comp);
 }
 
-void *stbi__pvr_load_from_path             (char const*filename,           int *x, int *y, int *comp, int req_comp)
+stbi_uc *stbi__pvr_load_from_path             (char const*filename,           int *x, int *y, int *comp, int req_comp)
 {
-   void *data;
+   stbi_uc *data;
    FILE *f = fopen(filename, "rb");
    if (!f) return NULL;
    data = stbi__pvr_load_from_file(f,x,y,comp,req_comp);
@@ -986,14 +986,14 @@ void *stbi__pvr_load_from_path             (char const*filename,           int *
 }
 #endif
 
-void *stbi__pvr_load_from_memory (stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
+stbi_uc *stbi__pvr_load_from_memory (stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
 {
    stbi__context s;
    stbi__start_mem(&s,buffer, len);
    return stbi__pvr_load(&s,x,y,comp,req_comp);
 }
 
-void *stbi__pvr_load_from_callbacks (stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
+stbi_uc *stbi__pvr_load_from_callbacks (stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
 {
 	stbi__context s;
    stbi__start_callbacks(&s, (stbi_io_callbacks *) clbk, user);

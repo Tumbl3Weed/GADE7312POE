@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 
 // Std. Includes
 #include <vector>
@@ -11,7 +11,7 @@ using namespace std;
 #include <glm/gtc/matrix_transform.hpp>
 
 // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
-enum Camera_Movement
+enum class Camera_Movement
 {
     FORWARD,
     BACKWARD,
@@ -62,22 +62,22 @@ public:
     {
         GLfloat velocity = this->movementSpeed * deltaTime;
 
-        if (direction == FORWARD)
+        if (direction == Camera_Movement::FORWARD)
         {
             this->position += this->front * velocity;
         }
 
-        if (direction == BACKWARD)
+        if (direction == Camera_Movement::BACKWARD)
         {
             this->position -= this->front * velocity;
         }
 
-        if (direction == LEFT)
+        if (direction == Camera_Movement::LEFT)
         {
             this->position -= this->right * velocity;
         }
 
-        if (direction == RIGHT)
+        if (direction == Camera_Movement::RIGHT)
         {
             this->position += this->right * velocity;
         }

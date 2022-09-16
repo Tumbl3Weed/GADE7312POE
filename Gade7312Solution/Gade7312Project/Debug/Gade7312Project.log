@@ -1,15 +1,600 @@
-﻿  Gade7312Project.cpp
-D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(204,30): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(318,17): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(319,17): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(323,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(324,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(326,13): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(327,13): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\Gade7312Project\Gade7312Project.cpp(335,31): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\glew_static.pdb'; linking object as if no debug info
-soil2-debug.lib(SOIL2.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(SOIL2.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
-soil2-debug.lib(image_DXT.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_DXT.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
-soil2-debug.lib(image_helper.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_helper.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
-soil2-debug.lib(wfETC.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(wfETC.obj)' or at 'D:\Vega\Gade7312\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
-  Gade7312Project.vcxproj -> D:\Vega\Gade7312\Gade7312Solution\Debug\Gade7312Project.exe
+﻿  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:32:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_main.h:25:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_stdinc.h:31:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_config.h:25:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_platform.h(166,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:32:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_main.h:25:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_stdinc.h:31:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_config.h:25:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_platform.h(181,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:32:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_main.h:25:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_stdinc.h(299,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:32:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_main.h:25:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_stdinc.h(527,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:32:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_main.h(113,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:32:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_main.h(157,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_assert.h(27,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_assert.h(285,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:35:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_atomic.h(65,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:35:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_atomic.h(264,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:32:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_error.h(33,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:32:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_error.h(72,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:33:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_endian.h(59,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:33:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_endian.h(235,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_mutex.h(34,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_mutex.h(247,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:35:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_thread.h(38,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:35:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_thread.h(283,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:36:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_rwops.h(35,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h:36:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_rwops.h(227,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h(38,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:36:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_audio.h(668,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:37:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_clipboard.h(33,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:37:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_clipboard.h(67,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:38:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_cpuinfo.h(38,9): : warning : '__MMX__' macro redefined [-Wmacro-redefined]
+  #define __MMX__
+          ^
+  <built-in>(349,9): note: previous definition is here
+  #define __MMX__ 1
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:38:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_cpuinfo.h(41,9): : warning : '__SSE__' macro redefined [-Wmacro-redefined]
+  #define __SSE__
+          ^
+  <built-in>(346,9): note: previous definition is here
+  #define __SSE__ 1
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:38:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_cpuinfo.h(42,9): : warning : '__SSE2__' macro redefined [-Wmacro-redefined]
+  #define __SSE2__
+          ^
+  <built-in>(344,9): note: previous definition is here
+  #define __SSE2__ 1
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:38:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_cpuinfo.h(66,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:38:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_cpuinfo.h(157,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h:32:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_pixels.h(34,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h:32:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_pixels.h(464,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h:33:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_rect.h(36,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h:33:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_rect.h(144,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h:34:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_surface.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_blendmode.h(31,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h:34:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_surface.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_blendmode.h(59,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_surface.h(37,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_surface.h(509,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h(36,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:33:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_video.h(1214,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_keyboard.h(36,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:34:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_keyboard.h(213,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:35:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_mouse.h(35,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:35:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_mouse.h(298,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:36:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_joystick.h(45,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:36:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_joystick.h(269,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:37:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_gamecontroller.h(36,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:37:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_gamecontroller.h(319,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:39:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_gesture.h:35:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_touch.h(35,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:39:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_gesture.h:35:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_touch.h(82,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:39:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_gesture.h(38,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h:39:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_gesture.h(83,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h(42,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:41:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_events.h(750,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:42:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_filesystem.h(33,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:42:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_filesystem.h(132,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:45:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_haptic.h(114,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:45:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_haptic.h(1219,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:46:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_hints.h(44,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:46:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_hints.h(791,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:47:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_loadso.h(47,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:47:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_loadso.h(77,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:48:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_log.h(42,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:48:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_log.h(207,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:49:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_messagebox.h(28,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:49:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_messagebox.h(140,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:51:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_power.h(33,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:51:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_power.h(71,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:52:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_render.h(55,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:52:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_render.h(901,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:54:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_system.h(36,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:54:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_system.h(212,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:56:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_timer.h(34,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:56:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_timer.h(111,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:57:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_version.h(33,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+  In file included from D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h:57:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/SDL_version.h(158,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  In file included from main.cpp:22:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h(60,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "begin_code.h"
+           ^
+  D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include/begin_code.h(104,9): note: previous '#pragma pack' directive that modifies alignment is here
+  #pragma pack(push,4)
+          ^
+  In file included from main.cpp:22:
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include\SDL.h(128,10): : warning : the current #pragma pack alignment value is modified in the included file [-Wpragma-pack]
+  #include "close_code.h"
+           ^
+  note: previous '#pragma pack' directive that modifies alignment is here
+  77 warnings generated.
+glew32s.lib(glew.obj) : : warning LNK4099: PDB 'glew_static.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\Vega 2022\GADE\C++\POE\Gade7312Solution\Debug\glew_static.pdb'; linking object as if no debug info
+soil2-debug.lib(SOIL2.obj) : : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(SOIL2.obj)' or at 'D:\Vega 2022\GADE\C++\POE\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(image_DXT.obj) : : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_DXT.obj)' or at 'D:\Vega 2022\GADE\C++\POE\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(wfETC.obj) : : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(wfETC.obj)' or at 'D:\Vega 2022\GADE\C++\POE\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(image_helper.obj) : : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_helper.obj)' or at 'D:\Vega 2022\GADE\C++\POE\Gade7312Solution\Debug\soil2-debug.pdb'; linking object as if no debug info
+msvcrtd.lib(exe_winmain.obj) : : error LNK2019: unresolved external symbol _WinMain@16 referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+D:\Vega 2022\GADE\C++\POE\Gade7312Solution\Debug\Gade7312Project.exe : : error LNK1120: 1 unresolved externals

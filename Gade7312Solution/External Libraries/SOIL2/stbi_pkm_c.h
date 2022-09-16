@@ -1,5 +1,5 @@
 #include "pkm_helper.h"
-#include "wfETC.h"
+#include "etc1_utils.h"
 
 static int stbi__pkm_test(stbi__context *s)
 {
@@ -136,14 +136,19 @@ int stbi__pkm_info_from_file(FILE *f,                  int *x, int *y, int *comp
 }
 #endif
 
-static void * stbi__pkm_load(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+static stbi_uc * stbi__pkm_load(stbi__context *s, int *x, int *y, int *comp, int req_comp)
 {
 	stbi_uc *pkm_data = NULL;
 	stbi_uc *pkm_res_data = NULL;
 	PKMHeader header;
 	unsigned int width;
 	unsigned int height;
-	unsigned int compressed_size;
+	unsigned int align = 0;
+	unsigned int bpr;
+	unsigned int size;
+	unsigned int compressedSize;
+
+	int res;
 
 	stbi__getn( s, (stbi_uc*)(&header), sizeof(PKMHeader) );
 
@@ -156,21 +161,23 @@ static void * stbi__pkm_load(stbi__context *s, int *x, int *y, int *comp, int re
 
 	*x = s->img_x = width;
 	*y = s->img_y = height;
-	*comp = s->img_n = 4;
+	*comp = s->img_n = 3;
 
-	compressed_size = (((width + 3) & ~3) * ((height + 3) & ~3)) >> 1;
+	compressedSize = etc1_get_encoded_data_size(width, height);
 
-	pkm_data = (stbi_uc *)malloc(compressed_size);
-	stbi__getn( s, pkm_data, compressed_size );
+	pkm_data = (stbi_uc *)malloc(compressedSize);
+	stbi__getn( s, pkm_data, compressedSize );
 
-	pkm_res_data = (stbi_uc *)malloc(width * height * s->img_n);
+	bpr = ((width * 3) + align) & ~align;
+	size = bpr * height;
+	pkm_res_data = (stbi_uc *)malloc(size);
 
-	wfETC1_DecodeImage(pkm_data, pkm_res_data, width, height);
+	res = etc1_decode_image((const etc1_byte*)pkm_data, (etc1_byte*)pkm_res_data, width, height, 3, bpr);
 
 	free( pkm_data );
 
-	if ( NULL != pkm_res_data ) {
-		if( (req_comp < 4) && (req_comp >= 1) ) {
+	if ( 0 == res ) {
+		if( (req_comp <= 4) && (req_comp >= 1) ) {
 			//	user has some requirements, meet them
 			if( req_comp != s->img_n ) {
 				pkm_res_data = stbi__convert_format( pkm_res_data, s->img_n, req_comp, s->img_x, s->img_y );
@@ -187,16 +194,16 @@ static void * stbi__pkm_load(stbi__context *s, int *x, int *y, int *comp, int re
 }
 
 #ifndef STBI_NO_STDIO
-void *stbi__pkm_load_from_file   (FILE *f,                  int *x, int *y, int *comp, int req_comp)
+stbi_uc *stbi__pkm_load_from_file   (FILE *f,                  int *x, int *y, int *comp, int req_comp)
 {
 	stbi__context s;
 	stbi__start_file(&s,f);
 	return stbi__pkm_load(&s,x,y,comp,req_comp);
 }
 
-void *stbi__pkm_load_from_path             (char const*filename,           int *x, int *y, int *comp, int req_comp)
+stbi_uc *stbi__pkm_load_from_path             (char const*filename,           int *x, int *y, int *comp, int req_comp)
 {
-   void *data;
+   stbi_uc *data;
    FILE *f = fopen(filename, "rb");
    if (!f) return NULL;
    data = stbi__pkm_load_from_file(f,x,y,comp,req_comp);
@@ -205,14 +212,14 @@ void *stbi__pkm_load_from_path             (char const*filename,           int *
 }
 #endif
 
-void *stbi__pkm_load_from_memory (stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
+stbi_uc *stbi__pkm_load_from_memory (stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
 {
    stbi__context s;
    stbi__start_mem(&s,buffer, len);
    return stbi__pkm_load(&s,x,y,comp,req_comp);
 }
 
-void *stbi__pkm_load_from_callbacks (stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
+stbi_uc *stbi__pkm_load_from_callbacks (stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
 {
 	stbi__context s;
    stbi__start_callbacks(&s, (stbi_io_callbacks *) clbk, user);

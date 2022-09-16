@@ -24,12 +24,13 @@
     <ProjectGuid>{bf9001b7-42d9-4344-a4b5-474d0f15e3e5}</ProjectGuid>
     <RootNamespace>Gade7312Project</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Gade7312Project</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler 2022</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -76,14 +77,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)External Libraries\glm-master;$(SolutionDir)External Libraries\glm-master\glm;$(SolutionDir)External Libraries\SOIL2;$(SolutionDir)External Libraries\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)External Libraries\glew-2.2.0-win32\glew-2.2.0\include;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\include\GLFW;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\include;$(SolutionDir)External Libraries\glm-master;$(SolutionDir)External Libraries\glm-master\glm;$(SolutionDir)External Libraries\SOIL2;$(SolutionDir)External Libraries\glew-2.2.0-win32\glew-2.2.0\include\GL;$(SolutionDir)External Libraries\glew-2.2.0-win32\glew-2.2.0\include;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\include\GLFW;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;soil2-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)External Libraries\SOIL2;$(SolutionDir)External Libraries\glm-master;$(SolutionDir)External Libraries\glm-master\glm;$(SolutionDir)External Libraries\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\lib-static-ucrt;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\lib-vc2022;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\lib-vc2019;$(SolutionDir)External Libraries\SOIL2\lib;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;soil2-debug.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Vega 2022\GADE\C++\POE\Gade7312Solution\External Libraries\SDL\lib\x86;$(SolutionDir)External Libraries\SOIL2;$(SolutionDir)External Libraries\glm-master;$(SolutionDir)External Libraries\glm-master\glm;$(SolutionDir)External Libraries\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\lib-static-ucrt;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\lib-vc2022;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32\lib-vc2019;$(SolutionDir)External Libraries\SOIL2\lib;$(SolutionDir)External Libraries\glfw-3.3.8.bin.WIN32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT;MSVCRT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -134,15 +137,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Gade7312Project.cpp" />
+    <ClCompile Include="main.cpp">
+      <DeploymentContent>true</DeploymentContent>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Camera.h">
+      <DeploymentContent>true</DeploymentContent>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <DeploymentContent>true</DeploymentContent>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core.frag" />
-    <None Include="core.vs" />
+    <None Include="core.frag">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="core.vs">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="image1.jpg">
