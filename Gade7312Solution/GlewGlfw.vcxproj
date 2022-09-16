@@ -90,12 +90,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#SOIL_Libraries\SOIL2-master;D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#GLM_Libraries\glm-0.9.8.5;D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#GLM_Libraries\glm-0.9.8.5\glm\gtc;D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#GLM_Libraries\glm-0.9.8.5\glm;D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#OpenGL_Libraries\GLFW\include;%(SolutionDir)External Libraries\SOIL2;D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#OpenGL_Libraries\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(SolutionDir)External Libraries\#SOIL_Libraries\SOIL2-master;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5\glm\gtc;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5\glm;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLFW\include;%(SolutionDir)External Libraries\SOIL2;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#GLM_Libraries\glm-0.9.8.5\glm;D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#GLM_Libraries\glm-0.9.8.5;%(SolutionDir)External Libraries\#SOIL_Libraries\SOIL2-master\lib;%(SolutionDir)External Libraries\#SOIL_Libraries\SOIL2-master\lib\windows;%(SolutionDir)External Libraries\#SOIL_Libraries\SOIL2-master;D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#OpenGL_Libraries\GLFW\lib-vc2019;D:\Vega 2022\GADE\C++\GLEWGLFW\GlewGlfw\External Libraries\#OpenGL_Libraries\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5\glm;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5;%(SolutionDir)External Libraries\#SOIL_Libraries\SOIL2-master\lib;%(SolutionDir)External Libraries\#SOIL_Libraries\SOIL2-master\lib\windows;%(SolutionDir)External Libraries\#SOIL_Libraries\SOIL2-master;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLFW\lib-vc2019;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;soil2-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
