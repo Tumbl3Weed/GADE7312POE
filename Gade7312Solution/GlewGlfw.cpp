@@ -1,6 +1,8 @@
-// *** CREATE 3D TERRAIN FROM HEIGHT MAP IMAGE ATTEMPT 2 *** //
+// *** CREATE 3D CHESS BOARD ON TERRAIN *** //
 #include <iostream>
 #include <vector>
+#include <list>
+#include <iterator>
 using namespace std;
 
 // GLEW
@@ -33,7 +35,7 @@ const GLint HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera - starting point
-Camera camera(glm::vec3(67.0f, 300.5f, 169.9f), glm::vec3(0.0f, 1.0f, 0.0f), -128.1f, -42.4f);
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 1.0f, 0.0f), -128.1f, -42.4f);
 GLfloat lastX = WIDTH / 2.0f;
 GLfloat lastY = HEIGHT / 2.0f;
 bool keys[1024]; // Array of 1024 different types of keys
@@ -97,6 +99,143 @@ int main()
 	// Enable depth in the project
 	glEnable(GL_DEPTH_TEST);
 
+	// *** CODE FOR CHESS BOARD *** //
+	//Build & Compile Shader Program
+	Shader ourShaderBoard("coreBoard.vs", "coreBoard.frag");
+
+	// Set vertex data for our cube
+	GLfloat cubeVertices[] =
+	{
+		//Positions				//Texture Coords
+		/// Front Triangles/ 2 triangle make cube face
+		-0.5f, -0.5f, 0.5f,		0.0f, 0.0f,
+		-0.5f, -0.5f, 0.0f,	    1.0f, 0.0f,
+		0.5f, -0.5f, 0.0f,		1.0f, 1.0f,
+		//2nd triangle vertices
+		0.5f, -0.5f, 0.0f,		1.0f, 1.0f,
+		0.5f, -0.5f, 0.5f,		0.0f, 1.0f,
+		-0.5f, -0.5f, 0.5f,		0.0f, 0.0f,
+		/// Right Triangles
+		0.5f, -0.5f, 0.5f,		0.0f, 0.0f,
+		0.5f, -0.5f, 0.0f,		1.0f, 0.0f,
+		0.5f, 0.5f,  0.0f,		1.0f, 1.0f,
+
+		0.5f, 0.5f, 0.0f,		1.0f, 1.0f,
+		0.5f, 0.5f, 0.5f,		0.0f, 1.0f,
+		0.5f, -0.5f, 0.5f,		0.0f, 0.0f,
+		/// Back Triangles
+		0.5f, 0.5f, 0.5f,		0.0f, 0.0f,
+		0.5f, 0.5f, 0.0f,		1.0f, 0.0f,
+		-0.5f, 0.5f, 0.0f,		1.0f, 1.0f,
+
+		-0.5f, 0.5f, 0.0f,		1.0f, 1.0f,
+		-0.5f, 0.5f, 0.5f,		0.0f, 1.0f,
+		0.5f, 0.5f, 0.5f,		0.0f, 0.0f,
+		/// Left Triangles
+		-0.5f, 0.5f, 0.5f,		0.0f, 0.0f,
+		-0.5f, 0.5f, 0.0f,		1.0f, 0.0f,
+		-0.5f, -0.5f, 0.0f,	    1.0f, 1.0f,
+
+		-0.5f, -0.5f, 0.0f,	    1.0f, 1.0f,
+		-0.5f, -0.5f, 0.5f,		0.0f, 1.0f,
+		-0.5f, 0.5f, 0.5f,		0.0f, 0.0f,
+		/// Top Triangles
+		-0.5f, 0.5f, 0.5f,		0.0f, 0.0f,
+		-0.5f, -0.5f, 0.5f,		1.0f, 0.0f,
+		0.5f, -0.5f, 0.5f,		1.0f, 1.0f,
+
+		0.5f, -0.5f, 0.5f,		1.0f, 1.0f,
+		0.5f, 0.5f, 0.5f,		0.0f, 1.0f,
+		-0.5f, 0.5f, 0.5f,		0.0f, 0.0f,
+		/// Bottom Triangles
+		-0.5f, -0.5f, 0.0f,	    0.0f, 0.0f,
+		-0.5f, 0.5f, 0.0f,		1.0f, 0.0f,
+		0.5f, 0.5f, 0.0f,		1.0f, 1.0f,
+
+		0.5f, 0.5f, 0.0f,		1.0f, 1.0f,
+		0.5f, -0.5f, 0.0f,		0.0f, 1.0f,
+		-0.5f, -0.5f, 0.0f,	    0.0f, 0.0f
+	};
+
+	
+
+	// Positions of different cubes ***
+	//glm::vec3 cubePositions[] =
+	//{
+	//	//1 chessboard row
+	//	/*glm::vec3(0.0f, 0.0f, 0.0f),
+	//	glm::vec3(1.0f, 0.0f, 0.0f),
+	//	glm::vec3(2.0f, 0.0f, 0.0f),
+	//	glm::vec3(3.0f, 0.0f, 0.0f),
+	//	glm::vec3(4.0f, 0.0f, 0.0f),
+	//	glm::vec3(5.0f, 0.0f, 0.0f),
+	//	glm::vec3(6.0f, 0.0f, 0.0f),
+	//	glm::vec3(7.0f, 0.0f, 0.0f),*/
+
+
+	//	//glm::vec3(13.0f, 0.0f, 0.0f),
+	//};
+
+	vector<glm::vec3> cubePosList;
+
+	for (size_t x = 0; x < 8; x++)
+	{
+		for (size_t z = 0; z < 8; z++)
+		{
+			cubePosList.push_back(glm::vec3((float)x, 0.0f, (float)z));
+		}
+	}
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Board, VOA_Board;
+	glGenVertexArrays(1, &VOA_Board);
+	glGenBuffers(1, &VBA_Board);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Board);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Board);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	//(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);//Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+	// Create and load texture
+	GLuint texture;
+	int widthB, heightB;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* image = SOIL_load_image("res/images/black.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(image);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	// *** CODE FOR CHESS BOARD *** //
+
 	//Build & Compile Shader Program
 	Shader ourShader("core.vs", "core.frag");
 
@@ -116,7 +255,7 @@ int main()
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	vector<GLfloat> vertices;
-	GLfloat yScale = 64.0f / 256.0f; //normalize the height map data and scale it to the desired height
+	GLfloat yScale = 25.0f / 150.0f; //normalize the height map data and scale it to the desired height
 	GLfloat yShift = 16.0f; // translate the elevations to our final desired range
 	int rez = 1;
 	GLuint bytePerPixel = nrChannels;
@@ -130,7 +269,7 @@ int main()
 
 			// vertex
 			vertices.push_back(-height / 2.0f + height * i / (float)height); // vx
-			vertices.push_back((int)y * yScale - yShift); // vy
+			vertices.push_back((int)y * yScale - 10); // vy
 			vertices.push_back(-width / 2.0f + width * j / (float)width); // vz
 		}
 	}
@@ -191,6 +330,55 @@ int main()
 		// Clear the colour buffer
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		// *** CODE FOR CHESS BOARD *** //
+		// Activate Shader
+		ourShaderBoard.Use();
+
+		// Activate specified texture
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glUniform1i(glGetUniformLocation(ourShaderBoard.Program, "ourTexture1"), 0);
+
+		// Create Projection Matrix *** (moved into while loop in order to update zoom)
+		glm::mat4 projection_Board(1.0f);
+		//Perspective view ***
+		projection_Board = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100.0f);
+
+		// Create camera transformation ***
+		glm::mat4 view_Board(1.0f);
+		view_Board = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_Board = glGetUniformLocation(ourShaderBoard.Program, "model");
+		GLint viewLoc_Board = glGetUniformLocation(ourShaderBoard.Program, "view");
+		GLint projLoc_Board = glGetUniformLocation(ourShaderBoard.Program, "projection");
+
+		// Pass locations to shaders ***
+		glUniformMatrix4fv(viewLoc_Board, 1, GL_FALSE, glm::value_ptr(view_Board));
+		glUniformMatrix4fv(projLoc_Board, 1, GL_FALSE, glm::value_ptr(projection_Board));
+
+		// Draw container
+		glBindVertexArray(VOA_Board);
+
+		// function for printing the elements in a list
+		
+		//list<glm::vec3>::iterator it;
+		for (glm::vec3 it : cubePosList)
+		{
+			
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glm::mat4 model_Board(1.0f);
+			model_Board = glm::translate(model_Board, (glm::vec3)it);
+			//cubePosList.pop_front();
+			GLfloat angle = -90.0f;
+			model_Board = glm::rotate(model_Board, angle, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(modelLoc_Board, 1, GL_FALSE, glm::value_ptr(model_Board));
+			
+			glDrawArrays(GL_TRIANGLES, 0, 3*12);
+			//(GLenum mode, GLint first, GLsizei count)
+		}
+		// *** CODE FOR CHESS BOARD *** //
 
 		// Activate Shader
 		ourShader.Use();
@@ -308,4 +496,4 @@ void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 {
 	camera.ProcessMouseScroll(yOffset);
 }
-// *** CREATE 3D TERRAIN FROM HEIGHT MAP IMAGE ATTEMPT 2 *** //
+// *** CREATE 3D CHESS BOARD ON TERRAIN *** //

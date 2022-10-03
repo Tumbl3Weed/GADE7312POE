@@ -29,7 +29,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -90,12 +90,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Vega\Gade7312\Gade7312Solution\External Libraries\SOIL2\lib;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5\glm\gtc;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5\glm;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLFW\include;D:\Vega\Gade7312\Gade7312Solution\SOIL2;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(SolutionDir)External Libraries\SOIL2\lib;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5\glm\gtc;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5\glm;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLFW\include;%(SolutionDir)SOIL2;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5\glm;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5;D:\Vega\Gade7312\Gade7312Solution\External Libraries\SOIL2\lib;D:\Vega\Gade7312\Gade7312Solution\SOIL2;%(SolutionDir)External Libraries\#SOIL_Libraries\SOIL2-master;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLFW\lib-vc2019;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5\glm;%(SolutionDir)External Libraries\#GLM_Libraries\glm-0.9.8.5;%(SolutionDir)External Libraries\SOIL2\lib;%(SolutionDir)\SOIL2;%(SolutionDir)External Libraries\#SOIL_Libraries\SOIL2-master;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLFW\lib-vc2019;%(SolutionDir)External Libraries\#OpenGL_Libraries\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;soil2-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -155,6 +155,8 @@
   <ItemGroup>
     <None Include="core.frag" />
     <None Include="core.vs" />
+    <None Include="coreBoard.frag" />
+    <None Include="coreBoard.vs" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
