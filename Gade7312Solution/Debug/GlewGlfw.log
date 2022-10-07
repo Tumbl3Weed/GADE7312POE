@@ -1,10 +1,12 @@
 ﻿  GlewGlfw.cpp
-D:\Vega 2022\GADE\C++\GADE7312POE-main\Gade7312Solution\GlewGlfw.cpp(318,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega 2022\GADE\C++\GADE7312POE-main\Gade7312Solution\GlewGlfw.cpp(480,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega 2022\GADE\C++\GADE7312POE-main\Gade7312Solution\GlewGlfw.cpp(481,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega 2022\GADE\C++\GADE7312POE-main\Gade7312Solution\GlewGlfw.cpp(485,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega 2022\GADE\C++\GADE7312POE-main\Gade7312Solution\GlewGlfw.cpp(486,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega 2022\GADE\C++\GADE7312POE-main\Gade7312Solution\GlewGlfw.cpp(488,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega 2022\GADE\C++\GADE7312POE-main\Gade7312Solution\GlewGlfw.cpp(489,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega 2022\GADE\C++\GADE7312POE-main\Gade7312Solution\GlewGlfw.cpp(497,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-  GlewGlfw.vcxproj -> D:\Vega 2022\GADE\C++\GADE7312POE-main\Gade7312Solution\Debug\GlewGlfw.exe
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(171,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(172,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(332,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(505,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(506,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(510,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(511,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(513,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(514,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(522,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  GlewGlfw.vcxproj -> D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\Debug\GlewGlfw.exe

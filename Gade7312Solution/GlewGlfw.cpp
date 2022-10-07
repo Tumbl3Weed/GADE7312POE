@@ -157,32 +157,46 @@ int main()
 		-0.5f, -0.5f, 0.0f,	    0.0f, 0.0f
 	};
 
-	
+
 
 	// Positions of different cubes ***
-	//glm::vec3 cubePositions[] =
-	//{
-	//	//1 chessboard row
-	//	/*glm::vec3(0.0f, 0.0f, 0.0f),
-	//	glm::vec3(1.0f, 0.0f, 0.0f),
-	//	glm::vec3(2.0f, 0.0f, 0.0f),
-	//	glm::vec3(3.0f, 0.0f, 0.0f),
-	//	glm::vec3(4.0f, 0.0f, 0.0f),
-	//	glm::vec3(5.0f, 0.0f, 0.0f),
-	//	glm::vec3(6.0f, 0.0f, 0.0f),
-	//	glm::vec3(7.0f, 0.0f, 0.0f),*/
-
-
-	//	//glm::vec3(13.0f, 0.0f, 0.0f),
-	//};
 
 	vector<glm::vec3> cubePosList;
-
+	vector<glm::vec3> boarderPosList;
 	for (size_t x = 0; x < 8; x++)
 	{
 		for (size_t z = 0; z < 8; z++)
 		{
 			cubePosList.push_back(glm::vec3((float)x, 0.0f, (float)z));
+			float tempX = x;
+			float tempZ = z;
+			if (z == 0)
+				tempZ -= 1;
+			if (z == 7)
+				tempZ += 1;
+			if (x == 0)
+				tempX -= 1;
+			if (x == 7)
+				tempX += 1;
+			if (tempZ != z || tempX != x) {
+				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ));
+			}
+			if (x == 0 && z == 0) {
+				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ + 1));
+				boarderPosList.push_back(glm::vec3(tempX + 1, 0.0f, tempZ));
+			}
+			if (x == 7 && z == 0) {
+				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ + 1));
+				boarderPosList.push_back(glm::vec3(tempX - 1, 0.0f, tempZ));
+			}
+			if (x == 0 && z == 7) {
+				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ - 1));
+				boarderPosList.push_back(glm::vec3(tempX+1, 0.0f, tempZ));
+			}
+			if (x == 7 && z == 7) {
+				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ - 1));
+				boarderPosList.push_back(glm::vec3(tempX - 1, 0.0f, tempZ));
+			}
 		}
 	}
 
@@ -362,21 +376,32 @@ int main()
 		glBindVertexArray(VOA_Board);
 
 		// function for printing the elements in a list
-		
+
 		//list<glm::vec3>::iterator it;
 		for (glm::vec3 it : cubePosList)
 		{
-			
+
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Board(1.0f);
 			model_Board = glm::translate(model_Board, (glm::vec3)it);
 			//cubePosList.pop_front();
 			GLfloat angle = -90.0f;
-			model_Board = glm::rotate(model_Board, angle, glm::vec3(1.0f, 0.0f, 0.0f));
+			model_Board = glm::rotate(model_Board, glm::radians(angle), glm::vec3(1.0f, 0.0f, 0.0f));
 			glUniformMatrix4fv(modelLoc_Board, 1, GL_FALSE, glm::value_ptr(model_Board));
-			
-			glDrawArrays(GL_TRIANGLES, 0, 3*12);
+
+			glDrawArrays(GL_TRIANGLES, 0, 3 * 12);
 			//(GLenum mode, GLint first, GLsizei count)
+		}
+
+		for (glm::vec3 it : boarderPosList) {
+			glm::mat4 model_Board(1.0f);
+			model_Board = glm::translate(model_Board, (glm::vec3)it);
+			//cubePosList.pop_front();
+			GLfloat angle = -90.0f;
+			model_Board = glm::rotate(model_Board, glm::radians(angle), glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(modelLoc_Board, 1, GL_FALSE, glm::value_ptr(model_Board));
+
+			glDrawArrays(GL_TRIANGLES, 0, 3 * 12);
 		}
 		// *** CODE FOR CHESS BOARD *** //
 
