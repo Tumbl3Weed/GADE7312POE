@@ -163,11 +163,17 @@ int main()
 
 	vector<glm::vec3> cubePosList;
 	vector<glm::vec3> boarderPosList;
+	float randomHeight;
 	for (size_t x = 0; x < 8; x++)
 	{
 		for (size_t z = 0; z < 8; z++)
 		{
-			cubePosList.push_back(glm::vec3((float)x, 0.0f, (float)z));
+			randomHeight = 0;
+			randomHeight += (float)((float)rand() / RAND_MAX);
+			randomHeight /=2;
+			randomHeight -= (float)0.25;
+			
+			cubePosList.push_back(glm::vec3((float)x, randomHeight, (float)z));
 			float tempX = x;
 			float tempZ = z;
 			if (z == 0)
@@ -191,7 +197,7 @@ int main()
 			}
 			if (x == 0 && z == 7) {
 				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ - 1));
-				boarderPosList.push_back(glm::vec3(tempX+1, 0.0f, tempZ));
+				boarderPosList.push_back(glm::vec3(tempX + 1, 0.0f, tempZ));
 			}
 			if (x == 7 && z == 7) {
 				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ - 1));
