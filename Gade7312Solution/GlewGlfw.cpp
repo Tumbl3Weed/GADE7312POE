@@ -158,6 +158,103 @@ int main()
 	};
 
 
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Board, VOA_Board;
+	glGenVertexArrays(1, &VOA_Board);
+	glGenBuffers(1, &VBA_Board);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Board);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Board);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	//(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);//Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+	// Create and load texture
+	GLuint textureWhite, textureBlack, textureBoarder;
+	int widthB, heightB;
+	glGenTextures(1, &textureWhite);
+	glBindTexture(GL_TEXTURE_2D, textureWhite);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* imageWhite = SOIL_load_image("res/images/white.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageWhite);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(imageWhite);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//starting new texture
+	glGenTextures(1, &textureBlack);
+	glBindTexture(GL_TEXTURE_2D, textureBlack);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* imageBlack = SOIL_load_image("res/images/black.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageBlack);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(imageBlack);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//start of boarder texture
+	glGenTextures(1, &textureBoarder);
+	glBindTexture(GL_TEXTURE_2D, textureBoarder);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* imageBoarder = SOIL_load_image("res/images/boarder.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageBoarder);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(imageBoarder);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	// *** CODE FOR CHESS BOARD *** //
 
 	// Positions of different cubes ***
 
@@ -170,9 +267,9 @@ int main()
 		{
 			randomHeight = 0;
 			randomHeight += (float)((float)rand() / RAND_MAX);
-			randomHeight /=2;
+			randomHeight /= 2;
 			randomHeight -= (float)0.25;
-			
+
 			cubePosList.push_back(glm::vec3((float)x, randomHeight, (float)z));
 			float tempX = x;
 			float tempZ = z;
@@ -205,56 +302,6 @@ int main()
 			}
 		}
 	}
-
-	// Generate the vertex arrays and vertex buffers and save them into variables
-	GLuint VBA_Board, VOA_Board;
-	glGenVertexArrays(1, &VOA_Board);
-	glGenBuffers(1, &VBA_Board);
-
-	// Bind the vertex array object
-	glBindVertexArray(VOA_Board);
-
-	// Bind and set the vertex buffers
-	glBindBuffer(GL_ARRAY_BUFFER, VBA_Board);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
-
-	// Create the vertex pointer and enable the vertex array
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0); //Position
-	glEnableVertexAttribArray(0);
-
-	// Texture coordinate attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-	//(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);//Texture
-	glEnableVertexAttribArray(2);
-
-	// Unbind the vertex array to prevent strange bugs
-	glBindVertexArray(0);
-
-	// Create and load texture
-	GLuint texture;
-	int widthB, heightB;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-
-	// Set texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	// Actual texture loading code
-	unsigned char* image = SOIL_load_image("res/images/black.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
-
-	// Specify 2D texture image
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-
-	// Generate mipmaps
-	glGenerateMipmap(GL_TEXTURE_2D);
-	SOIL_free_image_data(image);
-	glBindTexture(GL_TEXTURE_2D, 0);
-	// *** CODE FOR CHESS BOARD *** //
 
 	//Build & Compile Shader Program
 	Shader ourShader("core.vs", "core.frag");
@@ -352,13 +399,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// *** CODE FOR CHESS BOARD *** //
-		// Activate Shader
 		ourShaderBoard.Use();
-
-		// Activate specified texture
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		glUniform1i(glGetUniformLocation(ourShaderBoard.Program, "ourTexture1"), 0);
 
 		// Create Projection Matrix *** (moved into while loop in order to update zoom)
 		glm::mat4 projection_Board(1.0f);
@@ -383,10 +424,33 @@ int main()
 
 		// function for printing the elements in a list
 
+		bool isBlack = false;
+		int temp = 0;
+		bool count = 0;
 		//list<glm::vec3>::iterator it;
 		for (glm::vec3 it : cubePosList)
 		{
 
+			// Activate Image Textures
+			if (((temp+(int)count) % 2) == 0)
+			{
+				// Activate specified texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, textureWhite);
+				glUniform1i(glGetUniformLocation(ourShaderBoard.Program, "ourTexture1"), 0);
+			}
+			else
+			{
+				// Activate specified texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, textureBlack);
+				glUniform1i(glGetUniformLocation(ourShaderBoard.Program, "ourTexture1"), 0);
+			}
+			temp++;
+			if ((temp % 8) == 0) {
+				count = !count;
+			}
+			
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Board(1.0f);
 			model_Board = glm::translate(model_Board, (glm::vec3)it);
@@ -399,7 +463,14 @@ int main()
 			//(GLenum mode, GLint first, GLsizei count)
 		}
 
-		for (glm::vec3 it : boarderPosList) {
+		for (glm::vec3 it : boarderPosList)
+		{
+			// ACTIVATE BORDER TEXTURE
+			// Activate specified texture
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, textureBoarder);
+			glUniform1i(glGetUniformLocation(ourShaderBoard.Program, "ourTexture1"), 0);
+
 			glm::mat4 model_Board(1.0f);
 			model_Board = glm::translate(model_Board, (glm::vec3)it);
 			//cubePosList.pop_front();
