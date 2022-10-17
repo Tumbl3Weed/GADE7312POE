@@ -197,7 +197,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	// Actual texture loading code
-	unsigned char* imageWhite = SOIL_load_image("res/images/white.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+	unsigned char* imageWhite = SOIL_load_image("res/images/WhiteMarbleTexture.jpg", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
 
 	// Specify 2D texture image
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageWhite);
@@ -221,7 +221,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	// Actual texture loading code
-	unsigned char* imageBlack = SOIL_load_image("res/images/black.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+	unsigned char* imageBlack = SOIL_load_image("res/images/Blackmarbletexture.jpg", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
 
 	// Specify 2D texture image
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageBlack);
