@@ -1,14 +1,14 @@
 ﻿  GlewGlfw.cpp
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(280,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(281,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(800,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(741,6): warning C4101: 'widthPawn': unreferenced local variable
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(741,17): warning C4101: 'heightPawn': unreferenced local variable
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1265,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1266,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1270,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1271,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1273,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1274,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1282,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-  GlewGlfw.vcxproj -> D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\Debug\GlewGlfw.exe
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(276,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(277,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(796,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(737,6): warning C4101: 'widthPawn': unreferenced local variable
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(737,17): warning C4101: 'heightPawn': unreferenced local variable
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1227,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1228,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1232,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1233,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1235,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1236,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1244,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  GlewGlfw.vcxproj -> D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\Debug\GlewGlfw.exe

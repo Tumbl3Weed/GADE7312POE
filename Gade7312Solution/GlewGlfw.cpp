@@ -47,10 +47,6 @@ GLfloat lastFrame = 0.0f;
 
 //Animate 
 bool animating = false;
-GLfloat AnimatePawnRot();
-glm::vec3 AnimatePawnPos(glm::vec3 pos);
-glm::vec3 AnimatePawnPos2(glm::vec3 pos);
-glm::vec3 AnimatePawnPos3(glm::vec3 pos);
 
 int main()
 {
@@ -544,7 +540,7 @@ int main()
 		// Row 2
 		glm::vec3(-3.0f, 0.5f, -4.0f),
 		glm::vec3(2.0f, 0.5f, -4.0f),
-		
+
 	};
 
 	// Generate the vertex arrays and vertex buffers and save them into variables
@@ -615,12 +611,12 @@ int main()
 		// Row 1
 		glm::vec3(-4.0f, 0.5f, 3.0f),
 		glm::vec3(3.0f, 0.5f, 3.0f),
-		
+
 
 		// Row 2
 		glm::vec3(-4.0f, 0.5f, -4.0f),
 		glm::vec3(3.0f, 0.5f, -4.0f),
-		
+
 	};
 
 	// Generate the vertex arrays and vertex buffers and save them into variables
@@ -842,7 +838,7 @@ int main()
 
 		for (GLuint i = 0; i < 16; i++)
 		{
-			if (i <= 7)
+			if (i < 8)
 			{
 				// Activate White Texture
 				glActiveTexture(GL_TEXTURE0);
@@ -859,20 +855,14 @@ int main()
 
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Pawn(1.0f);
-
-			if (i == 1 || i == 15) // Select which pawns are animated
-			{
-				glm::vec3 myPawnPosition = AnimatePawnPos(pawnPositions[i]);
-				model_Pawn = glm::translate(model_Pawn, myPawnPosition);
-				GLfloat angle = AnimatePawnRot();
-				model_Pawn = glm::rotate(model_Pawn, angle, glm::vec3(1.0f, 1.0f, 1.0f));
+			model_Pawn = glm::translate(model_Pawn, pawnPositions[i]);
+			if (animating) // Select which pawns are animated
+			{							
+				model_Pawn = glm::rotate(model_Pawn, (GLfloat)glfwGetTime() * 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 			}
 			else
-			{
-				// Non-animated pawns
-				model_Pawn = glm::translate(model_Pawn, pawnPositions[i]);
-				GLfloat angle = 0.0f;
-				model_Pawn = glm::rotate(model_Pawn, angle, glm::vec3(1.0f, 0.0f, 0.0f));
+			{												
+				model_Pawn = glm::rotate(model_Pawn, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 			}
 
 			glUniformMatrix4fv(modelLoc_Pawn, 1, GL_FALSE, glm::value_ptr(model_Pawn));
@@ -908,7 +898,7 @@ int main()
 
 		for (GLuint i = 0; i < 4; i++)
 		{
-			if (i <= 3)
+			if (i < 2)
 			{
 				// Activate White Texture
 				glActiveTexture(GL_TEXTURE0);
@@ -926,26 +916,14 @@ int main()
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Knight(1.0f);
 
-			if (i == 1) // Select which pawns are animated
+			model_Knight = glm::translate(model_Knight, KnightPositions[i]);
+			if (animating) // Select which pawns are animated
 			{
-				glm::vec3 myKnightPosition = AnimatePawnPos(KnightPositions[i]);
-				model_Knight = glm::translate(model_Knight, myKnightPosition);
-				GLfloat angle = AnimatePawnRot();
-				model_Knight = glm::rotate(model_Knight, angle, glm::vec3(1.0f, 1.0f, 1.0f));
+				model_Knight = glm::rotate(model_Knight, (GLfloat)glfwGetTime() * 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 			}
 			else
 			{
-				// Non-animated pawns
-				model_Knight = glm::translate(model_Knight, KnightPositions[i]);
-				GLfloat angle = 180.0f;
-				if (i > 1)
-				{
-					model_Knight = glm::rotate(model_Knight, angle, glm::vec3(0.0f, 1.0f, 0.0f));
-				}
-				else {
-					model_Knight = glm::rotate(model_Knight, 0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-				}
-				
+				model_Knight = glm::rotate(model_Knight, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 			}
 
 			glUniformMatrix4fv(modelLoc_Knight, 1, GL_FALSE, glm::value_ptr(model_Knight));
@@ -982,7 +960,7 @@ int main()
 
 		for (GLuint i = 0; i < 4; i++)
 		{
-			if (i <= 3)
+			if (i < 2)
 			{
 				// Activate White Texture
 				glActiveTexture(GL_TEXTURE0);
@@ -1000,19 +978,14 @@ int main()
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Rook(1.0f);
 
-			if (i == 1) // Select which pawns are animated
+			model_Rook = glm::translate(model_Rook, RookPositions[i]);
+			if (animating) // Select which pawns are animated
 			{
-				glm::vec3 myRookPosition = AnimatePawnPos(RookPositions[i]);
-				model_Rook = glm::translate(model_Rook, myRookPosition);
-				GLfloat angle = AnimatePawnRot();
-				model_Rook = glm::rotate(model_Rook, angle, glm::vec3(1.0f, 1.0f, 1.0f));
+				model_Rook = glm::rotate(model_Rook, (GLfloat)glfwGetTime() * 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 			}
 			else
 			{
-				// Non-animated pawns
-				model_Rook = glm::translate(model_Rook, RookPositions[i]);
-				GLfloat angle = 0.0f;
-				model_Rook = glm::rotate(model_Rook, angle, glm::vec3(1.0f, 0.0f, 0.0f));
+				model_Rook = glm::rotate(model_Rook, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 			}
 
 			glUniformMatrix4fv(modelLoc_Rook, 1, GL_FALSE, glm::value_ptr(model_Rook));
@@ -1020,7 +993,7 @@ int main()
 			glDrawArrays(GL_TRIANGLES, 0, 13716);
 		}
 #pragma endregion
-		
+
 
 		// *** CODE FOR CHESS BOARD *** //
 		ourShaderBoard.Use();
@@ -1176,18 +1149,7 @@ int main()
 	return EXIT_SUCCESS;
 }
 
-// Animate the rotation of the Chess Pieces
-GLfloat AnimatePawnRot()
-{
-	if (animating)
-	{
-		return (GLfloat)glfwGetTime() * 1.0f;
-	}
-	else
-	{
-		return 0.0f;
-	}
-}
+// Animate the rotation of the Chess Piece
 
 // Animate the position of the Chess Pieces
 glm::vec3 AnimatePawnPos(glm::vec3 pos)
@@ -1211,22 +1173,22 @@ void ProcessInput(GLFWwindow* window)
 	// Camera controls
 	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
 	{
-		camera.ProcessKeyboard(FORWARD, deltaTime/2);
+		camera.ProcessKeyboard(FORWARD, deltaTime / 2);
 	}
 
 	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
 	{
-		camera.ProcessKeyboard(BACKWARD, deltaTime/2);
+		camera.ProcessKeyboard(BACKWARD, deltaTime / 2);
 	}
 
 	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
 	{
-		camera.ProcessKeyboard(LEFT, deltaTime/2);
+		camera.ProcessKeyboard(LEFT, deltaTime / 2);
 	}
 
 	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
 	{
-		camera.ProcessKeyboard(RIGHT, deltaTime/2);
+		camera.ProcessKeyboard(RIGHT, deltaTime / 2);
 	}
 }
 
