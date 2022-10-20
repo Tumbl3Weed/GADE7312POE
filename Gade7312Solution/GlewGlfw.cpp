@@ -35,7 +35,7 @@ const GLint HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera - starting point
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 1.0f, 0.0f), -128.1f, -42.4f);
+Camera camera(glm::vec3(0.0f, 5.0f, 5.0f), glm::vec3(0.0f, 1.0f, 0.0f), -128.1f, -42.4f);
 GLfloat lastX = WIDTH / 2.0f;
 GLfloat lastY = HEIGHT / 2.0f;
 bool keys[1024]; // Array of 1024 different types of keys
@@ -431,7 +431,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	// Actual texture loading code
-	unsigned char* HM_Image2 = SOIL_load_image("res/images/terrain2.png", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* HM_Image2 = SOIL_load_image("res/images/terrain1.png", &width, &height, 0, SOIL_LOAD_RGBA);
 
 	// Specify 2D texture image
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image2);
@@ -456,7 +456,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	// Actual texture loading code
-	unsigned char* HM_Image3 = SOIL_load_image("res/images/terrain3.png", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* HM_Image3 = SOIL_load_image("res/images/terrain1.png", &width, &height, 0, SOIL_LOAD_RGBA);
 
 	// Specify 2D texture image
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image3);
@@ -481,7 +481,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	// Actual texture loading code
-	unsigned char* HM_Image4 = SOIL_load_image("res/images/terrain4.png", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* HM_Image4 = SOIL_load_image("res/images/terrain1.png", &width, &height, 0, SOIL_LOAD_RGBA);
 
 	// Specify 2D texture image
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image4);
@@ -647,6 +647,82 @@ int main()
 	//GLuint rookTextureW, rookTextureB;
 	//int widthRook, heightRook;
 #pragma endregion
+	// *** CODE FOR CHESS PIECE - BISHOP *** //
+#pragma region CODE FOR CHESS PIECE - Bishop
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderBishop("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our Bishop piece
+	GLfloat verticesBishop[14436];
+
+	// *** Read Vertex data from Bishop.txt file ***//
+	ifstream myFileBishop("Bishop.txt");
+	i = 0;
+
+	if (myFileBishop.is_open())
+	{
+		string line;
+
+		while (!myFileBishop.eof())
+		{
+			getline(myFileBishop, line, ' ');
+			verticesBishop[i] = stof(line);
+			i++;
+			getline(myFileBishop, line, ' ');
+			verticesBishop[i] = stof(line);
+			i++;
+			getline(myFileBishop, line, '\n');
+			verticesBishop[i] = stof(line);
+			i++;
+		}
+		myFileBishop.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Bishop.txt file ***//
+
+	// Positions of Bishop
+	glm::vec3 BishopPositions[] =
+	{
+		// Row 1
+		glm::vec3(-2.0f, 0.5f, 3.0f),
+		glm::vec3(1.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(-2.0f, 0.5f, -4.0f),
+		glm::vec3(1.0f, 0.5f, -4.0f),
+
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Bishop, VOA_Bishop;
+	glGenVertexArrays(1, &VOA_Bishop);
+	glGenBuffers(1, &VBA_Bishop);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Bishop);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Bishop);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesBishop), verticesBishop, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
 	// *** CODE FOR CHESS PIECE - PAWN *** //
 #pragma region CODE FOR CHESS PIECE - PAWN
 
@@ -750,7 +826,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	// Actual texture loading code
-	unsigned char* pawnImageW = SOIL_load_image("res/images/whitePieces.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+	unsigned char* pawnImageW = SOIL_load_image("res/images/white.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
 
 	// Specify 2D texture image
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, pawnImageW);
@@ -775,7 +851,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	// Actual texture loading code
-	unsigned char* pawnImageB = SOIL_load_image("res/images/blackPieces.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+	unsigned char* pawnImageB = SOIL_load_image("res/images/black.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
 
 	// Specify 2D texture image
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, pawnImageB);
@@ -788,6 +864,160 @@ int main()
 
 #pragma endregion
 	// ^*** CODE FOR CHESS PIECE - PAWN ***^ //
+
+	// *** CODE FOR CHESS PIECE - King *** //
+#pragma region CODE FOR CHESS PIECE - King
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderKing("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our King piece
+	GLfloat verticesKing[14436];
+
+	// *** Read Vertex data from King.txt file ***//
+	ifstream myFileKing("King.txt");
+	i = 0;
+
+	if (myFileKing.is_open())
+	{
+		string line;
+
+		while (!myFileKing.eof())
+		{
+			getline(myFileKing, line, ' ');
+			verticesKing[i] = stof(line);
+			i++;
+			getline(myFileKing, line, ' ');
+			verticesKing[i] = stof(line);
+			i++;
+			getline(myFileKing, line, '\n');
+			verticesKing[i] = stof(line);
+			i++;
+		}
+		myFileKing.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from King.txt file ***//
+
+	// Positions of King
+	glm::vec3 KingPositions[] =
+	{
+		// Row 1
+		glm::vec3(0.0f, 0.5f, 3.0f),
+		//glm::vec3(1.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(0.0f, 0.5f, -4.0f),
+		//glm::vec3(1.0f, 0.5f, -4.0f),
+
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_King, VOA_King;
+	glGenVertexArrays(1, &VOA_King);
+	glGenBuffers(1, &VBA_King);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_King);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_King);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesKing), verticesKing, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
+
+	// *** CODE FOR CHESS PIECE - QUeen *** //
+#pragma region CODE FOR CHESS PIECE - Queen
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderQueen("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our Queen piece
+	GLfloat verticesQueen[14436];
+
+	// *** Read Vertex data from Queen.txt file ***//
+	ifstream myFileQueen("Queen.txt");
+	i = 0;
+
+	if (myFileQueen.is_open())
+	{
+		string line;
+
+		while (!myFileQueen.eof())
+		{
+			getline(myFileQueen, line, ' ');
+			verticesQueen[i] = stof(line);
+			i++;
+			getline(myFileQueen, line, ' ');
+			verticesQueen[i] = stof(line);
+			i++;
+			getline(myFileQueen, line, '\n');
+			verticesQueen[i] = stof(line);
+			i++;
+		}
+		myFileQueen.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Queen.txt file ***//
+
+	// Positions of Queen
+	glm::vec3 QueenPositions[] =
+	{
+		// Row 1
+		glm::vec3(-1.0f, 0.5f, 3.0f),
+		//glm::vec3(1.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(-1.0f, 0.5f, -4.0f),
+		//glm::vec3(1.0f, 0.5f, -4.0f),
+
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Queen, VOA_Queen;
+	glGenVertexArrays(1, &VOA_Queen);
+	glGenBuffers(1, &VBA_Queen);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Queen);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Queen);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesQueen), verticesQueen, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
 
 	// GAME LOOP
 	while (!glfwWindowShouldClose(window))
@@ -994,6 +1224,189 @@ int main()
 		}
 #pragma endregion
 
+
+#pragma region CODE FOR CHESS PIECE - Bishop WHILE LOOP
+		// Activate Shader
+		ourShaderBishop.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_Bishop(1.0f);
+		//Perspective view ***
+		projection_Bishop = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+
+		// Create camera transformation
+		glm::mat4 view_Bishop(1.0f);
+		view_Bishop = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_Bishop = glGetUniformLocation(ourShaderBishop.Program, "model");
+		GLint viewLoc_Bishop = glGetUniformLocation(ourShaderBishop.Program, "view");
+		GLint projLoc_Bishop = glGetUniformLocation(ourShaderBishop.Program, "projection");
+
+		// Pass locations to shaders
+		glUniformMatrix4fv(viewLoc_Bishop, 1, GL_FALSE, glm::value_ptr(view_Bishop));
+		glUniformMatrix4fv(projLoc_Bishop, 1, GL_FALSE, glm::value_ptr(projection_Bishop));
+
+		// Draw container
+		glBindVertexArray(VOA_Bishop);
+
+		for (GLuint i = 0; i < 4; i++)
+		{
+			if (i < 2)
+			{
+				// Activate White Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glUniform1i(glGetUniformLocation(ourShaderBishop.Program, "ourTexture1"), 0);
+			}
+			else
+			{
+				// Activate Black Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glUniform1i(glGetUniformLocation(ourShaderBishop.Program, "ourTexture1"), 0);
+			}
+
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glm::mat4 model_Bishop(1.0f);
+
+			model_Bishop = glm::translate(model_Bishop, BishopPositions[i]);
+			if (animating) // Select which pawns are animated
+			{
+				model_Bishop = glm::rotate(model_Bishop, (GLfloat)glfwGetTime() * 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+			}
+			else
+			{
+				model_Bishop = glm::rotate(model_Bishop, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+			}
+
+			glUniformMatrix4fv(modelLoc_Bishop, 1, GL_FALSE, glm::value_ptr(model_Bishop));
+
+			glDrawArrays(GL_TRIANGLES, 0, 14436);
+		}
+#pragma endregion
+
+#pragma region CODE FOR CHESS PIECE - King WHILE LOOP
+		// Activate Shader
+		ourShaderKing.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_King(1.0f);
+		//Perspective view ***
+		projection_King = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+
+		// Create camera transformation
+		glm::mat4 view_King(1.0f);
+		view_King = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_King = glGetUniformLocation(ourShaderKing.Program, "model");
+		GLint viewLoc_King = glGetUniformLocation(ourShaderKing.Program, "view");
+		GLint projLoc_King = glGetUniformLocation(ourShaderKing.Program, "projection");
+
+		// Pass locations to shaders
+		glUniformMatrix4fv(viewLoc_King, 1, GL_FALSE, glm::value_ptr(view_King));
+		glUniformMatrix4fv(projLoc_King, 1, GL_FALSE, glm::value_ptr(projection_King));
+
+		// Draw container
+		glBindVertexArray(VOA_King);
+
+		for (GLuint i = 0; i < 2; i++)
+		{
+			if (i < 1)
+			{
+				// Activate White Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glUniform1i(glGetUniformLocation(ourShaderKing.Program, "ourTexture1"), 0);
+			}
+			else
+			{
+				// Activate Black Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glUniform1i(glGetUniformLocation(ourShaderKing.Program, "ourTexture1"), 0);
+			}
+
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glm::mat4 model_King(1.0f);
+
+			model_King = glm::translate(model_King, KingPositions[i]);
+			if (animating) // Select which pawns are animated
+			{
+				model_King = glm::rotate(model_King, (GLfloat)glfwGetTime() * 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+			}
+			else
+			{
+				model_King = glm::rotate(model_King, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+			}
+
+			glUniformMatrix4fv(modelLoc_King, 1, GL_FALSE, glm::value_ptr(model_King));
+
+			glDrawArrays(GL_TRIANGLES, 0, 14436);
+		}
+#pragma endregion
+
+#pragma region CODE FOR CHESS PIECE - Queen WHILE LOOP
+		// Activate Shader
+		ourShaderQueen.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_Queen(1.0f);
+		//Perspective view ***
+		projection_Queen = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+
+		// Create camera transformation
+		glm::mat4 view_Queen(1.0f);
+		view_Queen = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_Queen = glGetUniformLocation(ourShaderQueen.Program, "model");
+		GLint viewLoc_Queen = glGetUniformLocation(ourShaderQueen.Program, "view");
+		GLint projLoc_Queen = glGetUniformLocation(ourShaderQueen.Program, "projection");
+
+		// Pass locations to shaders
+		glUniformMatrix4fv(viewLoc_Queen, 1, GL_FALSE, glm::value_ptr(view_Queen));
+		glUniformMatrix4fv(projLoc_Queen, 1, GL_FALSE, glm::value_ptr(projection_Queen));
+
+		// Draw container
+		glBindVertexArray(VOA_Queen);
+
+		for (GLuint i = 0; i < 2; i++)
+		{
+			if (i < 1)
+			{
+				// Activate White Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glUniform1i(glGetUniformLocation(ourShaderQueen.Program, "ourTexture1"), 0);
+			}
+			else
+			{
+				// Activate Black Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glUniform1i(glGetUniformLocation(ourShaderQueen.Program, "ourTexture1"), 0);
+			}
+
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glm::mat4 model_Queen(1.0f);
+
+			model_Queen = glm::translate(model_Queen, QueenPositions[i]);
+			if (animating) // Select which pawns are animated
+			{
+				model_Queen = glm::rotate(model_Queen, (GLfloat)glfwGetTime() * 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+			}
+			else
+			{
+				model_Queen = glm::rotate(model_Queen, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+			}
+
+			glUniformMatrix4fv(modelLoc_Queen, 1, GL_FALSE, glm::value_ptr(model_Queen));
+
+			glDrawArrays(GL_TRIANGLES, 0, 14436);
+		}
+#pragma endregion
 
 		// *** CODE FOR CHESS BOARD *** //
 		ourShaderBoard.Use();
