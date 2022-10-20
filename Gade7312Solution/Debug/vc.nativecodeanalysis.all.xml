@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\</FILEPATH>
+      <FILENAME>GlewGlfw.cpp</FILENAME>
+      <LINE>433</LINE>
+      <COLUMN>17</COLUMN>
+    </SFA>
+    <DEFECTCODE>26817</DEFECTCODE>
+    <DESCRIPTION>Potentially expensive copy of variable 'it' in range-for loop. Consider making it a const reference (es.71).</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>48</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\</FILEPATH>
+      <FILENAME>GlewGlfw.cpp</FILENAME>
+      <LINE>448</LINE>
+      <COLUMN>17</COLUMN>
+    </SFA>
+    <DEFECTCODE>26817</DEFECTCODE>
+    <DESCRIPTION>Potentially expensive copy of variable 'it' in range-for loop. Consider making it a const reference (es.71).</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>48</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>D:\Everything\Work\Vega\GADE7312\GADE7312POE\Gade7312Solution\External Libraries\#GLM_Libraries\glm-0.9.8.5\glm\glm\detail\</FILEPATH>
+      <FILENAME>type_vec4.inl</FILENAME>
+      <LINE>182</LINE>
+      <COLUMN>52</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'glm::tvec4&lt;float,5&gt;::&lt;unnamed-tag&gt;::&lt;unnamed-tag&gt;::x' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>glm::tvec4&lt;float,5&gt;::{ctor}</FUNCTION>
+    <DECORATED>??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z</DECORATED>
+    <FUNCLINE>182</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>glm::tvec4&lt;float,5&gt;::&lt;unnamed-tag&gt;::&lt;unnamed-tag&gt;::x</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

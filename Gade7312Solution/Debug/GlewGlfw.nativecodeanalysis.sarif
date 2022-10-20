@@ -1,0 +1,1347 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26817",
+          "message": {
+            "text": "Potentially expensive copy of variable 'it' in range-for loop. Consider making it a const reference (es.71)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/GlewGlfw.cpp"
+                },
+                "region": {
+                  "startLine": 433,
+                  "startColumn": 18,
+                  "endLine": 433,
+                  "endColumn": 18
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "main",
+                  "decoratedName": "main",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26817",
+          "message": {
+            "text": "Potentially expensive copy of variable 'it' in range-for loop. Consider making it a const reference (es.71)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/GlewGlfw.cpp"
+                },
+                "region": {
+                  "startLine": 448,
+                  "startColumn": 18,
+                  "endLine": 448,
+                  "endColumn": 18
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "main",
+                  "decoratedName": "main",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::x' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::x"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::z' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::z"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::y' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::y"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::w' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::w"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::r' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::r"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::g' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::g"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::b' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::b"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::a' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::a"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::s' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::s"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::t' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::t"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::p' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::p"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::q' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::<unnamed-tag>::q"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'glm::tvec4<float,5>::<unnamed-tag>::data' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+                },
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 53,
+                  "endLine": 182,
+                  "endColumn": 53
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "glm::tvec4<float,5>::{ctor}",
+                  "decoratedName": "??0?$tvec4@M$04@glm@@QAE@W4ctor@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "glm::tvec4<float,5>::<unnamed-tag>::data"
+          }
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.33.31630.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/GlewGlfw.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "d48604c1b3c264f946afa93928cb750c63d9311c22614238d100f111dc96c73c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///D:/Everything/Work/Vega/GADE7312/GADE7312POE/Gade7312Solution/External Libraries/#GLM_Libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.inl"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "6f6c62b858d1e7c3b8b7df695f1e75dad4f9eb77a26f396ce0182def6fd4ad97"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#opengl_libraries/glew/include/gl/glew.h"
+          },
+          "hashes": {
+            "sha-256": "70dc1969d43ba3ee2d2f61173025dc69d9d7901594f662441517ce1ed0f4f929"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/dev/vcpkg/installed/x86-windows/include/gl/glu.h"
+          },
+          "hashes": {
+            "sha-256": "db307251615fe0fc6c827e49b1d66de95a01c7b66f5bcc5924fae9b66bb10af6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/dev/vcpkg/installed/x86-windows/include/gl/gl.h"
+          },
+          "hashes": {
+            "sha-256": "5a24c6fd7b416dd53b68a1c766c338ba2ee6f2b57a43ad7868bb5308d0e5fbb9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#opengl_libraries/glfw/include/glfw/glfw3.h"
+          },
+          "hashes": {
+            "sha-256": "0992a30f01ebaa41c32f3f0588e942961abb8a9a52ca8764bd32ee4d7d71a46d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/soil2/soil2.h"
+          },
+          "hashes": {
+            "sha-256": "f42078d65cf53600ffea81216350e1e69b75b877c52a85513fbec2de3bbf5aa5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/glm.hpp"
+          },
+          "hashes": {
+            "sha-256": "43ce1a14ecff183dd6fc0f9790c712aea35d66d67a371ef023f9b93a5f40864f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/_fixes.hpp"
+          },
+          "hashes": {
+            "sha-256": "22508408c83e084cc04bc5d85f2b8bd173c3bac93e0f9e2bad165d0718d9647d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/fwd.hpp"
+          },
+          "hashes": {
+            "sha-256": "b566db151c1150a08e88536e61f75bf91af49bff22f1a104abf010b6004deddf"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_int.hpp"
+          },
+          "hashes": {
+            "sha-256": "60d5971f1bfeb63d541c02f833c17e766a786bf191610e4e0d9103b9079063ef"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/setup.hpp"
+          },
+          "hashes": {
+            "sha-256": "c79046bd06e2d6cb5fe642dbb3b25072fc95450553e9a2df2e1170b44187ed46"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/simd/platform.h"
+          },
+          "hashes": {
+            "sha-256": "a1a686b7c2adfb5872f31ea19e54b7510ac3b9ec15297f2d33ee9b4e568ee158"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_float.hpp"
+          },
+          "hashes": {
+            "sha-256": "2a9dda83e848bbff03e687285f3624a9642680ea1a153022cc3d9141ec19a346"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_vec.hpp"
+          },
+          "hashes": {
+            "sha-256": "74881a9f64ee30e1947edc921f731ee6dc9eb1695e2fdf5aad4948bc9ec27f6a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/precision.hpp"
+          },
+          "hashes": {
+            "sha-256": "9abc71c1cab51d26a051f43dab514c17cd4540ed68352f001d5044e9e218d1f9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat.hpp"
+          },
+          "hashes": {
+            "sha-256": "b0c5abd87a23dec6489bebc760394028f2d4207ae6090d442022bde12e11b1c6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/vec2.hpp"
+          },
+          "hashes": {
+            "sha-256": "8a4bb1ecf163a05b7a56a681c8d784c7f22b28d9a0ff069d33195f831d3e3404"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_vec2.hpp"
+          },
+          "hashes": {
+            "sha-256": "759749b095c1e84234b6a8478bb9650d7ac31c2f0623e3fcdfc233be36c99d17"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_vec2.inl"
+          },
+          "hashes": {
+            "sha-256": "944273398fbece2aa0e6f5d0f0f9244a5b1540759b4694a4dcf721ba7f36dbe7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/vec3.hpp"
+          },
+          "hashes": {
+            "sha-256": "5b8b906cb37a503f9ce9a9bdcef32548a0120e5d105d084a5722f85a65cd71bb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_vec3.hpp"
+          },
+          "hashes": {
+            "sha-256": "3dd612b7a2de0123fd1aa2c3cbfabd0ded1c1fe4e6269f06e80d0b3a3d831c97"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_vec3.inl"
+          },
+          "hashes": {
+            "sha-256": "266ce783e2d0a82623ecdd35655f47a8db0760b9a415c48bcb5bc45c5d7f00c5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/vec4.hpp"
+          },
+          "hashes": {
+            "sha-256": "08533bad586f57552255f7bf290e6c5c555bccc01af8a792f6545dc410f45a9a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_vec4.hpp"
+          },
+          "hashes": {
+            "sha-256": "c84ca19ab3b01e28b01d2a98dd7dd158a7e641013217bb47413134987a5d22d8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_vec4_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "06c8e69565512024a9771e01c1f45ce606f239eb0a5aadb96787f6d517efc0b0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/mat2x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "1ba268b12eb76ddf5b5b5f26a4127699d4ce18e43200cf44de28258bd3d469c1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat2x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "e99e24556dff32c5a0f554384d0a1f323f92c475ad4ccf5c671bced165e0d60f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat2x2.inl"
+          },
+          "hashes": {
+            "sha-256": "fdc8ac4f65e2488a9c3577bdd397f4dc5188cf774fd58ad47e859d6d7b88caa4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_matrix.hpp"
+          },
+          "hashes": {
+            "sha-256": "2fdac46a4cd065c4f4eff391b4e02ab6837d85177ddafc6dfc193d1fc00d9dde"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/mat2x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "354b5fb4c4e3dccae11ecced06742ca9eef6cdf54d8edd5ef9468a71e9d10055"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat2x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "6f48ab1252a89a18f0aa1b51a0b87a5e42418824662620a84d43079dc4b3fc82"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat2x3.inl"
+          },
+          "hashes": {
+            "sha-256": "3b9976fbf3fcb896fe63fa67419f849f6f029cf8a8f785793c2d94294cafccf6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/mat2x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "5bc82140a72e14403417c03e4913f02ad454799c6f0dc06168816a5636644ee0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat2x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "6c9b4346ffef6c64613cc6742717234fbbad5a9570dadb6cc1636edd0d990228"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat2x4.inl"
+          },
+          "hashes": {
+            "sha-256": "d585cca3f3d0fc112cc3f232aa88daccf96b52daa050e1c8eab527f346facf67"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/mat3x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "31c9ef08fbd9b91313e8acc38e515b1021e76f5f125562c77a5a5cd3e518ea36"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat3x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "2f37cc88f9aac940c01b7be398e4e184fab45b118c8b6a1b8469b9926b9438ee"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat3x2.inl"
+          },
+          "hashes": {
+            "sha-256": "a62e3536e65b71e2deabd9b7c34ca1b2b2d1c70b1135faea15137908a4020aa0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/mat3x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "f769d1b3da870e392f1e9b620806d102671b4c3b162ff5a520dc5766033f40fd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat3x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "8baa6f210c50c675203b7dcf21d22b11924aaab63804946ecbd25ffdbe46f523"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat3x3.inl"
+          },
+          "hashes": {
+            "sha-256": "91ae6ebd04a6313062a719c67a33774538d84e162f347fb3e336d84d1604b8d5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/mat3x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "0e54eb5b2dcf258bad08d967c8f0b7e85cc3493c5446de60f571061f8ced56cb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat3x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "280d25cb3b3453b9c4757f770878eb3429b3f0f97f14bf0d9e3483eb410e7b23"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat3x4.inl"
+          },
+          "hashes": {
+            "sha-256": "fa49562a6032544241d6ff53c09ce13d0cc284bfb097b588604a112db16df68e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/mat4x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "cb2e4557bc6ae0c6649e9ef9ce9e4378b51fe8934b00b383fa5f58a2ab0f8886"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat4x2.hpp"
+          },
+          "hashes": {
+            "sha-256": "f5f11f7eaa9d77cb14fa1e23ae11b2fbd7e1e22bcb4215e00d42e089b065ec58"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat4x2.inl"
+          },
+          "hashes": {
+            "sha-256": "f6ed3e99ffd9bffddc3609ae7ace2c41dec5f4e296802964be23f56528b2721d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/mat4x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "13930329e727d7fbcc8554df5d290be6bb9676bcce341837ded356c2599ad13b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat4x3.hpp"
+          },
+          "hashes": {
+            "sha-256": "1c1390a736cb6c42f9dbd67cbf95e3fba8e165d1191658e726ee11b39716d268"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat4x3.inl"
+          },
+          "hashes": {
+            "sha-256": "739c2201785695e87ae2fea83e6d59c8b7f17ad88109d3c8a11cc6a6e24a107e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/mat4x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "7e1aa7a032c6c6b87b66484c54b30fd3b561b17cedda720c1ac66143286ca2a3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat4x4.hpp"
+          },
+          "hashes": {
+            "sha-256": "9d69ee7ceb8411cfb9b338ca62ef576fc28a114b9de0a5d6b67ca1e52e63aa06"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat4x4.inl"
+          },
+          "hashes": {
+            "sha-256": "164418f9de6730a3f1ea60b2ea25152bd17f0fb4ba57f0a09853609e7255ff85"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_mat4x4_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "0b52d51b1bbdc3b2f4742fa6b9ff0bb85f81fc333264f8b548daa5baf1424124"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_matrix.inl"
+          },
+          "hashes": {
+            "sha-256": "18f56be55d21dc087886bbb5612da627b608f90c86d2da4bb75421beda687c9a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/geometric.hpp"
+          },
+          "hashes": {
+            "sha-256": "9d5fb7344f38727711661378475d5b57410636dddd01f09fff468f217daa6477"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_geometric.hpp"
+          },
+          "hashes": {
+            "sha-256": "80ecd481b8ff3bd744e15b4be9dd408d34006c28b68b64c537802170efcba4ee"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_geometric.inl"
+          },
+          "hashes": {
+            "sha-256": "eee756f0ee0739c98886ec68a94653a9494931016b8c1217fa8f4dd858e0b374"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_exponential.hpp"
+          },
+          "hashes": {
+            "sha-256": "7a87425f7b12d95702a76265c3de8512b778ad5d25f66b88bbaaf44e1d488da7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_vec1.hpp"
+          },
+          "hashes": {
+            "sha-256": "a6b85fc20c4995ffdc72a1c3f8bf850f4ffae4bd7e7ada8f46f438748a6b4559"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_vec1.inl"
+          },
+          "hashes": {
+            "sha-256": "58ca57558c567310717b6c9594c192166993ae284322207d5d657e2720fe9ff0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_exponential.inl"
+          },
+          "hashes": {
+            "sha-256": "a3517e503cd18ca5b058c8fb2078eb71e0c3680d809413f076e945a06328338b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_vector_relational.hpp"
+          },
+          "hashes": {
+            "sha-256": "ce9cbd0cefb273398500859c432a87ef6f254ac5256552c143c2d342e03ba024"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_vector_relational.inl"
+          },
+          "hashes": {
+            "sha-256": "0d42184f95a131bbb8ff30dc14a1e79a9e8c5b63571b18c833b1ff7d33d1adbb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_vector_relational_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "74a4b8ce9f411d81ccf6f1763fa4872ba2a11ffb113b7304a65e74947ada8616"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/_vectorize.hpp"
+          },
+          "hashes": {
+            "sha-256": "b90bd2dce5031e3c533498477b2389b913aa06290aaa3b00a9509ecd8fdadae6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_exponential_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "e46b39724c2bf40edc916d948b3cf818bf9909ecbf5edd34def993cbfb9eb6ec"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/simd/exponential.h"
+          },
+          "hashes": {
+            "sha-256": "b6867b6f7ef02d4d21bfb557f5598525d8ab4b512e77ce1c910d602ffe3bf6f6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_common.hpp"
+          },
+          "hashes": {
+            "sha-256": "d5cbdd6c2ac23e0fcf0f82c995325d3a9982fe654c95870a63f57f00eacaedf8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_common.inl"
+          },
+          "hashes": {
+            "sha-256": "27ca5be2f88a3567d3f3d59a8ce6d00c183d527552c3321cf152d7e9c9575124"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_common_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "7ebc5375f3ea30e0d53c754a9de985e62293be444dd6855079c07f0a9c165981"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/simd/common.h"
+          },
+          "hashes": {
+            "sha-256": "4121f33727b84aabc6dbf34b872324f0c951d7b6cb616f8c7ff392f968cca8b8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_geometric_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "11bc23ed398fa3c0e7a5c922e50d3c4596c0f18d32c0993711cbab264b9b0b80"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/simd/geometric.h"
+          },
+          "hashes": {
+            "sha-256": "84c341ec44787b520c2d48a02622eea36c6643a9e346fa3dd7301c96f85a443a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_matrix_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "3002be8ed00a834d0435843f02d1bd649353f7677759eacd2d54d77a01559d31"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/simd/matrix.h"
+          },
+          "hashes": {
+            "sha-256": "ebabafc744e48d4fd282ed204f1778d892a5fc87733dc0ce4b5a9b1218c52b21"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/trigonometric.hpp"
+          },
+          "hashes": {
+            "sha-256": "67fa0caa579b9056f644fea0c1b324948621f52656ac80d54a4b22a4d1d28a4e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_trigonometric.hpp"
+          },
+          "hashes": {
+            "sha-256": "a7e92fa7a9bed189b54bf4636ed4a76861e6b4745a7afdb9c2fe55f71c4c1d20"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_trigonometric.inl"
+          },
+          "hashes": {
+            "sha-256": "a6692b614a7503c8896866b0c95ba3e6e49f2849bdffe03f5d038fa1e21bf38f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_trigonometric_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/exponential.hpp"
+          },
+          "hashes": {
+            "sha-256": "0124f222b519f1e2dd76ef9eea915da8cce17c61bcc25fa6449c351b43f3743d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/common.hpp"
+          },
+          "hashes": {
+            "sha-256": "12c4a3534cb3b477abd375ec040ca51852d9e2ac76cd68f68246759f67f70ea2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/packing.hpp"
+          },
+          "hashes": {
+            "sha-256": "152f59a10d67ed69b28028c7e3a106a3b9bbac15012a8a3136a4f3e4c6f699b2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_packing.hpp"
+          },
+          "hashes": {
+            "sha-256": "6a74d0267cebba949442c4ec3c99ec459d68eccd74ca9287f1af91b1dbae4109"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_packing.inl"
+          },
+          "hashes": {
+            "sha-256": "87b7931ab509446dcb01cda14ec854bda16338f53e0a90a6664d0d2a05f81f4f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_half.hpp"
+          },
+          "hashes": {
+            "sha-256": "0ced94d49eb7bdcc087185735494c0a1f6e33bea558d4d6152c282d3afbba0aa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/type_half.inl"
+          },
+          "hashes": {
+            "sha-256": "7d52db31248bafb5f295de592ddc5b2d55149dea008d04d047c3b0578590310a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_packing_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "e84bb92260bcbc89e4bf805abbc94c115aa04a7d0a07259cf230393530437105"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/matrix.hpp"
+          },
+          "hashes": {
+            "sha-256": "51ea56eeab7727ecb2e04419c8ac30c1b45aed07daa41fd85d727ebfdbfad65b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/vector_relational.hpp"
+          },
+          "hashes": {
+            "sha-256": "78a09044aea44d8affd3310368d8f4cd071eac87601b95aac1a3f64763fb905c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/integer.hpp"
+          },
+          "hashes": {
+            "sha-256": "2bee03ab58f53179f97440fa5925e398fd1534ba86928e3e002ddb0849f02bfe"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_integer.hpp"
+          },
+          "hashes": {
+            "sha-256": "bdae04e15466538e95179dd35174c7e72a1afb044e38ab73f5ac52f24f9895da"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_integer.inl"
+          },
+          "hashes": {
+            "sha-256": "46b3a978bfe1c8ebe9da23e67b26982f92d05390ad9732b7a2e135232714e298"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/detail/func_integer_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "cb3e33cf83ae12c48e8fdccbcc1648acba137d09dffe4f866ad085f594f8596c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/simd/integer.h"
+          },
+          "hashes": {
+            "sha-256": "6447108d6d1a8c1f676b091e2b21ece0f45ed0c5caa8321ec3c618361d108110"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/gtc/matrix_transform.hpp"
+          },
+          "hashes": {
+            "sha-256": "6e346f77976ca0deb2ce3563624f4e6b672dd3612569baa0c9fcb4f2cbfc23ba"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/gtc/constants.hpp"
+          },
+          "hashes": {
+            "sha-256": "7ce2191244439ea69d79a1a1439cd79bee3de26cff15bf619dc61ab83474af5f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/gtc/constants.inl"
+          },
+          "hashes": {
+            "sha-256": "d137e26460d233412c663a59351085c85a1669817db22f3ef0a9596243111245"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/gtc/matrix_transform.inl"
+          },
+          "hashes": {
+            "sha-256": "83705dfc37a9b02682b3930c36fe020610113627cca77f397c42e57f7ff53013"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/gtc/type_ptr.hpp"
+          },
+          "hashes": {
+            "sha-256": "a58ce9167433c100d784973bcac28d7375126553315d007e359f409dd60f1322"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/gtc/quaternion.hpp"
+          },
+          "hashes": {
+            "sha-256": "704dd57ca0747431e7e5c2d87a4c70a74c6e5ae0c7ce678c00be83275d190785"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/gtc/quaternion.inl"
+          },
+          "hashes": {
+            "sha-256": "c47e083262968368407fb5405acb13bfd772711003082673218ae1d3aee3762b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/gtc/quaternion_simd.inl"
+          },
+          "hashes": {
+            "sha-256": "67cfc6f7e4760ffe35193b06ec5f6a74f76998b891bdce42d4fcdcc8172aa2e9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/external libraries/#glm_libraries/glm-0.9.8.5/glm/glm/gtc/type_ptr.inl"
+          },
+          "hashes": {
+            "sha-256": "0c914be880ab00b93d0da241c695204075952081ad0b1404b8900c2b1b2a4f05"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/shader.h"
+          },
+          "hashes": {
+            "sha-256": "e70798b83a1e18a9aae9af674cb1e5978e2c3463193b69fba58419079577ab93"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/everything/work/vega/gade7312/gade7312poe/gade7312solution/camera.h"
+          },
+          "hashes": {
+            "sha-256": "15893757280a16535b18cff2a7182d16a8d8c1f470bad5c26167433a72b8e80c"
+          }
+        }
+      ]
+    }
+  ]
+}

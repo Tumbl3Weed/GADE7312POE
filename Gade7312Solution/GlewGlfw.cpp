@@ -52,8 +52,6 @@ glm::vec3 AnimatePawnPos(glm::vec3 pos);
 glm::vec3 AnimatePawnPos2(glm::vec3 pos);
 glm::vec3 AnimatePawnPos3(glm::vec3 pos);
 
-
-
 int main()
 {
 	// Initialize GLFW
@@ -278,7 +276,7 @@ int main()
 			randomHeight /= 2;
 			randomHeight -= (float)0.25;
 
-			cubePosList.push_back(glm::vec3((float)x, randomHeight, (float)z));
+			cubePosList.push_back(glm::vec3((float)x - 4, randomHeight, (float)z - 4));
 			float tempX = x;
 			float tempZ = z;
 			if (z == 0)
@@ -290,23 +288,23 @@ int main()
 			if (x == 7)
 				tempX += 1;
 			if (tempZ != z || tempX != x) {
-				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ));
+				boarderPosList.push_back(glm::vec3(tempX - 4, 0.0f, tempZ - 4));
 			}
 			if (x == 0 && z == 0) {
-				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ + 1));
-				boarderPosList.push_back(glm::vec3(tempX + 1, 0.0f, tempZ));
+				boarderPosList.push_back(glm::vec3(tempX - 4, 0.0f, tempZ + 1 - 4));
+				boarderPosList.push_back(glm::vec3(tempX - 4 + 1, 0.0f, tempZ - 4));
 			}
 			if (x == 7 && z == 0) {
-				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ + 1));
-				boarderPosList.push_back(glm::vec3(tempX - 1, 0.0f, tempZ));
+				boarderPosList.push_back(glm::vec3(tempX - 4, 0.0f, tempZ + 1 - 4));
+				boarderPosList.push_back(glm::vec3(tempX - 4 - 1, 0.0f, tempZ - 4));
 			}
 			if (x == 0 && z == 7) {
-				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ - 1));
-				boarderPosList.push_back(glm::vec3(tempX + 1, 0.0f, tempZ));
+				boarderPosList.push_back(glm::vec3(tempX - 4, 0.0f, tempZ - 1 - 4));
+				boarderPosList.push_back(glm::vec3(tempX - 4 + 1, 0.0f, tempZ - 4));
 			}
 			if (x == 7 && z == 7) {
-				boarderPosList.push_back(glm::vec3(tempX, 0.0f, tempZ - 1));
-				boarderPosList.push_back(glm::vec3(tempX - 1, 0.0f, tempZ));
+				boarderPosList.push_back(glm::vec3(tempX - 4, 0.0f, tempZ - 1 - 4));
+				boarderPosList.push_back(glm::vec3(tempX - 4 - 1, 0.0f, tempZ - 4));
 			}
 		}
 	}
@@ -386,7 +384,7 @@ int main()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	
+
 	// Texture coordinate attribute
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
 	glEnableVertexAttribArray(2);
@@ -394,7 +392,6 @@ int main()
 	glGenBuffers(1, &IBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned), &indices[0], GL_STATIC_DRAW);
-
 
 	GLuint textureHM1, textureHM2, textureHM3, textureHM4;
 
@@ -499,44 +496,6 @@ int main()
 	glBindTexture(GL_TEXTURE_2D, 0);
 #pragma endregion
 
-	//for (int strip = 0; strip < numStrips; strip++)
-	//{
-	//	//cout << indices[strip] << endl;
-	//	if (indices[strip] % 3 == 0.0f)
-	//	{
-	//		// Activate HM texture 1
-	//		glActiveTexture(GL_TEXTURE0);
-	//		glBindTexture(GL_TEXTURE_2D, textureHM1);
-	//		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
-	//	}
-	//	else if (indices[strip] % 4 == 0.0f)
-	//	{
-	//		// Activate HM texture 2
-	//		glActiveTexture(GL_TEXTURE0);
-	//		glBindTexture(GL_TEXTURE_2D, textureHM2);
-	//		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture2"), 0);
-	//	}
-	//	else if (indices[strip] % 5 == 0.0f)
-	//	{
-	//		// Activate HM texture 3
-	//		glActiveTexture(GL_TEXTURE0);
-	//		glBindTexture(GL_TEXTURE_2D, textureHM3);
-	//		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture3"), 0);
-	//	}
-	//	else
-	//	{
-	//		// Activate HM texture 4
-	//		glActiveTexture(GL_TEXTURE0);
-	//		glBindTexture(GL_TEXTURE_2D, textureHM4);
-	//		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture4"), 0);
-	//	}
-
-	//	glDrawElements(GL_TRIANGLE_STRIP, // primitive type
-	//		numTrisPerStrip + 2, // number of indices to render
-	//		GL_UNSIGNED_INT, // index data type
-	//		(void*)(sizeof(GLuint) * (numTrisPerStrip + 2) * strip)); // offset to starting index
-	//}
-
 	// *** CODE FOR CHESS PIECE - PAWN *** //
 #pragma region CODE FOR CHESS PIECE - PAWN
 
@@ -578,24 +537,24 @@ int main()
 	glm::vec3 pawnPositions[] =
 	{
 		// Row 1
-		glm::vec3(-3.0f, 0.5f, 3.0f),
-		glm::vec3(-2.0f, 0.5f, 3.0f),
-		glm::vec3(-1.0f, 0.5f, 3.0f),
-		glm::vec3(0.0f, 0.5f, 3.0f),
-		glm::vec3(1.0f, 0.5f, 3.0f),
-		glm::vec3(2.0f, 0.5f, 3.0f),
-		glm::vec3(3.0f, 0.5f, 3.0f),
-		glm::vec3(4.0f, 0.5f, 3.0f),
+		glm::vec3(-4.0f, 0.5f, 2.0f),
+		glm::vec3(-3.0f, 0.5f, 2.0f),
+		glm::vec3(-2.0f, 0.5f, 2.0f),
+		glm::vec3(-1.0f, 0.5f, 2.0f),
+		glm::vec3(0.0f, 0.5f, 2.0f),
+		glm::vec3(1.0f, 0.5f, 2.0f),
+		glm::vec3(2.0f, 0.5f, 2.0f),
+		glm::vec3(3.0f, 0.5f, 2.0f),
 
 		// Row 2
-		glm::vec3(-3.0f, 0.5f, -2.0f),
-		glm::vec3(-2.0f, 0.5f, -2.0f),
-		glm::vec3(-1.0f, 0.5f, -2.0f),
-		glm::vec3(0.0f, 0.5f, -2.0f),
-		glm::vec3(1.0f, 0.5f, -2.0f),
-		glm::vec3(2.0f, 0.5f, -2.0f),
-		glm::vec3(3.0f, 0.5f, -2.0f),
-		glm::vec3(4.0f, 0.5f, -2.0f),
+		glm::vec3(-4.0f, 0.5f, -3.0f),
+		glm::vec3(-3.0f, 0.5f, -3.0f),
+		glm::vec3(-2.0f, 0.5f, -3.0f),
+		glm::vec3(-1.0f, 0.5f, -3.0f),
+		glm::vec3(0.0f, 0.5f, -3.0f),
+		glm::vec3(1.0f, 0.5f, -3.0f),
+		glm::vec3(2.0f, 0.5f, -3.0f),
+		glm::vec3(3.0f, 0.5f, -3.0f),
 	};
 
 	// Generate the vertex arrays and vertex buffers and save them into variables
@@ -800,9 +759,8 @@ int main()
 		//list<glm::vec3>::iterator it;
 		for (glm::vec3 it : cubePosList)
 		{
-
 			// Activate Image Textures
-			if (((temp+(int)count) % 2) == 0)
+			if (((temp + (int)count) % 2) == 0)
 			{
 				// Activate specified texture
 				glActiveTexture(GL_TEXTURE0);
@@ -820,7 +778,7 @@ int main()
 			if ((temp % 8) == 0) {
 				count = !count;
 			}
-			
+
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Board(1.0f);
 			model_Board = glm::translate(model_Board, (glm::vec3)it);
@@ -881,23 +839,23 @@ int main()
 				glBindTexture(GL_TEXTURE_2D, textureHM1);
 				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
 			}
-			else if (indices[strip] % 4 == 0.0f) 
+			else if (indices[strip] % 4 == 0.0f)
 			{
 				glActiveTexture(GL_TEXTURE0);
 				glBindTexture(GL_TEXTURE_2D, textureHM2);
-				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture2"), 0);
+				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
 			}
 			else if (indices[strip] % 5 == 0.0f)
 			{
 				glActiveTexture(GL_TEXTURE0);
 				glBindTexture(GL_TEXTURE_2D, textureHM3);
-				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture3"), 0);
+				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
 			}
-			else 
+			else
 			{
 				glActiveTexture(GL_TEXTURE0);
 				glBindTexture(GL_TEXTURE_2D, textureHM4);
-				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture4"), 0);
+				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
 			}
 
 			glDrawElements(GL_TRIANGLE_STRIP, // primitive type
@@ -926,7 +884,7 @@ int main()
 // Animate the rotation of the Chess Pieces
 GLfloat AnimatePawnRot()
 {
-	if (animating == true)
+	if (animating)
 	{
 		return (GLfloat)glfwGetTime() * 1.0f;
 	}
@@ -939,7 +897,7 @@ GLfloat AnimatePawnRot()
 // Animate the position of the Chess Pieces
 glm::vec3 AnimatePawnPos(glm::vec3 pos)
 {
-	if (animating == true)
+	if (animating)
 	{
 		return glm::vec3(pos.x, pos.y + 1, pos.z);
 	}
@@ -1000,14 +958,7 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modi
 	// Spacebar to start anim
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 	{
-		if (animating == true)
-		{
-			animating = false;
-		}
-		else
-		{
-			animating = true;
-		}
+		animating = !animating;
 	}
 }
 
