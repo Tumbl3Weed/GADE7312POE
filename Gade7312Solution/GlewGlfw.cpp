@@ -157,7 +157,6 @@ int main()
 		-0.5f, -0.5f, 0.0f,	    0.0f, 0.0f
 	};
 
-
 	// Generate the vertex arrays and vertex buffers and save them into variables
 	GLuint VBA_Board, VOA_Board;
 	glGenVertexArrays(1, &VOA_Board);
@@ -306,10 +305,11 @@ int main()
 	//Build & Compile Shader Program
 	Shader ourShader("core.vs", "core.frag");
 
-	// Create and load texture replace it with your own image path.
+	//*********TERRAIN TEXTURE********************
+	//Create and load texture replace it with your own image path.
 	int width, height, nrChannels;
 
-	unsigned char* data = SOIL_load_image("res/images/bitmapheightmap.png", &width, &height, &nrChannels, 0);
+	unsigned char* data = SOIL_load_image("res/images/bitmapheightmapSmall.png", &width, &height, &nrChannels, 0);
 
 	if (data)
 	{
@@ -322,7 +322,7 @@ int main()
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	vector<GLfloat> vertices;
-	GLfloat yScale = 25.0f / 150.0f; //normalize the height map data and scale it to the desired height
+	GLfloat yScale = 0.05f; //normalize the height map data and scale it to the desired height
 	GLfloat yShift = 16.0f; // translate the elevations to our final desired range
 	int rez = 1;
 	GLuint bytePerPixel = nrChannels;
@@ -335,12 +335,15 @@ int main()
 			unsigned char y = pixelOffset[0];
 
 			// vertex
-			vertices.push_back(-height / 2.0f + height * i / (float)height); // vx
+			vertices.push_back(-width / 2.0f + width * i / (float)width); // vx
+			//vertices.push_back(-height / 2.0f + height * i / (float)height); // vx
+
 			vertices.push_back((int)y * yScale - 10); // vy
-			vertices.push_back(-width / 2.0f + width * j / (float)width); // vz
+			vertices.push_back(-height / 2.0f + height * j / (float)height); // vz
+			//vertices.push_back(-width / 2.0f + width * j / (float)width); // vz
 		}
 	}
-	cout << "Loaded " << vertices.size() / 3 << " vertices" << endl;
+	//cout << "Loaded " << vertices.size() / 3 << " vertices" << endl;
 	SOIL_free_image_data(data);
 
 	vector<GLuint> indices;
@@ -358,8 +361,8 @@ int main()
 
 	const int numStrips = (height - 1) / rez;
 	const int numTrisPerStrip = (width / rez) * 2 - 2;
-	cout << "Created lattice of " << numStrips << " strips with " << numTrisPerStrip << " triangles each" << endl;
-	cout << "Created " << numStrips * numTrisPerStrip << " triangles total" << endl;
+	//cout << "Created lattice of " << numStrips << " strips with " << numTrisPerStrip << " triangles each" << endl;
+	//cout << "Created " << numStrips * numTrisPerStrip << " triangles total" << endl;
 
 	// Generate the vertex arrays, vertex buffers and index buffers and save them into variables
 	unsigned int VAO, VBO, IBO;
@@ -374,9 +377,156 @@ int main()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
+	
+	// Texture coordinate attribute
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glEnableVertexAttribArray(2);
+
 	glGenBuffers(1, &IBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned), &indices[0], GL_STATIC_DRAW);
+
+
+	GLuint textureHM1, textureHM2, textureHM3, textureHM4;
+
+#pragma region HM Texture 1
+	// Create and load HM texture
+	glGenTextures(1, &textureHM1);
+	glBindTexture(GL_TEXTURE_2D, textureHM1);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* HM_Image = SOIL_load_image("res/images/terrain1.png", &width, &height, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(HM_Image);
+	glBindTexture(GL_TEXTURE_2D, 0);
+#pragma endregion
+
+
+#pragma region HM Texture 2
+	// Create and load HM texture
+	glGenTextures(1, &textureHM2);
+	glBindTexture(GL_TEXTURE_2D, textureHM2);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* HM_Image2 = SOIL_load_image("res/images/terrain2.png", &width, &height, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image2);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(HM_Image2);
+	glBindTexture(GL_TEXTURE_2D, 0);
+#pragma endregion
+
+#pragma region HM Texture 3
+	// Create and load HM texture
+	glGenTextures(1, &textureHM3);
+	glBindTexture(GL_TEXTURE_2D, textureHM3);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* HM_Image3 = SOIL_load_image("res/images/terrain3.png", &width, &height, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image3);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(HM_Image3);
+	glBindTexture(GL_TEXTURE_2D, 0);
+#pragma endregion
+
+#pragma region HM Texture 4
+	// Create and load HM texture
+	glGenTextures(1, &textureHM4);
+	glBindTexture(GL_TEXTURE_2D, textureHM4);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* HM_Image4 = SOIL_load_image("res/images/terrain4.png", &width, &height, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image4);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(HM_Image4);
+	glBindTexture(GL_TEXTURE_2D, 0);
+#pragma endregion
+
+	//for (int strip = 0; strip < numStrips; strip++)
+	//{
+	//	//cout << indices[strip] << endl;
+	//	if (indices[strip] % 3 == 0.0f)
+	//	{
+	//		// Activate HM texture 1
+	//		glActiveTexture(GL_TEXTURE0);
+	//		glBindTexture(GL_TEXTURE_2D, textureHM1);
+	//		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
+	//	}
+	//	else if (indices[strip] % 4 == 0.0f)
+	//	{
+	//		// Activate HM texture 2
+	//		glActiveTexture(GL_TEXTURE0);
+	//		glBindTexture(GL_TEXTURE_2D, textureHM2);
+	//		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture2"), 0);
+	//	}
+	//	else if (indices[strip] % 5 == 0.0f)
+	//	{
+	//		// Activate HM texture 3
+	//		glActiveTexture(GL_TEXTURE0);
+	//		glBindTexture(GL_TEXTURE_2D, textureHM3);
+	//		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture3"), 0);
+	//	}
+	//	else
+	//	{
+	//		// Activate HM texture 4
+	//		glActiveTexture(GL_TEXTURE0);
+	//		glBindTexture(GL_TEXTURE_2D, textureHM4);
+	//		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture4"), 0);
+	//	}
+
+	//	glDrawElements(GL_TRIANGLE_STRIP, // primitive type
+	//		numTrisPerStrip + 2, // number of indices to render
+	//		GL_UNSIGNED_INT, // index data type
+	//		(void*)(sizeof(GLuint) * (numTrisPerStrip + 2) * strip)); // offset to starting index
+	//}
 
 	// GAME LOOP
 	while (!glfwWindowShouldClose(window))
@@ -504,6 +654,32 @@ int main()
 
 		for (int strip = 0; strip < numStrips; strip++)
 		{
+			if (indices[strip] % 3 == 0.0f)
+			{
+				//Activate HM texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, textureHM1);
+				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
+			}
+			else if (indices[strip] % 4 == 0.0f) 
+			{
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, textureHM2);
+				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture2"), 0);
+			}
+			else if (indices[strip] % 5 == 0.0f)
+			{
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, textureHM3);
+				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture3"), 0);
+			}
+			else 
+			{
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, textureHM4);
+				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture4"), 0);
+			}
+
 			glDrawElements(GL_TRIANGLE_STRIP, // primitive type
 				numTrisPerStrip + 2, // number of indices to render
 				GL_UNSIGNED_INT, // index data type
