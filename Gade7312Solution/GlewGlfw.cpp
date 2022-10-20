@@ -45,6 +45,15 @@ bool firstMouse = true; // Only handling one type of mouse, thus true
 GLfloat deltaTime = 0.0f;
 GLfloat lastFrame = 0.0f;
 
+//Animate 
+bool animating = false;
+GLfloat AnimatePawnRot();
+glm::vec3 AnimatePawnPos(glm::vec3 pos);
+glm::vec3 AnimatePawnPos2(glm::vec3 pos);
+glm::vec3 AnimatePawnPos3(glm::vec3 pos);
+
+
+
 int main()
 {
 	// Initialize GLFW
@@ -528,6 +537,148 @@ int main()
 	//		(void*)(sizeof(GLuint) * (numTrisPerStrip + 2) * strip)); // offset to starting index
 	//}
 
+	// *** CODE FOR CHESS PIECE - PAWN *** //
+#pragma region CODE FOR CHESS PIECE - PAWN
+
+	//Build & Compile Shader Program for Chessboard
+	Shader ourShaderPawn("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our pawn piece
+	GLfloat verticesPawn[14310];
+
+	// *** Read Vertex data from Pawn.txt file ***//
+	ifstream myFile("Pawn.txt");
+	int i = 0;
+
+	if (myFile.is_open())
+	{
+		string line;
+
+		while (!myFile.eof())
+		{
+			getline(myFile, line, ' ');
+			verticesPawn[i] = stof(line);
+			i++;
+			getline(myFile, line, ' ');
+			verticesPawn[i] = stof(line);
+			i++;
+			getline(myFile, line, '\n');
+			verticesPawn[i] = stof(line);
+			i++;
+		}
+		myFile.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Pawn.txt file ***//
+
+	// Positions of pawns
+	glm::vec3 pawnPositions[] =
+	{
+		// Row 1
+		glm::vec3(-3.0f, 0.5f, 3.0f),
+		glm::vec3(-2.0f, 0.5f, 3.0f),
+		glm::vec3(-1.0f, 0.5f, 3.0f),
+		glm::vec3(0.0f, 0.5f, 3.0f),
+		glm::vec3(1.0f, 0.5f, 3.0f),
+		glm::vec3(2.0f, 0.5f, 3.0f),
+		glm::vec3(3.0f, 0.5f, 3.0f),
+		glm::vec3(4.0f, 0.5f, 3.0f),
+
+		// Row 2
+		glm::vec3(-3.0f, 0.5f, -2.0f),
+		glm::vec3(-2.0f, 0.5f, -2.0f),
+		glm::vec3(-1.0f, 0.5f, -2.0f),
+		glm::vec3(0.0f, 0.5f, -2.0f),
+		glm::vec3(1.0f, 0.5f, -2.0f),
+		glm::vec3(2.0f, 0.5f, -2.0f),
+		glm::vec3(3.0f, 0.5f, -2.0f),
+		glm::vec3(4.0f, 0.5f, -2.0f),
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Pawn, VOA_Pawn;
+	glGenVertexArrays(1, &VOA_Pawn);
+	glGenBuffers(1, &VBA_Pawn);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Pawn);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Pawn);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesPawn), verticesPawn, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+	// Chess Piece Pawn texture variables
+	GLuint pawnTextureW, pawnTextureB;
+	int widthPawn, heightPawn;
+
+#pragma region Pawn Texture White
+	// Create and load White texture
+	glGenTextures(1, &pawnTextureW);
+	glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* pawnImageW = SOIL_load_image("res/images/whitePieces.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, pawnImageW);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(pawnImageW);
+	glBindTexture(GL_TEXTURE_2D, 0);
+#pragma endregion
+
+#pragma region Pawn Texture Black
+	// Create and load White texture
+	glGenTextures(1, &pawnTextureB);
+	glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* pawnImageB = SOIL_load_image("res/images/blackPieces.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, pawnImageB);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(pawnImageB);
+	glBindTexture(GL_TEXTURE_2D, 0);
+#pragma endregion
+
+#pragma endregion
+	// ^*** CODE FOR CHESS PIECE - PAWN ***^ //
+
 	// GAME LOOP
 	while (!glfwWindowShouldClose(window))
 	{
@@ -547,6 +698,75 @@ int main()
 		// Clear the colour buffer
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		// *** CODE FOR CHESS CHESS PIECE - PAWN WHILE LOOP *** //
+#pragma region CODE FOR CHESS PIECE - PAWN WHILE LOOP
+
+		// Activate Shader
+		ourShaderPawn.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_Pawn(1.0f);
+		//Perspective view ***
+		projection_Pawn = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+
+		// Create camera transformation
+		glm::mat4 view_Pawn(1.0f);
+		view_Pawn = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_Pawn = glGetUniformLocation(ourShaderPawn.Program, "model");
+		GLint viewLoc_Pawn = glGetUniformLocation(ourShaderPawn.Program, "view");
+		GLint projLoc_Pawn = glGetUniformLocation(ourShaderPawn.Program, "projection");
+
+		// Pass locations to shaders
+		glUniformMatrix4fv(viewLoc_Pawn, 1, GL_FALSE, glm::value_ptr(view_Pawn));
+		glUniformMatrix4fv(projLoc_Pawn, 1, GL_FALSE, glm::value_ptr(projection_Pawn));
+
+		// Draw container
+		glBindVertexArray(VOA_Pawn);
+
+		for (GLuint i = 0; i < 16; i++)
+		{
+			if (i <= 7)
+			{
+				// Activate White Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glUniform1i(glGetUniformLocation(ourShaderPawn.Program, "ourTexture1"), 0);
+			}
+			else
+			{
+				// Activate Black Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glUniform1i(glGetUniformLocation(ourShaderPawn.Program, "ourTexture1"), 0);
+			}
+
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glm::mat4 model_Pawn(1.0f);
+
+			if (i == 1 || i == 15) // Select which pawns are animated
+			{
+				glm::vec3 myPawnPosition = AnimatePawnPos(pawnPositions[i]);
+				model_Pawn = glm::translate(model_Pawn, myPawnPosition);
+				GLfloat angle = AnimatePawnRot();
+				model_Pawn = glm::rotate(model_Pawn, angle, glm::vec3(1.0f, 1.0f, 1.0f));
+			}
+			else
+			{
+				// Non-animated pawns
+				model_Pawn = glm::translate(model_Pawn, pawnPositions[i]);
+				GLfloat angle = 0.0f;
+				model_Pawn = glm::rotate(model_Pawn, angle, glm::vec3(1.0f, 0.0f, 0.0f));
+			}
+
+			glUniformMatrix4fv(modelLoc_Pawn, 1, GL_FALSE, glm::value_ptr(model_Pawn));
+
+			glDrawArrays(GL_TRIANGLES, 0, 4770);
+		}
+#pragma endregion
+		// *** CODE FOR CHESS CHESS PIECE - PAWN WHILE LOOP *** //
 
 		// *** CODE FOR CHESS BOARD *** //
 		ourShaderBoard.Use();
@@ -703,6 +923,34 @@ int main()
 	return EXIT_SUCCESS;
 }
 
+// Animate the rotation of the Chess Pieces
+GLfloat AnimatePawnRot()
+{
+	if (animating == true)
+	{
+		return (GLfloat)glfwGetTime() * 1.0f;
+	}
+	else
+	{
+		return 0.0f;
+	}
+}
+
+// Animate the position of the Chess Pieces
+glm::vec3 AnimatePawnPos(glm::vec3 pos)
+{
+	if (animating == true)
+	{
+		return glm::vec3(pos.x, pos.y + 1, pos.z);
+	}
+	else
+	{
+		return pos;
+	}
+}
+
+//*** Chess Piece Creation & Animation Code Snippets ***//
+
 // Moves/alters the camera positions based on user input
 // WASD and Arrow keys
 void ProcessInput(GLFWwindow* window)
@@ -746,6 +994,19 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modi
 		else if (action == GLFW_RELEASE)
 		{
 			keys[key] = false;
+		}
+	}
+
+	// Spacebar to start anim
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	{
+		if (animating == true)
+		{
+			animating = false;
+		}
+		else
+		{
+			animating = true;
 		}
 	}
 }
