@@ -48,5 +48,20 @@
     <Text Include="Pawn.txt">
       <Filter>Chess Pieces Text Files</Filter>
     </Text>
+    <Text Include="Bishop.txt">
+      <Filter>Chess Pieces Text Files</Filter>
+    </Text>
+    <Text Include="King.txt">
+      <Filter>Chess Pieces Text Files</Filter>
+    </Text>
+    <Text Include="Knight.txt">
+      <Filter>Chess Pieces Text Files</Filter>
+    </Text>
+    <Text Include="Queen.txt">
+      <Filter>Chess Pieces Text Files</Filter>
+    </Text>
+    <Text Include="Rook.txt">
+      <Filter>Chess Pieces Text Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

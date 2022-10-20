@@ -496,6 +496,161 @@ int main()
 	glBindTexture(GL_TEXTURE_2D, 0);
 #pragma endregion
 
+	// *** CODE FOR CHESS PIECE - Knight *** //
+#pragma region CODE FOR CHESS PIECE - Knight
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderKnight("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our Knight piece
+	GLfloat verticesKnight[14436];
+
+	// *** Read Vertex data from Knight.txt file ***//
+	ifstream myFileKnight("Knight.txt");
+	int i = 0;
+
+	if (myFileKnight.is_open())
+	{
+		string line;
+
+		while (!myFileKnight.eof())
+		{
+			getline(myFileKnight, line, ' ');
+			verticesKnight[i] = stof(line);
+			i++;
+			getline(myFileKnight, line, ' ');
+			verticesKnight[i] = stof(line);
+			i++;
+			getline(myFileKnight, line, '\n');
+			verticesKnight[i] = stof(line);
+			i++;
+		}
+		myFileKnight.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Knight.txt file ***//
+
+	// Positions of Knight
+	glm::vec3 KnightPositions[] =
+	{
+		// Row 1
+		glm::vec3(-3.0f, 0.5f, 3.0f),
+		glm::vec3(2.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(-3.0f, 0.5f, -4.0f),
+		glm::vec3(2.0f, 0.5f, -4.0f),
+		
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Knight, VOA_Knight;
+	glGenVertexArrays(1, &VOA_Knight);
+	glGenBuffers(1, &VBA_Knight);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Knight);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Knight);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesKnight), verticesKnight, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
+	// *** CODE FOR CHESS PIECE - ROOK *** //
+#pragma region CODE FOR CHESS PIECE - ROOK
+
+	//Build & Compile Shader Program for Chessboard
+	Shader ourShaderRook("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our pawn piece
+	GLfloat verticesRook[13716];
+
+	// *** Read Vertex data from Rook.txt file ***//
+	ifstream myFileRook("Rook.txt");
+	i = 0;
+
+	if (myFileRook.is_open())
+	{
+		string line;
+
+		while (!myFileRook.eof())
+		{
+			getline(myFileRook, line, ' ');
+			verticesRook[i] = stof(line);
+			i++;
+			getline(myFileRook, line, ' ');
+			verticesRook[i] = stof(line);
+			i++;
+			getline(myFileRook, line, '\n');
+			verticesRook[i] = stof(line);
+			i++;
+		}
+		myFileRook.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Rook.txt file ***//
+
+	// Positions of rooks
+	glm::vec3 RookPositions[] =
+	{
+		// Row 1
+		glm::vec3(-4.0f, 0.5f, 3.0f),
+		glm::vec3(3.0f, 0.5f, 3.0f),
+		
+
+		// Row 2
+		glm::vec3(-4.0f, 0.5f, -4.0f),
+		glm::vec3(3.0f, 0.5f, -4.0f),
+		
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Rook, VOA_Rook;
+	glGenVertexArrays(1, &VOA_Rook);
+	glGenBuffers(1, &VBA_Rook);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Rook);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Rook);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesRook), verticesRook, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+	//// Chess Piece Pawn texture variables
+	//GLuint rookTextureW, rookTextureB;
+	//int widthRook, heightRook;
+#pragma endregion
 	// *** CODE FOR CHESS PIECE - PAWN *** //
 #pragma region CODE FOR CHESS PIECE - PAWN
 
@@ -503,29 +658,29 @@ int main()
 	Shader ourShaderPawn("coreBoard.vs", "coreBoard.frag");
 
 	// Vertex data for our pawn piece
-	GLfloat verticesPawn[14310];
+	GLfloat verticesPawn[4716];
 
 	// *** Read Vertex data from Pawn.txt file ***//
-	ifstream myFile("Pawn.txt");
-	int i = 0;
+	ifstream myFilePawn("Pawn.txt");
+	i = 0;
 
-	if (myFile.is_open())
+	if (myFilePawn.is_open())
 	{
 		string line;
 
-		while (!myFile.eof())
+		while (!myFilePawn.eof())
 		{
-			getline(myFile, line, ' ');
+			getline(myFilePawn, line, ' ');
 			verticesPawn[i] = stof(line);
 			i++;
-			getline(myFile, line, ' ');
+			getline(myFilePawn, line, ' ');
 			verticesPawn[i] = stof(line);
 			i++;
-			getline(myFile, line, '\n');
+			getline(myFilePawn, line, '\n');
 			verticesPawn[i] = stof(line);
 			i++;
 		}
-		myFile.close();
+		myFilePawn.close();
 	}
 	else
 	{
@@ -722,10 +877,150 @@ int main()
 
 			glUniformMatrix4fv(modelLoc_Pawn, 1, GL_FALSE, glm::value_ptr(model_Pawn));
 
-			glDrawArrays(GL_TRIANGLES, 0, 4770);
+			glDrawArrays(GL_TRIANGLES, 0, 4716);
 		}
 #pragma endregion
-		// *** CODE FOR CHESS CHESS PIECE - PAWN WHILE LOOP *** //
+		// *** CODE FOR CHESS CHESS PIECE - KNIGHT WHILE LOOP *** //
+#pragma region CODE FOR CHESS PIECE - KNIGHT WHILE LOOP
+		// Activate Shader
+		ourShaderKnight.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_Knight(1.0f);
+		//Perspective view ***
+		projection_Knight = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+
+		// Create camera transformation
+		glm::mat4 view_Knight(1.0f);
+		view_Knight = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_Knight = glGetUniformLocation(ourShaderKnight.Program, "model");
+		GLint viewLoc_Knight = glGetUniformLocation(ourShaderKnight.Program, "view");
+		GLint projLoc_Knight = glGetUniformLocation(ourShaderKnight.Program, "projection");
+
+		// Pass locations to shaders
+		glUniformMatrix4fv(viewLoc_Knight, 1, GL_FALSE, glm::value_ptr(view_Knight));
+		glUniformMatrix4fv(projLoc_Knight, 1, GL_FALSE, glm::value_ptr(projection_Knight));
+
+		// Draw container
+		glBindVertexArray(VOA_Knight);
+
+		for (GLuint i = 0; i < 4; i++)
+		{
+			if (i <= 3)
+			{
+				// Activate White Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glUniform1i(glGetUniformLocation(ourShaderKnight.Program, "ourTexture1"), 0);
+			}
+			else
+			{
+				// Activate Black Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glUniform1i(glGetUniformLocation(ourShaderKnight.Program, "ourTexture1"), 0);
+			}
+
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glm::mat4 model_Knight(1.0f);
+
+			if (i == 1) // Select which pawns are animated
+			{
+				glm::vec3 myKnightPosition = AnimatePawnPos(KnightPositions[i]);
+				model_Knight = glm::translate(model_Knight, myKnightPosition);
+				GLfloat angle = AnimatePawnRot();
+				model_Knight = glm::rotate(model_Knight, angle, glm::vec3(1.0f, 1.0f, 1.0f));
+			}
+			else
+			{
+				// Non-animated pawns
+				model_Knight = glm::translate(model_Knight, KnightPositions[i]);
+				GLfloat angle = 180.0f;
+				if (i > 1)
+				{
+					model_Knight = glm::rotate(model_Knight, angle, glm::vec3(0.0f, 1.0f, 0.0f));
+				}
+				else {
+					model_Knight = glm::rotate(model_Knight, 0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+				}
+				
+			}
+
+			glUniformMatrix4fv(modelLoc_Knight, 1, GL_FALSE, glm::value_ptr(model_Knight));
+
+			glDrawArrays(GL_TRIANGLES, 0, 14436);
+		}
+#pragma endregion
+		// *** CODE FOR CHESS CHESS PIECE - ROOK WHILE LOOP *** //
+#pragma region CODE FOR CHESS PIECE - ROOK WHILE LOOP
+
+		// Activate Shader
+		ourShaderRook.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_Rook(1.0f);
+		//Perspective view ***
+		projection_Rook = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+
+		// Create camera transformation
+		glm::mat4 view_Rook(1.0f);
+		view_Rook = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_Rook = glGetUniformLocation(ourShaderPawn.Program, "model");
+		GLint viewLoc_Rook = glGetUniformLocation(ourShaderPawn.Program, "view");
+		GLint projLoc_Rook = glGetUniformLocation(ourShaderPawn.Program, "projection");
+
+		// Pass locations to shaders
+		glUniformMatrix4fv(viewLoc_Rook, 1, GL_FALSE, glm::value_ptr(view_Rook));
+		glUniformMatrix4fv(projLoc_Rook, 1, GL_FALSE, glm::value_ptr(projection_Rook));
+
+		// Draw container
+		glBindVertexArray(VOA_Rook);
+
+		for (GLuint i = 0; i < 4; i++)
+		{
+			if (i <= 3)
+			{
+				// Activate White Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glUniform1i(glGetUniformLocation(ourShaderRook.Program, "ourTexture1"), 0);
+			}
+			else
+			{
+				// Activate Black Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glUniform1i(glGetUniformLocation(ourShaderRook.Program, "ourTexture1"), 0);
+			}
+
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glm::mat4 model_Rook(1.0f);
+
+			if (i == 1) // Select which pawns are animated
+			{
+				glm::vec3 myRookPosition = AnimatePawnPos(RookPositions[i]);
+				model_Rook = glm::translate(model_Rook, myRookPosition);
+				GLfloat angle = AnimatePawnRot();
+				model_Rook = glm::rotate(model_Rook, angle, glm::vec3(1.0f, 1.0f, 1.0f));
+			}
+			else
+			{
+				// Non-animated pawns
+				model_Rook = glm::translate(model_Rook, RookPositions[i]);
+				GLfloat angle = 0.0f;
+				model_Rook = glm::rotate(model_Rook, angle, glm::vec3(1.0f, 0.0f, 0.0f));
+			}
+
+			glUniformMatrix4fv(modelLoc_Rook, 1, GL_FALSE, glm::value_ptr(model_Rook));
+
+			glDrawArrays(GL_TRIANGLES, 0, 13716);
+		}
+#pragma endregion
+		
 
 		// *** CODE FOR CHESS BOARD *** //
 		ourShaderBoard.Use();
@@ -916,22 +1211,22 @@ void ProcessInput(GLFWwindow* window)
 	// Camera controls
 	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
 	{
-		camera.ProcessKeyboard(FORWARD, deltaTime);
+		camera.ProcessKeyboard(FORWARD, deltaTime/2);
 	}
 
 	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
 	{
-		camera.ProcessKeyboard(BACKWARD, deltaTime);
+		camera.ProcessKeyboard(BACKWARD, deltaTime/2);
 	}
 
 	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
 	{
-		camera.ProcessKeyboard(LEFT, deltaTime);
+		camera.ProcessKeyboard(LEFT, deltaTime/2);
 	}
 
 	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
 	{
-		camera.ProcessKeyboard(RIGHT, deltaTime);
+		camera.ProcessKeyboard(RIGHT, deltaTime/2);
 	}
 }
 
