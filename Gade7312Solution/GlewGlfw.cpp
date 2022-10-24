@@ -47,6 +47,7 @@ GLfloat lastFrame = 0.0f;
 
 //Animate 
 bool animating = false;
+bool cameraLocked;
 
 int main()
 {
@@ -71,7 +72,6 @@ int main()
 	{
 		cout << "Failed to create window." << endl;
 		glfwTerminate();
-
 		return EXIT_FAILURE;
 	}
 
@@ -233,7 +233,6 @@ int main()
 	SOIL_free_image_data(imageBlack);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-
 	//start of boarder texture
 	glGenTextures(1, &textureBoarder);
 	glBindTexture(GL_TEXTURE_2D, textureBoarder);
@@ -380,7 +379,6 @@ int main()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-
 	// Texture coordinate attribute
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
 	glEnableVertexAttribArray(2);
@@ -415,7 +413,6 @@ int main()
 	SOIL_free_image_data(HM_Image);
 	glBindTexture(GL_TEXTURE_2D, 0);
 #pragma endregion
-
 
 #pragma region HM Texture 2
 	// Create and load HM texture
@@ -536,7 +533,6 @@ int main()
 		glm::vec3(-3.0f, 0.5f, 3.0f),
 		glm::vec3(2.0f, 0.5f, 3.0f),
 
-
 		// Row 2
 		glm::vec3(-3.0f, 0.5f, -4.0f),
 		glm::vec3(2.0f, 0.5f, -4.0f),
@@ -612,11 +608,9 @@ int main()
 		glm::vec3(-4.0f, 0.5f, 3.0f),
 		glm::vec3(3.0f, 0.5f, 3.0f),
 
-
 		// Row 2
 		glm::vec3(-4.0f, 0.5f, -4.0f),
 		glm::vec3(3.0f, 0.5f, -4.0f),
-
 	};
 
 	// Generate the vertex arrays and vertex buffers and save them into variables
@@ -1052,7 +1046,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Pawn(1.0f);
-		view_Pawn = camera.GetViewMatrix();
+		view_Pawn = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Pawn = glGetUniformLocation(ourShaderPawn.Program, "model");
@@ -1087,11 +1081,11 @@ int main()
 			glm::mat4 model_Pawn(1.0f);
 			model_Pawn = glm::translate(model_Pawn, pawnPositions[i]);
 			if (animating) // Select which pawns are animated
-			{							
+			{
 				model_Pawn = glm::rotate(model_Pawn, (GLfloat)glfwGetTime() * 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 			}
 			else
-			{												
+			{
 				model_Pawn = glm::rotate(model_Pawn, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 			}
 
@@ -1112,7 +1106,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Knight(1.0f);
-		view_Knight = camera.GetViewMatrix();
+		view_Knight = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Knight = glGetUniformLocation(ourShaderKnight.Program, "model");
@@ -1174,7 +1168,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Rook(1.0f);
-		view_Rook = camera.GetViewMatrix();
+		view_Rook = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Rook = glGetUniformLocation(ourShaderPawn.Program, "model");
@@ -1236,7 +1230,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Bishop(1.0f);
-		view_Bishop = camera.GetViewMatrix();
+		view_Bishop = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Bishop = glGetUniformLocation(ourShaderBishop.Program, "model");
@@ -1297,7 +1291,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_King(1.0f);
-		view_King = camera.GetViewMatrix();
+		view_King = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_King = glGetUniformLocation(ourShaderKing.Program, "model");
@@ -1330,7 +1324,6 @@ int main()
 
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_King(1.0f);
-
 			model_King = glm::translate(model_King, KingPositions[i]);
 			if (animating) // Select which pawns are animated
 			{
@@ -1340,9 +1333,7 @@ int main()
 			{
 				model_King = glm::rotate(model_King, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 			}
-
 			glUniformMatrix4fv(modelLoc_King, 1, GL_FALSE, glm::value_ptr(model_King));
-
 			glDrawArrays(GL_TRIANGLES, 0, 14436);
 		}
 #pragma endregion
@@ -1358,7 +1349,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Queen(1.0f);
-		view_Queen = camera.GetViewMatrix();
+		view_Queen = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Queen = glGetUniformLocation(ourShaderQueen.Program, "model");
@@ -1418,7 +1409,7 @@ int main()
 
 		// Create camera transformation ***
 		glm::mat4 view_Board(1.0f);
-		view_Board = camera.GetViewMatrix();
+		view_Board = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Board = glGetUniformLocation(ourShaderBoard.Program, "model");
@@ -1496,7 +1487,7 @@ int main()
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100000.0f);
-		glm::mat4 view = camera.GetViewMatrix();
+		glm::mat4 view = camera.GetViewMatrix(cameraLocked);
 		GLint projLoc = glGetUniformLocation(ourShader.Program, "projection");
 		GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
 
@@ -1544,9 +1535,7 @@ int main()
 				GL_UNSIGNED_INT, // index data type
 				(void*)(sizeof(GLuint) * (numTrisPerStrip + 2) * strip)); // offset to starting index
 		}
-
 		glBindVertexArray(0); // Unbinding
-
 		// Draw the OpenGl window/viewport
 		glfwSwapBuffers(window);
 	}
@@ -1558,12 +1547,10 @@ int main()
 
 	// Terminate GLFW and clear any resources from GLFW
 	glfwTerminate();
-
 	return EXIT_SUCCESS;
 }
 
 // Animate the rotation of the Chess Piece
-
 // Animate the position of the Chess Pieces
 glm::vec3 AnimatePawnPos(glm::vec3 pos)
 {
@@ -1571,38 +1558,42 @@ glm::vec3 AnimatePawnPos(glm::vec3 pos)
 	{
 		return glm::vec3(pos.x, pos.y + 1, pos.z);
 	}
-	else
-	{
-		return pos;
-	}
+	return pos;
 }
-
 //*** Chess Piece Creation & Animation Code Snippets ***//
 
 // Moves/alters the camera positions based on user input
 // WASD and Arrow keys
+
 void ProcessInput(GLFWwindow* window)
 {
+
 	// Camera controls
 	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
 	{
-		camera.ProcessKeyboard(FORWARD, deltaTime / 2);
+		if (!cameraLocked)
+			camera.ProcessKeyboard(FORWARD, deltaTime / 2);
 	}
 
 	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
 	{
-		camera.ProcessKeyboard(BACKWARD, deltaTime / 2);
+		if (!cameraLocked)
+			camera.ProcessKeyboard(BACKWARD, deltaTime / 2);
 	}
 
-	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
+	if (keys[GLFW_KEY_A])
 	{
-		camera.ProcessKeyboard(LEFT, deltaTime / 2);
+		if (!cameraLocked)
+			camera.ProcessKeyboard(LEFT, deltaTime / 2);
 	}
 
-	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
+
+	if (keys[GLFW_KEY_D])
 	{
-		camera.ProcessKeyboard(RIGHT, deltaTime / 2);
+		if (!cameraLocked)
+			camera.ProcessKeyboard(RIGHT, deltaTime / 2);
 	}
+
 }
 
 // Is called whenever a key is pressed/released via GLFW
@@ -1619,8 +1610,22 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modi
 		{
 			keys[key] = true;
 		}
+
 		else if (action == GLFW_RELEASE)
 		{
+			if (keys[GLFW_KEY_TAB]) {
+				cameraLocked = !cameraLocked;
+			}
+			if (keys[GLFW_KEY_LEFT])
+			{
+				cameraLocked = true;
+				camera.ProcessKeyboard(LEFT);
+			}
+			if (keys[GLFW_KEY_RIGHT])
+			{
+				cameraLocked = true;
+				camera.ProcessKeyboard(RIGHT);
+			}
 			keys[key] = false;
 		}
 	}

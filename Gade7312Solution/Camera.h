@@ -47,6 +47,16 @@ private:
 	GLfloat mouseSensitivity;
 	GLfloat zoom;
 
+	// Camera vector3 locations to cycle to
+	glm::vec3 Position1 = glm::vec3(10.0f, 10.5f, 10.9f);
+	glm::vec3 Position2 = glm::vec3(-10.0f, 10.5f, 10.0f);
+	glm::vec3 Position3 = glm::vec3(-10.0f, 10.5f, -10.0f);
+
+	//world center to look at
+	glm::vec3 centerWorld = glm::vec3(0.0f, 0.0f, 0.0f);
+	//counterOfPos
+	GLint positionCounter = 1;
+
 	void updateCameraVectors()
 	{
 		// Calculate the new Front vector
@@ -94,9 +104,20 @@ public:
 
 	// Getter for view matrix
 	// Returns view matrix calculated using Euler Angles and the LookAt Matrix
-	glm::mat4 GetViewMatrix()
+	glm::mat4 GetViewMatrix(bool cameraLocked)
 	{
+		if (cameraLocked)
+			return GetViewMatrixCentre();
 		return glm::lookAt(this->position, this->position + this->front, this->up);
+	}
+
+	// Getter for view matrix
+	// Returns view matrix calculated using Euler Angles and the 
+	// LookAt Matrix at the center of the world where the chessboard is
+	glm::mat4 GetViewMatrixCentre()
+	{
+		this->updateCameraVectors();
+		return glm::lookAt(this->position, this->centerWorld + this->front, this->up);
 	}
 
 	// Process keyboard input to detect which way the camera should move
@@ -123,6 +144,31 @@ public:
 		{
 			this->position += this->right * velocity;
 		}
+	}
+
+	void ProcessKeyboard(Camera_Movement direction)// Process keyboard and move camera between 3 static positions
+	{
+		if (direction == LEFT)
+		{
+			positionCounter -= 1;
+		}
+
+		if (direction == RIGHT)
+		{
+			positionCounter += 1;
+		}
+
+		if (positionCounter >= 4)
+			positionCounter = 1;
+		if (positionCounter <= 0)
+			positionCounter = 3;
+
+		if (positionCounter == 1)
+			this->position = Position1;
+		if (positionCounter == 2)
+			this->position = Position2;
+		if (positionCounter == 3)
+			this->position = Position3;
 	}
 
 	// Process Mouse input in x and y directions
