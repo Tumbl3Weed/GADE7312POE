@@ -1,14 +1,14 @@
 ﻿  GlewGlfw.cpp
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(275,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(276,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1020,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(807,6): warning C4101: 'widthPawn': unreferenced local variable
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(807,17): warning C4101: 'heightPawn': unreferenced local variable
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1645,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1646,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1650,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1651,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1653,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1654,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1662,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(296,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(297,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1041,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(828,6): warning C4101: 'widthPawn': unreferenced local variable
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(828,17): warning C4101: 'heightPawn': unreferenced local variable
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1663,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1664,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1668,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1669,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1671,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1672,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Vega\Gade7312\Gade7312Solution\GlewGlfw.cpp(1680,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
   GlewGlfw.vcxproj -> D:\Vega\Gade7312\Gade7312Solution\Debug\GlewGlfw.exe

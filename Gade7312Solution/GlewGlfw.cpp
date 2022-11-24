@@ -3,6 +3,7 @@
 #include <vector>
 #include <list>
 #include <iterator>
+#include <stdio.h>
 using namespace std;
 
 // GLEW
@@ -19,7 +20,6 @@ using namespace std;
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
 #include "Shader.h"
 #include "Camera.h"
 
@@ -48,6 +48,27 @@ GLfloat lastFrame = 0.0f;
 //Animate 
 bool animating = false;
 bool cameraLocked;
+
+//void drawText(const char* text, int length, int x, int y) {
+//
+//
+//	glMatrixMode(GL_PROJECTION);
+//	double* matrix = new double[16];
+//	glGetDoublev(GL_PROJECTION, matrix);
+//	glLoadIdentity();
+//	glOrtho(200, 600, 200, 400, -5, 5);
+//	glMatrixMode(GL_MODELVIEW);
+//	glLoadIdentity();
+//	glRasterPos2i(x, y);
+//	for (int i = 0; i < length; i++)
+//	{
+//		glutBitmapCharacter(GL_BITMAP, (int)text[i]);
+//	}
+//	glPopMatrix();
+//	glMatrixMode(GL_PROJECTION);
+//	glLoadMatrixd(matrix);
+//
+//}
 
 int main()
 {
@@ -1020,14 +1041,16 @@ int main()
 		GLfloat currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-		//cout << deltaTime << "ms (" << 1.0f / deltaTime << " FPS)" << endl; //Check FPS
+		cout << deltaTime << "ms (" << 1.0f / deltaTime << " FPS)" << endl; //Check FPS
+		std::string fpsString = "ms (" + std::to_string(1.0f / deltaTime) + " FPS)";
+		
 
 		// Checks for events and calls corresponding response
 		glfwPollEvents();
 
 		// Handle the input
 		ProcessInput(window);
-
+		
 		// Render
 		// Clear the colour buffer
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -1217,7 +1240,6 @@ int main()
 			glDrawArrays(GL_TRIANGLES, 0, 13716);
 		}
 #pragma endregion
-
 
 #pragma region CODE FOR CHESS PIECE - Bishop WHILE LOOP
 		// Activate Shader
@@ -1564,10 +1586,8 @@ glm::vec3 AnimatePawnPos(glm::vec3 pos)
 
 // Moves/alters the camera positions based on user input
 // WASD and Arrow keys
-
 void ProcessInput(GLFWwindow* window)
 {
-
 	// Camera controls
 	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
 	{
@@ -1587,13 +1607,11 @@ void ProcessInput(GLFWwindow* window)
 			camera.ProcessKeyboard(LEFT, deltaTime / 2);
 	}
 
-
 	if (keys[GLFW_KEY_D])
 	{
 		if (!cameraLocked)
 			camera.ProcessKeyboard(RIGHT, deltaTime / 2);
 	}
-
 }
 
 // Is called whenever a key is pressed/released via GLFW

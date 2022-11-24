@@ -35,6 +35,7 @@
     <None Include="coreBoard.frag">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
@@ -63,5 +64,10 @@
     <Text Include="Rook.txt">
       <Filter>Chess Pieces Text Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="main.xaml">
+      <Filter>Header Files</Filter>
+    </Page>
   </ItemGroup>
 </Project>
