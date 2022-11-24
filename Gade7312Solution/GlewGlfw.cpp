@@ -585,6 +585,84 @@ int main()
 	glBindVertexArray(0);
 
 #pragma endregion
+
+	// *** CODE FOR CHESS PIECE - Chair *** //
+#pragma region CODE FOR CHESS PIECE - Chair
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderChair("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our Chair piece
+	GLfloat verticesChair[14436];
+
+	// *** Read Vertex data from Chair.txt file ***//
+	ifstream myFileChair("Chair.txt");
+	i = 0;
+
+	if (myFileChair.is_open())
+	{
+		string line;
+
+		while (!myFileChair.eof())
+		{
+			getline(myFileChair, line, ' ');
+			verticesChair[i] = stof(line);
+			i++;
+			getline(myFileChair, line, ' ');
+			verticesChair[i] = stof(line);
+			i++;
+			getline(myFileChair, line, '\n');
+			verticesChair[i] = stof(line);
+			i++;
+		}
+		myFileChair.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Chair.txt file ***//
+
+	// Positions of Chair
+	glm::vec3 ChairPositions[] =
+	{
+		// Row 1
+		glm::vec3(-3.0f, 0.5f, 3.0f),
+		glm::vec3(2.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(-3.0f, 0.5f, -4.0f),
+		glm::vec3(2.0f, 0.5f, -4.0f),
+
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Chair, VOA_Chair;
+	glGenVertexArrays(1, &VOA_Chair);
+	glGenBuffers(1, &VBA_Chair);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Chair);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Chair);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesChair), verticesChair, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
+
 	// *** CODE FOR CHESS PIECE - ROOK *** //
 #pragma region CODE FOR CHESS PIECE - ROOK
 
