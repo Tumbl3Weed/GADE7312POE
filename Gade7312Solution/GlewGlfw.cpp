@@ -47,7 +47,6 @@ GLfloat lastFrame = 0.0f;
 
 //Animate 
 bool animating = false;
-bool cameraLocked;
 
 int main()
 {
@@ -72,6 +71,7 @@ int main()
 	{
 		cout << "Failed to create window." << endl;
 		glfwTerminate();
+
 		return EXIT_FAILURE;
 	}
 
@@ -233,6 +233,7 @@ int main()
 	SOIL_free_image_data(imageBlack);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
+
 	//start of boarder texture
 	glGenTextures(1, &textureBoarder);
 	glBindTexture(GL_TEXTURE_2D, textureBoarder);
@@ -379,6 +380,7 @@ int main()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
+
 	// Texture coordinate attribute
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
 	glEnableVertexAttribArray(2);
@@ -413,6 +415,7 @@ int main()
 	SOIL_free_image_data(HM_Image);
 	glBindTexture(GL_TEXTURE_2D, 0);
 #pragma endregion
+
 
 #pragma region HM Texture 2
 	// Create and load HM texture
@@ -533,6 +536,7 @@ int main()
 		glm::vec3(-3.0f, 0.5f, 3.0f),
 		glm::vec3(2.0f, 0.5f, 3.0f),
 
+
 		// Row 2
 		glm::vec3(-3.0f, 0.5f, -4.0f),
 		glm::vec3(2.0f, 0.5f, -4.0f),
@@ -564,6 +568,238 @@ int main()
 	glBindVertexArray(0);
 
 #pragma endregion
+
+	// *** CODE FOR CHESS PIECE - Chair *** //
+#pragma region CODE FOR CHESS PIECE - Chair
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderChair("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our Chair piece
+	GLfloat verticesChair[14436];
+
+	// *** Read Vertex data from Chair.txt file ***//
+	ifstream myFileChair("Chair.txt");
+	i = 0;
+
+	if (myFileChair.is_open())
+	{
+		string line;
+
+		while (!myFileChair.eof())
+		{
+			getline(myFileChair, line, ' ');
+			verticesChair[i] = stof(line);
+			i++;
+			getline(myFileChair, line, ' ');
+			verticesChair[i] = stof(line);
+			i++;
+			getline(myFileChair, line, '\n');
+			verticesChair[i] = stof(line);
+			i++;
+		}
+		myFileChair.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Chair.txt file ***//
+
+	// Positions of Chair
+	glm::vec3 ChairPositions[] =
+	{
+		// Row 1
+		glm::vec3(-3.0f, 0.5f, 3.0f),
+		glm::vec3(2.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(-3.0f, 0.5f, -4.0f),
+		glm::vec3(2.0f, 0.5f, -4.0f),
+
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Chair, VOA_Chair;
+	glGenVertexArrays(1, &VOA_Chair);
+	glGenBuffers(1, &VBA_Chair);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Chair);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Chair);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesChair), verticesChair, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
+
+	// *** CODE FOR CHESS PIECE - Gazebo *** //
+#pragma region CODE FOR CHESS PIECE - Gazebo
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderGazebo("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our Gazebo piece
+	GLfloat verticesGazebo[14436];
+
+	// *** Read Vertex data from Gazebo.txt file ***//
+	ifstream myFileGazebo("Gazebo.txt");
+	i = 0;
+
+	if (myFileGazebo.is_open())
+	{
+		string line;
+
+		while (!myFileGazebo.eof())
+		{
+			getline(myFileGazebo, line, ' ');
+			verticesGazebo[i] = stof(line);
+			i++;
+			getline(myFileGazebo, line, ' ');
+			verticesGazebo[i] = stof(line);
+			i++;
+			getline(myFileGazebo, line, '\n');
+			verticesGazebo[i] = stof(line);
+			i++;
+		}
+		myFileGazebo.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Gazebo.txt file ***//
+
+	// Positions of Gazebo
+	glm::vec3 GazeboPositions[] =
+	{
+		// Row 1
+		glm::vec3(-3.0f, 0.5f, 3.0f),
+		glm::vec3(2.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(-3.0f, 0.5f, -4.0f),
+		glm::vec3(2.0f, 0.5f, -4.0f),
+
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Gazebo, VOA_Gazebo;
+	glGenVertexArrays(1, &VOA_Gazebo);
+	glGenBuffers(1, &VBA_Gazebo);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Gazebo);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Gazebo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesGazebo), verticesGazebo, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
+
+	// *** CODE FOR CHESS PIECE - Table *** //
+#pragma region CODE FOR CHESS PIECE - Table
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderTable("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our Table piece
+	GLfloat verticesTable[14436];
+
+	// *** Read Vertex data from Table.txt file ***//
+	ifstream myFileTable("Table.txt");
+	i = 0;
+
+	if (myFileTable.is_open())
+	{
+		string line;
+
+		while (!myFileTable.eof())
+		{
+			getline(myFileTable, line, ' ');
+			verticesTable[i] = stof(line);
+			i++;
+			getline(myFileTable, line, ' ');
+			verticesTable[i] = stof(line);
+			i++;
+			getline(myFileTable, line, '\n');
+			verticesTable[i] = stof(line);
+			i++;
+		}
+		myFileTable.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Table.txt file ***//
+
+	// Positions of Table
+	glm::vec3 TablePositions[] =
+	{
+		// Row 1
+		glm::vec3(-3.0f, 0.5f, 3.0f),
+		glm::vec3(2.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(-3.0f, 0.5f, -4.0f),
+		glm::vec3(2.0f, 0.5f, -4.0f),
+
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Table, VOA_Table;
+	glGenVertexArrays(1, &VOA_Table);
+	glGenBuffers(1, &VBA_Table);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Table);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Table);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesTable), verticesTable, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
+
 	// *** CODE FOR CHESS PIECE - ROOK *** //
 #pragma region CODE FOR CHESS PIECE - ROOK
 
@@ -608,9 +844,11 @@ int main()
 		glm::vec3(-4.0f, 0.5f, 3.0f),
 		glm::vec3(3.0f, 0.5f, 3.0f),
 
+
 		// Row 2
 		glm::vec3(-4.0f, 0.5f, -4.0f),
 		glm::vec3(3.0f, 0.5f, -4.0f),
+
 	};
 
 	// Generate the vertex arrays and vertex buffers and save them into variables
@@ -717,6 +955,9 @@ int main()
 	glBindVertexArray(0);
 
 #pragma endregion
+
+
+
 	// *** CODE FOR CHESS PIECE - PAWN *** //
 #pragma region CODE FOR CHESS PIECE - PAWN
 
@@ -1016,11 +1257,6 @@ int main()
 	// GAME LOOP
 	while (!glfwWindowShouldClose(window))
 	{
-		// per-frame time logic
-		GLfloat currentFrame = glfwGetTime();
-		deltaTime = currentFrame - lastFrame;
-		lastFrame = currentFrame;
-		//cout << deltaTime << "ms (" << 1.0f / deltaTime << " FPS)" << endl; //Check FPS
 
 		// Checks for events and calls corresponding response
 		glfwPollEvents();
@@ -1032,6 +1268,14 @@ int main()
 		// Clear the colour buffer
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		// per-frame time logic
+		GLfloat currentFrame = glfwGetTime();
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
+		cout << deltaTime << "ms (" << 1.0f / deltaTime << " FPS)" << endl; //Check FPS
+		std::string fpsString = "ms (" + std::to_string(1.0f / deltaTime) + " FPS)";
+		//sprintf(fpsString.c_str, "%d", int(fpsString.data()));
 
 		// *** CODE FOR CHESS CHESS PIECE - PAWN WHILE LOOP *** //
 #pragma region CODE FOR CHESS PIECE - PAWN WHILE LOOP
@@ -1046,7 +1290,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Pawn(1.0f);
-		view_Pawn = camera.GetViewMatrix(cameraLocked);
+		view_Pawn = camera.GetViewMatrix();
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Pawn = glGetUniformLocation(ourShaderPawn.Program, "model");
@@ -1081,11 +1325,11 @@ int main()
 			glm::mat4 model_Pawn(1.0f);
 			model_Pawn = glm::translate(model_Pawn, pawnPositions[i]);
 			if (animating) // Select which pawns are animated
-			{
+			{							
 				model_Pawn = glm::rotate(model_Pawn, (GLfloat)glfwGetTime() * 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 			}
 			else
-			{
+			{												
 				model_Pawn = glm::rotate(model_Pawn, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 			}
 
@@ -1106,7 +1350,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Knight(1.0f);
-		view_Knight = camera.GetViewMatrix(cameraLocked);
+		view_Knight = camera.GetViewMatrix();
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Knight = glGetUniformLocation(ourShaderKnight.Program, "model");
@@ -1168,7 +1412,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Rook(1.0f);
-		view_Rook = camera.GetViewMatrix(cameraLocked);
+		view_Rook = camera.GetViewMatrix();
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Rook = glGetUniformLocation(ourShaderPawn.Program, "model");
@@ -1230,7 +1474,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Bishop(1.0f);
-		view_Bishop = camera.GetViewMatrix(cameraLocked);
+		view_Bishop = camera.GetViewMatrix();
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Bishop = glGetUniformLocation(ourShaderBishop.Program, "model");
@@ -1280,6 +1524,166 @@ int main()
 		}
 #pragma endregion
 
+#pragma region CODE FOR CHESS PIECE - Chair WHILE LOOP
+		// Activate Shader
+		ourShaderChair.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_Chair(1.0f);
+		//Perspective view ***
+		projection_Chair = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+
+		// Create camera transformation
+		glm::mat4 view_Chair(1.0f);
+		view_Chair = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_Chair = glGetUniformLocation(ourShaderChair.Program, "model");
+		GLint viewLoc_Chair = glGetUniformLocation(ourShaderChair.Program, "view");
+		GLint projLoc_Chair = glGetUniformLocation(ourShaderChair.Program, "projection");
+
+		// Pass locations to shaders
+		glUniformMatrix4fv(viewLoc_Chair, 1, GL_FALSE, glm::value_ptr(view_Chair));
+		glUniformMatrix4fv(projLoc_Chair, 1, GL_FALSE, glm::value_ptr(projection_Chair));
+
+		// Draw container
+		glBindVertexArray(VOA_Chair);
+
+		for (GLuint i = 0; i < 2; i++)
+		{
+			glm::mat4 model_Chair(1.0f);
+	
+			if (i < 1)
+			{
+				// Activate White Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glUniform1i(glGetUniformLocation(ourShaderChair.Program, "ourTexture1"), 0);
+				model_Chair = glm::translate(model_Chair, ChairPositions[i] + glm::vec3(-5, -10, 0));
+			}
+			else
+			{
+				// Activate Black Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glUniform1i(glGetUniformLocation(ourShaderChair.Program, "ourTexture1"), 0);
+				model_Chair = glm::translate(model_Chair, ChairPositions[i] + glm::vec3(5, -10, 0));
+				model_Chair = glm::rotate(model_Chair, 3.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+			}
+
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glUniformMatrix4fv(modelLoc_Chair, 1, GL_FALSE, glm::value_ptr(model_Chair));
+
+			glDrawArrays(GL_TRIANGLES, 0, 14436);
+		}
+#pragma endregion
+
+#pragma region CODE FOR CHESS PIECE - Gazebo WHILE LOOP
+		// Activate Shader
+		ourShaderGazebo.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_Gazebo(1.0f);
+		//Perspective view ***
+		projection_Gazebo = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+
+		// Create camera transformation
+		glm::mat4 view_Gazebo(1.0f);
+		view_Gazebo = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_Gazebo = glGetUniformLocation(ourShaderGazebo.Program, "model");
+		GLint viewLoc_Gazebo = glGetUniformLocation(ourShaderGazebo.Program, "view");
+		GLint projLoc_Gazebo = glGetUniformLocation(ourShaderGazebo.Program, "projection");
+
+		// Pass locations to shaders
+		glUniformMatrix4fv(viewLoc_Gazebo, 1, GL_FALSE, glm::value_ptr(view_Gazebo));
+		glUniformMatrix4fv(projLoc_Gazebo, 1, GL_FALSE, glm::value_ptr(projection_Gazebo));
+
+		// Draw container
+		glBindVertexArray(VOA_Gazebo);
+
+		for (GLuint i = 0; i < 1; i++)
+		{
+			if (i < 2)
+			{
+				// Activate White Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glUniform1i(glGetUniformLocation(ourShaderGazebo.Program, "ourTexture1"), 0);
+			}
+			else
+			{
+				// Activate Black Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glUniform1i(glGetUniformLocation(ourShaderGazebo.Program, "ourTexture1"), 0);
+			}
+
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glm::mat4 model_Gazebo(1.0f);
+
+			model_Gazebo = glm::translate(model_Gazebo, GazeboPositions[i]);
+
+			glUniformMatrix4fv(modelLoc_Gazebo, 1, GL_FALSE, glm::value_ptr(model_Gazebo));
+
+			glDrawArrays(GL_TRIANGLES, 0, 14436);
+		}
+#pragma endregion
+
+#pragma region CODE FOR CHESS PIECE - Table WHILE LOOP
+		// Activate Shader
+		ourShaderTable.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_Table(1.0f);
+		//Perspective view ***
+		projection_Table = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+
+		// Create camera transformation
+		glm::mat4 view_Table(1.0f);
+		view_Table = camera.GetViewMatrix();
+
+		// Get the uniform locations for our matrices
+		GLint modelLoc_Table = glGetUniformLocation(ourShaderTable.Program, "model");
+		GLint viewLoc_Table = glGetUniformLocation(ourShaderTable.Program, "view");
+		GLint projLoc_Table = glGetUniformLocation(ourShaderTable.Program, "projection");
+
+		// Pass locations to shaders
+		glUniformMatrix4fv(viewLoc_Table, 1, GL_FALSE, glm::value_ptr(view_Table));
+		glUniformMatrix4fv(projLoc_Table, 1, GL_FALSE, glm::value_ptr(projection_Table));
+
+		// Draw container
+		glBindVertexArray(VOA_Table);
+
+		for (GLuint i = 0; i < 1; i++)
+		{
+			if (i < 2)
+			{
+				// Activate White Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glUniform1i(glGetUniformLocation(ourShaderTable.Program, "ourTexture1"), 0);
+			}
+			else
+			{
+				// Activate Black Texture
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glUniform1i(glGetUniformLocation(ourShaderTable.Program, "ourTexture1"), 0);
+			}
+
+			// Calculate the model matrix for each object and pass it to the shader before drawing
+			glm::mat4 model_Table(1.0f);
+
+			model_Table = glm::translate(model_Table, TablePositions[i]);
+
+			glUniformMatrix4fv(modelLoc_Table, 1, GL_FALSE, glm::value_ptr(model_Table));
+
+			glDrawArrays(GL_TRIANGLES, 0, 14436);
+		}
+#pragma endregion
+
 #pragma region CODE FOR CHESS PIECE - King WHILE LOOP
 		// Activate Shader
 		ourShaderKing.Use();
@@ -1291,7 +1695,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_King(1.0f);
-		view_King = camera.GetViewMatrix(cameraLocked);
+		view_King = camera.GetViewMatrix();
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_King = glGetUniformLocation(ourShaderKing.Program, "model");
@@ -1324,6 +1728,7 @@ int main()
 
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_King(1.0f);
+
 			model_King = glm::translate(model_King, KingPositions[i]);
 			if (animating) // Select which pawns are animated
 			{
@@ -1333,7 +1738,9 @@ int main()
 			{
 				model_King = glm::rotate(model_King, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 			}
+
 			glUniformMatrix4fv(modelLoc_King, 1, GL_FALSE, glm::value_ptr(model_King));
+
 			glDrawArrays(GL_TRIANGLES, 0, 14436);
 		}
 #pragma endregion
@@ -1349,7 +1756,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Queen(1.0f);
-		view_Queen = camera.GetViewMatrix(cameraLocked);
+		view_Queen = camera.GetViewMatrix();
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Queen = glGetUniformLocation(ourShaderQueen.Program, "model");
@@ -1409,7 +1816,7 @@ int main()
 
 		// Create camera transformation ***
 		glm::mat4 view_Board(1.0f);
-		view_Board = camera.GetViewMatrix(cameraLocked);
+		view_Board = camera.GetViewMatrix();
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Board = glGetUniformLocation(ourShaderBoard.Program, "model");
@@ -1487,7 +1894,7 @@ int main()
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100000.0f);
-		glm::mat4 view = camera.GetViewMatrix(cameraLocked);
+		glm::mat4 view = camera.GetViewMatrix();
 		GLint projLoc = glGetUniformLocation(ourShader.Program, "projection");
 		GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
 
@@ -1535,7 +1942,9 @@ int main()
 				GL_UNSIGNED_INT, // index data type
 				(void*)(sizeof(GLuint) * (numTrisPerStrip + 2) * strip)); // offset to starting index
 		}
+
 		glBindVertexArray(0); // Unbinding
+
 		// Draw the OpenGl window/viewport
 		glfwSwapBuffers(window);
 	}
@@ -1547,10 +1956,12 @@ int main()
 
 	// Terminate GLFW and clear any resources from GLFW
 	glfwTerminate();
+
 	return EXIT_SUCCESS;
 }
 
 // Animate the rotation of the Chess Piece
+
 // Animate the position of the Chess Pieces
 glm::vec3 AnimatePawnPos(glm::vec3 pos)
 {
@@ -1558,42 +1969,38 @@ glm::vec3 AnimatePawnPos(glm::vec3 pos)
 	{
 		return glm::vec3(pos.x, pos.y + 1, pos.z);
 	}
-	return pos;
+	else
+	{
+		return pos;
+	}
 }
+
 //*** Chess Piece Creation & Animation Code Snippets ***//
 
 // Moves/alters the camera positions based on user input
 // WASD and Arrow keys
-
 void ProcessInput(GLFWwindow* window)
 {
-
 	// Camera controls
 	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
 	{
-		if (!cameraLocked)
-			camera.ProcessKeyboard(FORWARD, deltaTime / 2);
+		camera.ProcessKeyboard(FORWARD, deltaTime / 2);
 	}
 
 	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
 	{
-		if (!cameraLocked)
-			camera.ProcessKeyboard(BACKWARD, deltaTime / 2);
+		camera.ProcessKeyboard(BACKWARD, deltaTime / 2);
 	}
 
-	if (keys[GLFW_KEY_A])
+	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
 	{
-		if (!cameraLocked)
-			camera.ProcessKeyboard(LEFT, deltaTime / 2);
+		camera.ProcessKeyboard(LEFT, deltaTime / 2);
 	}
 
-
-	if (keys[GLFW_KEY_D])
+	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
 	{
-		if (!cameraLocked)
-			camera.ProcessKeyboard(RIGHT, deltaTime / 2);
+		camera.ProcessKeyboard(RIGHT, deltaTime / 2);
 	}
-
 }
 
 // Is called whenever a key is pressed/released via GLFW
@@ -1610,22 +2017,8 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modi
 		{
 			keys[key] = true;
 		}
-
 		else if (action == GLFW_RELEASE)
 		{
-			if (keys[GLFW_KEY_TAB]) {
-				cameraLocked = !cameraLocked;
-			}
-			if (keys[GLFW_KEY_LEFT])
-			{
-				cameraLocked = true;
-				camera.ProcessKeyboard(LEFT);
-			}
-			if (keys[GLFW_KEY_RIGHT])
-			{
-				cameraLocked = true;
-				camera.ProcessKeyboard(RIGHT);
-			}
 			keys[key] = false;
 		}
 	}
