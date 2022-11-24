@@ -741,6 +741,84 @@ int main()
 
 #pragma endregion
 
+	// *** CODE FOR CHESS PIECE - Table *** //
+#pragma region CODE FOR CHESS PIECE - Table
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderTable("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our Table piece
+	GLfloat verticesTable[14436];
+
+	// *** Read Vertex data from Table.txt file ***//
+	ifstream myFileTable("Table.txt");
+	i = 0;
+
+	if (myFileTable.is_open())
+	{
+		string line;
+
+		while (!myFileTable.eof())
+		{
+			getline(myFileTable, line, ' ');
+			verticesTable[i] = stof(line);
+			i++;
+			getline(myFileTable, line, ' ');
+			verticesTable[i] = stof(line);
+			i++;
+			getline(myFileTable, line, '\n');
+			verticesTable[i] = stof(line);
+			i++;
+		}
+		myFileTable.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Table.txt file ***//
+
+	// Positions of Table
+	glm::vec3 TablePositions[] =
+	{
+		// Row 1
+		glm::vec3(-3.0f, 0.5f, 3.0f),
+		glm::vec3(2.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(-3.0f, 0.5f, -4.0f),
+		glm::vec3(2.0f, 0.5f, -4.0f),
+
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Table, VOA_Table;
+	glGenVertexArrays(1, &VOA_Table);
+	glGenBuffers(1, &VBA_Table);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Table);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Table);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesTable), verticesTable, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
+
+
 	// *** CODE FOR CHESS PIECE - ROOK *** //
 #pragma region CODE FOR CHESS PIECE - ROOK
 
