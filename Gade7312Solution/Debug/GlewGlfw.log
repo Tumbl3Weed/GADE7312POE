@@ -1,14 +1,17 @@
 ﻿  GlewGlfw.cpp
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(277,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(278,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1279,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1054,6): warning C4101: 'widthPawn': unreferenced local variable
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1054,17): warning C4101: 'heightPawn': unreferenced local variable
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2064,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2065,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2069,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2070,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2072,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2073,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2081,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(229,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(230,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1130,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(905,6): warning C4101: 'widthPawn': unreferenced local variable
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(905,17): warning C4101: 'heightPawn': unreferenced local variable
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1894,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1895,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1899,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1900,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1902,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1903,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1911,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\Debug\vc120.pdb'; linking object as if no debug info
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   GlewGlfw.vcxproj -> D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\Debug\GlewGlfw.exe

@@ -49,6 +49,12 @@ GLfloat lastFrame = 0.0f;
 bool animating = false;
 bool cameraLocked;
 
+//Custom Texture Methods
+GLuint CreateTexture(GLuint texture, const char* img, int width, int height);
+
+// Skybox Texture Creation Method Declaration
+GLuint CreateSkyboxTexture(GLuint texture, vector<std::string> faces, int width, int height);
+
 int main()
 {
 	// Initialize GLFW
@@ -186,77 +192,23 @@ int main()
 	glBindVertexArray(0);
 
 	// Create and load texture
-	GLuint textureWhite, textureBlack, textureBoarder;
-	int widthB, heightB;
-	glGenTextures(1, &textureWhite);
-	glBindTexture(GL_TEXTURE_2D, textureWhite);
+	int widthB = 0, heightB = 0;
+	
+	GLuint textureWhite = 0;
+	textureWhite = CreateTexture(textureWhite, "res/images/Whitemarbletexture.jpg", widthB, heightB);
 
-	// Set texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	GLuint textureBlack = 0;
+	textureBlack = CreateTexture(textureBlack, "res/images/Blackmarbletexture.jpg", widthB, heightB);
 
-	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	GLuint textureBoarder = 0;
+	textureBoarder = CreateTexture(textureBoarder, "res/images/boarder.png", widthB, heightB);
 
-	// Actual texture loading code
-	unsigned char* imageWhite = SOIL_load_image("res/images/WhiteMarbleTexture.jpg", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
+	GLuint textureHM1 = 0;
+	textureHM1 = CreateTexture(textureHM1, "res/images/terrain1.png", widthB, heightB);
 
-	// Specify 2D texture image
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageWhite);
-
-	// Generate mipmaps
-	glGenerateMipmap(GL_TEXTURE_2D);
-	SOIL_free_image_data(imageWhite);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-
-	//starting new texture
-	glGenTextures(1, &textureBlack);
-	glBindTexture(GL_TEXTURE_2D, textureBlack);
-
-	// Set texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	// Actual texture loading code
-	unsigned char* imageBlack = SOIL_load_image("res/images/Blackmarbletexture.jpg", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
-
-	// Specify 2D texture image
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageBlack);
-
-	// Generate mipmaps
-	glGenerateMipmap(GL_TEXTURE_2D);
-	SOIL_free_image_data(imageBlack);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-
-	//start of boarder texture
-	glGenTextures(1, &textureBoarder);
-	glBindTexture(GL_TEXTURE_2D, textureBoarder);
-
-	// Set texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	// Actual texture loading code
-	unsigned char* imageBoarder = SOIL_load_image("res/images/boarder.png", &widthB, &heightB, 0, SOIL_LOAD_RGBA);
-
-	// Specify 2D texture image
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthB, heightB, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageBoarder);
-
-	// Generate mipmaps
-	glGenerateMipmap(GL_TEXTURE_2D);
-	SOIL_free_image_data(imageBoarder);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	GLuint textureDarkwood = 0;
+	textureDarkwood = CreateTexture(textureDarkwood, "res/images/Darkwood.png", widthB, heightB);
+	
 	// *** CODE FOR CHESS BOARD *** //
 
 	// Positions of different cubes ***
@@ -390,108 +342,7 @@ int main()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned), &indices[0], GL_STATIC_DRAW);
 
-	GLuint textureHM1, textureHM2, textureHM3, textureHM4;
-
-#pragma region HM Texture 1
-	// Create and load HM texture
-	glGenTextures(1, &textureHM1);
-	glBindTexture(GL_TEXTURE_2D, textureHM1);
-
-	// Set texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	// Actual texture loading code
-	unsigned char* HM_Image = SOIL_load_image("res/images/terrain1.png", &width, &height, 0, SOIL_LOAD_RGBA);
-
-	// Specify 2D texture image
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image);
-
-	// Generate mipmaps
-	glGenerateMipmap(GL_TEXTURE_2D);
-	SOIL_free_image_data(HM_Image);
-	glBindTexture(GL_TEXTURE_2D, 0);
-#pragma endregion
-
-
-#pragma region HM Texture 2
-	// Create and load HM texture
-	glGenTextures(1, &textureHM2);
-	glBindTexture(GL_TEXTURE_2D, textureHM2);
-
-	// Set texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	// Actual texture loading code
-	unsigned char* HM_Image2 = SOIL_load_image("res/images/terrain1.png", &width, &height, 0, SOIL_LOAD_RGBA);
-
-	// Specify 2D texture image
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image2);
-
-	// Generate mipmaps
-	glGenerateMipmap(GL_TEXTURE_2D);
-	SOIL_free_image_data(HM_Image2);
-	glBindTexture(GL_TEXTURE_2D, 0);
-#pragma endregion
-
-#pragma region HM Texture 3
-	// Create and load HM texture
-	glGenTextures(1, &textureHM3);
-	glBindTexture(GL_TEXTURE_2D, textureHM3);
-
-	// Set texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	// Actual texture loading code
-	unsigned char* HM_Image3 = SOIL_load_image("res/images/terrain1.png", &width, &height, 0, SOIL_LOAD_RGBA);
-
-	// Specify 2D texture image
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image3);
-
-	// Generate mipmaps
-	glGenerateMipmap(GL_TEXTURE_2D);
-	SOIL_free_image_data(HM_Image3);
-	glBindTexture(GL_TEXTURE_2D, 0);
-#pragma endregion
-
-#pragma region HM Texture 4
-	// Create and load HM texture
-	glGenTextures(1, &textureHM4);
-	glBindTexture(GL_TEXTURE_2D, textureHM4);
-
-	// Set texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	// Actual texture loading code
-	unsigned char* HM_Image4 = SOIL_load_image("res/images/terrain1.png", &width, &height, 0, SOIL_LOAD_RGBA);
-
-	// Specify 2D texture image
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, HM_Image4);
-
-	// Generate mipmaps
-	glGenerateMipmap(GL_TEXTURE_2D);
-	SOIL_free_image_data(HM_Image4);
-	glBindTexture(GL_TEXTURE_2D, 0);
-#pragma endregion
+	
 
 	// Skybox Code Snippets
 
@@ -1612,20 +1463,11 @@ int main()
 
 		for (GLuint i = 0; i < 1; i++)
 		{
-			if (i < 2)
-			{
-				// Activate White Texture
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, textureBoarder);
-				glUniform1i(glGetUniformLocation(ourShaderGazebo.Program, "ourTexture1"), 0);
-			}
-			else
-			{
-				// Activate Black Texture
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
-				glUniform1i(glGetUniformLocation(ourShaderGazebo.Program, "ourTexture1"), 0);
-			}
+			// Activate wood Texture
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, textureDarkwood);
+			glUniform1i(glGetUniformLocation(ourShaderGazebo.Program, "ourTexture1"), 0);
+			
 
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Gazebo(1.0f);
@@ -1665,20 +1507,10 @@ int main()
 
 		for (GLuint i = 0; i < 1; i++)
 		{
-			if (i < 2)
-			{
-				// Activate White Texture
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, textureBlack);
-				glUniform1i(glGetUniformLocation(ourShaderTable.Program, "ourTexture1"), 0);
-			}
-			else
-			{
-				// Activate Black Texture
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
-				glUniform1i(glGetUniformLocation(ourShaderTable.Program, "ourTexture1"), 0);
-			}
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, textureDarkwood);
+			glUniform1i(glGetUniformLocation(ourShaderTable.Program, "ourTexture1"), 0);
+			
 
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Table(1.0f);
@@ -1918,31 +1750,12 @@ int main()
 
 		for (int strip = 0; strip < numStrips; strip++)
 		{
-			if (indices[strip] % 3 == 0.0f)
-			{
-				//Activate HM texture
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, textureHM1);
-				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
-			}
-			else if (indices[strip] % 4 == 0.0f)
-			{
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, textureHM2);
-				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
-			}
-			else if (indices[strip] % 5 == 0.0f)
-			{
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, textureHM3);
-				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
-			}
-			else
-			{
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, textureHM4);
-				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
-			}
+			
+
+			//Activate HM texture
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, textureHM1);
+			glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
 
 			glDrawElements(GL_TRIANGLE_STRIP, // primitive type
 				numTrisPerStrip + 2, // number of indices to render
@@ -1960,7 +1773,24 @@ int main()
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &IBO);
-
+	glDeleteVertexArrays(1, &VOA_Bishop);
+	glDeleteBuffers(1, &VBA_Bishop);
+	glDeleteVertexArrays(1, &VOA_Board);
+	glDeleteBuffers(1, &VBA_Board);
+	glDeleteVertexArrays(1, &VOA_Chair);
+	glDeleteBuffers(1, &VBA_Chair);
+	glDeleteVertexArrays(1, &VOA_Gazebo);
+	glDeleteBuffers(1, &VBA_Gazebo);
+	glDeleteVertexArrays(1, &VOA_King);
+	glDeleteBuffers(1, &VBA_King);
+	glDeleteVertexArrays(1, &VOA_Knight);
+	glDeleteBuffers(1, &VBA_Knight);
+	glDeleteVertexArrays(1, &VOA_Pawn);
+	glDeleteBuffers(1, &VBA_Pawn);
+	glDeleteVertexArrays(1, &VOA_Queen);
+	glDeleteBuffers(1, &VBA_Queen);
+	glDeleteVertexArrays(1, &VOA_Rook);
+	glDeleteBuffers(1, &VBA_Rook);
 
 	// Terminate GLFW and clear any resources from GLFW
 	glfwTerminate();
@@ -2082,7 +1912,7 @@ void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 }
 // *** CREATE 3D CHESS BOARD ON TERRAIN *** //
 
-// Method
+// Create Texture Method
 GLuint CreateTexture(GLuint texture, const char* img, int width, int height)
 {
 	// Create and load texture
@@ -2111,3 +1941,38 @@ GLuint CreateTexture(GLuint texture, const char* img, int width, int height)
 	return texture;
 }
 
+// Skybox Texture Creation Method
+
+// Create Skybox Texture Method
+// loads a cubemap texture from 6 individual texture faces
+// order: +X (right), -X (left), +Y (top), -Y (bottom), +Z (front), -Z (back)
+GLuint CreateSkyboxTexture(GLuint texture, vector<std::string> faces, int width, int height)
+{
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
+
+	int nrChannels;
+	for (unsigned int i = 0; i < faces.size(); i++)
+	{
+		unsigned char* textureImg = SOIL_load_image(faces[i].c_str(), &width, &height, &nrChannels, 0);
+		if (textureImg)
+		{
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImg);
+			SOIL_free_image_data(textureImg);
+		}
+		else
+		{
+			std::cout << "Cubemap texture failed to load at path: " << faces[i] << std::endl;
+			SOIL_free_image_data(textureImg);
+		}
+	}
+
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	return texture;
+}
