@@ -663,6 +663,84 @@ int main()
 
 #pragma endregion
 
+
+	// *** CODE FOR CHESS PIECE - Gazebo *** //
+#pragma region CODE FOR CHESS PIECE - Gazebo
+
+//Build & Compile Shader Program for Chessboard
+	Shader ourShaderGazebo("coreBoard.vs", "coreBoard.frag");
+
+	// Vertex data for our Gazebo piece
+	GLfloat verticesGazebo[14436];
+
+	// *** Read Vertex data from Gazebo.txt file ***//
+	ifstream myFileGazebo("Gazebo.txt");
+	i = 0;
+
+	if (myFileGazebo.is_open())
+	{
+		string line;
+
+		while (!myFileGazebo.eof())
+		{
+			getline(myFileGazebo, line, ' ');
+			verticesGazebo[i] = stof(line);
+			i++;
+			getline(myFileGazebo, line, ' ');
+			verticesGazebo[i] = stof(line);
+			i++;
+			getline(myFileGazebo, line, '\n');
+			verticesGazebo[i] = stof(line);
+			i++;
+		}
+		myFileGazebo.close();
+	}
+	else
+	{
+		cout << "Can't open the file";
+	}
+	// *** Read Vertex data from Gazebo.txt file ***//
+
+	// Positions of Gazebo
+	glm::vec3 GazeboPositions[] =
+	{
+		// Row 1
+		glm::vec3(-3.0f, 0.5f, 3.0f),
+		glm::vec3(2.0f, 0.5f, 3.0f),
+
+
+		// Row 2
+		glm::vec3(-3.0f, 0.5f, -4.0f),
+		glm::vec3(2.0f, 0.5f, -4.0f),
+
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	GLuint VBA_Gazebo, VOA_Gazebo;
+	glGenVertexArrays(1, &VOA_Gazebo);
+	glGenBuffers(1, &VBA_Gazebo);
+
+	// Bind the vertex array object
+	glBindVertexArray(VOA_Gazebo);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, VBA_Gazebo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesGazebo), verticesGazebo, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0); //Position
+	glEnableVertexAttribArray(0);
+
+	// Texture coordinate attribute
+	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat))); //Texture
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0); //Texture
+	glEnableVertexAttribArray(2);
+
+	// Unbind the vertex array to prevent strange bugs
+	glBindVertexArray(0);
+
+#pragma endregion
+
 	// *** CODE FOR CHESS PIECE - ROOK *** //
 #pragma region CODE FOR CHESS PIECE - ROOK
 
