@@ -100,29 +100,24 @@ WINRT_EXPORT namespace winrt::Windows::System
         AppResourceGroupStateReport(std::nullptr_t) noexcept {}
         AppResourceGroupStateReport(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::System::IAppResourceGroupStateReport(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) AppUriHandlerHost : winrt::Windows::System::IAppUriHandlerHost,
-        impl::require<AppUriHandlerHost, winrt::Windows::System::IAppUriHandlerHost2>
+    struct __declspec(empty_bases) AppUriHandlerHost : winrt::Windows::System::IAppUriHandlerHost
     {
         AppUriHandlerHost(std::nullptr_t) noexcept {}
         AppUriHandlerHost(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::System::IAppUriHandlerHost(ptr, take_ownership_from_abi) {}
         AppUriHandlerHost();
         explicit AppUriHandlerHost(param::hstring const& name);
     };
-    struct __declspec(empty_bases) AppUriHandlerRegistration : winrt::Windows::System::IAppUriHandlerRegistration,
-        impl::require<AppUriHandlerRegistration, winrt::Windows::System::IAppUriHandlerRegistration2>
+    struct __declspec(empty_bases) AppUriHandlerRegistration : winrt::Windows::System::IAppUriHandlerRegistration
     {
         AppUriHandlerRegistration(std::nullptr_t) noexcept {}
         AppUriHandlerRegistration(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::System::IAppUriHandlerRegistration(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) AppUriHandlerRegistrationManager : winrt::Windows::System::IAppUriHandlerRegistrationManager,
-        impl::require<AppUriHandlerRegistrationManager, winrt::Windows::System::IAppUriHandlerRegistrationManager2>
+    struct __declspec(empty_bases) AppUriHandlerRegistrationManager : winrt::Windows::System::IAppUriHandlerRegistrationManager
     {
         AppUriHandlerRegistrationManager(std::nullptr_t) noexcept {}
         AppUriHandlerRegistrationManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::System::IAppUriHandlerRegistrationManager(ptr, take_ownership_from_abi) {}
         static auto GetDefault();
         static auto GetForUser(winrt::Windows::System::User const& user);
-        static auto GetForPackage(param::hstring const& packageFamilyName);
-        static auto GetForPackageForUser(param::hstring const& packageFamilyName, winrt::Windows::System::User const& user);
     };
     struct DateTimeSettings
     {
@@ -171,7 +166,6 @@ WINRT_EXPORT namespace winrt::Windows::System
         [[nodiscard]] static auto PrincipalName();
         [[nodiscard]] static auto DomainName();
         [[nodiscard]] static auto SessionInitiationProtocolUri();
-        [[nodiscard]] static auto AgeEnforcementRegion();
     };
     struct __declspec(empty_bases) LaunchUriResult : winrt::Windows::System::ILaunchUriResult
     {
@@ -303,8 +297,7 @@ WINRT_EXPORT namespace winrt::Windows::System
         static auto ChangeTimeZoneByDisplayName(param::hstring const& timeZoneDisplayName);
         static auto AutoUpdateTimeZoneAsync(winrt::Windows::Foundation::TimeSpan const& timeout);
     };
-    struct __declspec(empty_bases) User : winrt::Windows::System::IUser,
-        impl::require<User, winrt::Windows::System::IUser2>
+    struct __declspec(empty_bases) User : winrt::Windows::System::IUser
     {
         User(std::nullptr_t) noexcept {}
         User(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::System::IUser(ptr, take_ownership_from_abi) {}
@@ -313,7 +306,6 @@ WINRT_EXPORT namespace winrt::Windows::System
         static auto FindAllAsync(winrt::Windows::System::UserType const& type);
         static auto FindAllAsync(winrt::Windows::System::UserType const& type, winrt::Windows::System::UserAuthenticationStatus const& status);
         static auto GetFromId(param::hstring const& nonRoamableId);
-        static auto GetDefault();
     };
     struct __declspec(empty_bases) UserAuthenticationStatusChangeDeferral : winrt::Windows::System::IUserAuthenticationStatusChangeDeferral
     {

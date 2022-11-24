@@ -447,16 +447,6 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerHost)->put_Name(*(void**)(&value)));
     }
-    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_System_IAppUriHandlerHost2<D>::IsEnabled() const
-    {
-        bool value{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerHost2)->get_IsEnabled(&value));
-        return value;
-    }
-    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_System_IAppUriHandlerHost2<D>::IsEnabled(bool value) const
-    {
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerHost2)->put_IsEnabled(value));
-    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::System::AppUriHandlerHost) consume_Windows_System_IAppUriHandlerHostFactory<D>::CreateInstance(param::hstring const& name) const
     {
         void* value{};
@@ -487,22 +477,6 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerRegistration)->SetAppAddedHostsAsync(*(void**)(&hosts), &operation));
         return winrt::Windows::Foundation::IAsyncAction{ operation, take_ownership_from_abi };
     }
-    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVector<winrt::Windows::System::AppUriHandlerHost>) consume_Windows_System_IAppUriHandlerRegistration2<D>::GetAllHosts() const
-    {
-        void* result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerRegistration2)->GetAllHosts(&result));
-        return winrt::Windows::Foundation::Collections::IVector<winrt::Windows::System::AppUriHandlerHost>{ result, take_ownership_from_abi };
-    }
-    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_System_IAppUriHandlerRegistration2<D>::UpdateHosts(param::iterable<winrt::Windows::System::AppUriHandlerHost> const& hosts) const
-    {
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerRegistration2)->UpdateHosts(*(void**)(&hosts)));
-    }
-    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_System_IAppUriHandlerRegistration2<D>::PackageFamilyName() const
-    {
-        void* value{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerRegistration2)->get_PackageFamilyName(&value));
-        return hstring{ value, take_ownership_from_abi };
-    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::System::User) consume_Windows_System_IAppUriHandlerRegistrationManager<D>::User() const
     {
         void* value{};
@@ -515,12 +489,6 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerRegistrationManager)->TryGetRegistration(*(void**)(&name), &result));
         return winrt::Windows::System::AppUriHandlerRegistration{ result, take_ownership_from_abi };
     }
-    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_System_IAppUriHandlerRegistrationManager2<D>::PackageFamilyName() const
-    {
-        void* value{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerRegistrationManager2)->get_PackageFamilyName(&value));
-        return hstring{ value, take_ownership_from_abi };
-    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::System::AppUriHandlerRegistrationManager) consume_Windows_System_IAppUriHandlerRegistrationManagerStatics<D>::GetDefault() const
     {
         void* result{};
@@ -531,18 +499,6 @@ namespace winrt::impl
     {
         void* result{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerRegistrationManagerStatics)->GetForUser(*(void**)(&user), &result));
-        return winrt::Windows::System::AppUriHandlerRegistrationManager{ result, take_ownership_from_abi };
-    }
-    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::System::AppUriHandlerRegistrationManager) consume_Windows_System_IAppUriHandlerRegistrationManagerStatics2<D>::GetForPackage(param::hstring const& packageFamilyName) const
-    {
-        void* result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerRegistrationManagerStatics2)->GetForPackage(*(void**)(&packageFamilyName), &result));
-        return winrt::Windows::System::AppUriHandlerRegistrationManager{ result, take_ownership_from_abi };
-    }
-    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::System::AppUriHandlerRegistrationManager) consume_Windows_System_IAppUriHandlerRegistrationManagerStatics2<D>::GetForPackageForUser(param::hstring const& packageFamilyName, winrt::Windows::System::User const& user) const
-    {
-        void* result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IAppUriHandlerRegistrationManagerStatics2)->GetForPackageForUser(*(void**)(&packageFamilyName), *(void**)(&user), &result));
         return winrt::Windows::System::AppUriHandlerRegistrationManager{ result, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_System_IDateTimeSettingsStatics<D>::SetSystemDateTime(winrt::Windows::Foundation::DateTime const& utcDateTime) const
@@ -737,12 +693,6 @@ namespace winrt::impl
     {
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IKnownUserPropertiesStatics)->get_SessionInitiationProtocolUri(&value));
-        return hstring{ value, take_ownership_from_abi };
-    }
-    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_System_IKnownUserPropertiesStatics2<D>::AgeEnforcementRegion() const
-    {
-        void* value{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IKnownUserPropertiesStatics2)->get_AgeEnforcementRegion(&value));
         return hstring{ value, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::System::LaunchUriStatus) consume_Windows_System_ILaunchUriResult<D>::Status() const
@@ -1349,12 +1299,6 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IUser)->GetPictureAsync(static_cast<int32_t>(desiredSize), &operation));
         return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::Streams::IRandomAccessStreamReference>{ operation, take_ownership_from_abi };
     }
-    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserAgeConsentResult>) consume_Windows_System_IUser2<D>::CheckUserAgeConsentGroupAsync(winrt::Windows::System::UserAgeConsentGroup const& consentGroup) const
-    {
-        void* operation{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IUser2)->CheckUserAgeConsentGroupAsync(static_cast<int32_t>(consentGroup), &operation));
-        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserAgeConsentResult>{ operation, take_ownership_from_abi };
-    }
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_System_IUserAuthenticationStatusChangeDeferral<D>::Complete() const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IUserAuthenticationStatusChangeDeferral)->Complete());
@@ -1493,12 +1437,6 @@ namespace winrt::impl
     {
         void* result{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IUserStatics)->GetFromId(*(void**)(&nonRoamableId), &result));
-        return winrt::Windows::System::User{ result, take_ownership_from_abi };
-    }
-    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::System::User) consume_Windows_System_IUserStatics2<D>::GetDefault() const
-    {
-        void* result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IUserStatics2)->GetDefault(&result));
         return winrt::Windows::System::User{ result, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::System::UserWatcherStatus) consume_Windows_System_IUserWatcher<D>::Status() const
@@ -2271,26 +2209,6 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
-    struct produce<D, winrt::Windows::System::IAppUriHandlerHost2> : produce_base<D, winrt::Windows::System::IAppUriHandlerHost2>
-    {
-        int32_t __stdcall get_IsEnabled(bool* value) noexcept final try
-        {
-            typename D::abi_guard guard(this->shim());
-            *value = detach_from<bool>(this->shim().IsEnabled());
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-        int32_t __stdcall put_IsEnabled(bool value) noexcept final try
-        {
-            typename D::abi_guard guard(this->shim());
-            this->shim().IsEnabled(value);
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-    };
-#endif
-#ifndef WINRT_LEAN_AND_MEAN
-    template <typename D>
     struct produce<D, winrt::Windows::System::IAppUriHandlerHostFactory> : produce_base<D, winrt::Windows::System::IAppUriHandlerHostFactory>
     {
         int32_t __stdcall CreateInstance(void* name, void** value) noexcept final try
@@ -2343,35 +2261,6 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
-    struct produce<D, winrt::Windows::System::IAppUriHandlerRegistration2> : produce_base<D, winrt::Windows::System::IAppUriHandlerRegistration2>
-    {
-        int32_t __stdcall GetAllHosts(void** result) noexcept final try
-        {
-            clear_abi(result);
-            typename D::abi_guard guard(this->shim());
-            *result = detach_from<winrt::Windows::Foundation::Collections::IVector<winrt::Windows::System::AppUriHandlerHost>>(this->shim().GetAllHosts());
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-        int32_t __stdcall UpdateHosts(void* hosts) noexcept final try
-        {
-            typename D::abi_guard guard(this->shim());
-            this->shim().UpdateHosts(*reinterpret_cast<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::System::AppUriHandlerHost> const*>(&hosts));
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-        int32_t __stdcall get_PackageFamilyName(void** value) noexcept final try
-        {
-            clear_abi(value);
-            typename D::abi_guard guard(this->shim());
-            *value = detach_from<hstring>(this->shim().PackageFamilyName());
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-    };
-#endif
-#ifndef WINRT_LEAN_AND_MEAN
-    template <typename D>
     struct produce<D, winrt::Windows::System::IAppUriHandlerRegistrationManager> : produce_base<D, winrt::Windows::System::IAppUriHandlerRegistrationManager>
     {
         int32_t __stdcall get_User(void** value) noexcept final try
@@ -2394,20 +2283,6 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
-    struct produce<D, winrt::Windows::System::IAppUriHandlerRegistrationManager2> : produce_base<D, winrt::Windows::System::IAppUriHandlerRegistrationManager2>
-    {
-        int32_t __stdcall get_PackageFamilyName(void** value) noexcept final try
-        {
-            clear_abi(value);
-            typename D::abi_guard guard(this->shim());
-            *value = detach_from<hstring>(this->shim().PackageFamilyName());
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-    };
-#endif
-#ifndef WINRT_LEAN_AND_MEAN
-    template <typename D>
     struct produce<D, winrt::Windows::System::IAppUriHandlerRegistrationManagerStatics> : produce_base<D, winrt::Windows::System::IAppUriHandlerRegistrationManagerStatics>
     {
         int32_t __stdcall GetDefault(void** result) noexcept final try
@@ -2423,28 +2298,6 @@ namespace winrt::impl
             clear_abi(result);
             typename D::abi_guard guard(this->shim());
             *result = detach_from<winrt::Windows::System::AppUriHandlerRegistrationManager>(this->shim().GetForUser(*reinterpret_cast<winrt::Windows::System::User const*>(&user)));
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-    };
-#endif
-#ifndef WINRT_LEAN_AND_MEAN
-    template <typename D>
-    struct produce<D, winrt::Windows::System::IAppUriHandlerRegistrationManagerStatics2> : produce_base<D, winrt::Windows::System::IAppUriHandlerRegistrationManagerStatics2>
-    {
-        int32_t __stdcall GetForPackage(void* packageFamilyName, void** result) noexcept final try
-        {
-            clear_abi(result);
-            typename D::abi_guard guard(this->shim());
-            *result = detach_from<winrt::Windows::System::AppUriHandlerRegistrationManager>(this->shim().GetForPackage(*reinterpret_cast<hstring const*>(&packageFamilyName)));
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-        int32_t __stdcall GetForPackageForUser(void* packageFamilyName, void* user, void** result) noexcept final try
-        {
-            clear_abi(result);
-            typename D::abi_guard guard(this->shim());
-            *result = detach_from<winrt::Windows::System::AppUriHandlerRegistrationManager>(this->shim().GetForPackageForUser(*reinterpret_cast<hstring const*>(&packageFamilyName), *reinterpret_cast<winrt::Windows::System::User const*>(&user)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2753,20 +2606,6 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<hstring>(this->shim().SessionInitiationProtocolUri());
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-    };
-#endif
-#ifndef WINRT_LEAN_AND_MEAN
-    template <typename D>
-    struct produce<D, winrt::Windows::System::IKnownUserPropertiesStatics2> : produce_base<D, winrt::Windows::System::IKnownUserPropertiesStatics2>
-    {
-        int32_t __stdcall get_AgeEnforcementRegion(void** value) noexcept final try
-        {
-            clear_abi(value);
-            typename D::abi_guard guard(this->shim());
-            *value = detach_from<hstring>(this->shim().AgeEnforcementRegion());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -3754,20 +3593,6 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
-    struct produce<D, winrt::Windows::System::IUser2> : produce_base<D, winrt::Windows::System::IUser2>
-    {
-        int32_t __stdcall CheckUserAgeConsentGroupAsync(int32_t consentGroup, void** operation) noexcept final try
-        {
-            clear_abi(operation);
-            typename D::abi_guard guard(this->shim());
-            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserAgeConsentResult>>(this->shim().CheckUserAgeConsentGroupAsync(*reinterpret_cast<winrt::Windows::System::UserAgeConsentGroup const*>(&consentGroup)));
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-    };
-#endif
-#ifndef WINRT_LEAN_AND_MEAN
-    template <typename D>
     struct produce<D, winrt::Windows::System::IUserAuthenticationStatusChangeDeferral> : produce_base<D, winrt::Windows::System::IUserAuthenticationStatusChangeDeferral>
     {
         int32_t __stdcall Complete() noexcept final try
@@ -4005,20 +3830,6 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
-    struct produce<D, winrt::Windows::System::IUserStatics2> : produce_base<D, winrt::Windows::System::IUserStatics2>
-    {
-        int32_t __stdcall GetDefault(void** result) noexcept final try
-        {
-            clear_abi(result);
-            typename D::abi_guard guard(this->shim());
-            *result = detach_from<winrt::Windows::System::User>(this->shim().GetDefault());
-            return 0;
-        }
-        catch (...) { return to_hresult(); }
-    };
-#endif
-#ifndef WINRT_LEAN_AND_MEAN
-    template <typename D>
     struct produce<D, winrt::Windows::System::IUserWatcher> : produce_base<D, winrt::Windows::System::IUserWatcher>
     {
         int32_t __stdcall get_Status(int32_t* value) noexcept final try
@@ -4216,14 +4027,6 @@ WINRT_EXPORT namespace winrt::Windows::System
     {
         return impl::call_factory<AppUriHandlerRegistrationManager, IAppUriHandlerRegistrationManagerStatics>([&](IAppUriHandlerRegistrationManagerStatics const& f) { return f.GetForUser(user); });
     }
-    inline auto AppUriHandlerRegistrationManager::GetForPackage(param::hstring const& packageFamilyName)
-    {
-        return impl::call_factory<AppUriHandlerRegistrationManager, IAppUriHandlerRegistrationManagerStatics2>([&](IAppUriHandlerRegistrationManagerStatics2 const& f) { return f.GetForPackage(packageFamilyName); });
-    }
-    inline auto AppUriHandlerRegistrationManager::GetForPackageForUser(param::hstring const& packageFamilyName, winrt::Windows::System::User const& user)
-    {
-        return impl::call_factory<AppUriHandlerRegistrationManager, IAppUriHandlerRegistrationManagerStatics2>([&](IAppUriHandlerRegistrationManagerStatics2 const& f) { return f.GetForPackageForUser(packageFamilyName, user); });
-    }
     inline auto DateTimeSettings::SetSystemDateTime(winrt::Windows::Foundation::DateTime const& utcDateTime)
     {
         impl::call_factory<DateTimeSettings, IDateTimeSettingsStatics>([&](IDateTimeSettingsStatics const& f) { return f.SetSystemDateTime(utcDateTime); });
@@ -4275,10 +4078,6 @@ WINRT_EXPORT namespace winrt::Windows::System
     inline auto KnownUserProperties::SessionInitiationProtocolUri()
     {
         return impl::call_factory_cast<hstring(*)(IKnownUserPropertiesStatics const&), KnownUserProperties, IKnownUserPropertiesStatics>([](IKnownUserPropertiesStatics const& f) { return f.SessionInitiationProtocolUri(); });
-    }
-    inline auto KnownUserProperties::AgeEnforcementRegion()
-    {
-        return impl::call_factory_cast<hstring(*)(IKnownUserPropertiesStatics2 const&), KnownUserProperties, IKnownUserPropertiesStatics2>([](IKnownUserPropertiesStatics2 const& f) { return f.AgeEnforcementRegion(); });
     }
     inline auto Launcher::LaunchFileAsync(winrt::Windows::Storage::IStorageFile const& file)
     {
@@ -4551,10 +4350,6 @@ WINRT_EXPORT namespace winrt::Windows::System
     {
         return impl::call_factory<User, IUserStatics>([&](IUserStatics const& f) { return f.GetFromId(nonRoamableId); });
     }
-    inline auto User::GetDefault()
-    {
-        return impl::call_factory_cast<winrt::Windows::System::User(*)(IUserStatics2 const&), User, IUserStatics2>([](IUserStatics2 const& f) { return f.GetDefault(); });
-    }
     inline auto UserDeviceAssociation::FindUserFromDeviceId(param::hstring const& deviceId)
     {
         return impl::call_factory<UserDeviceAssociation, IUserDeviceAssociationStatics>([&](IUserDeviceAssociationStatics const& f) { return f.FindUserFromDeviceId(deviceId); });
@@ -4629,14 +4424,10 @@ namespace std
     template<> struct hash<winrt::Windows::System::IAppResourceGroupMemoryReport> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IAppResourceGroupStateReport> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IAppUriHandlerHost> : winrt::impl::hash_base {};
-    template<> struct hash<winrt::Windows::System::IAppUriHandlerHost2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IAppUriHandlerHostFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IAppUriHandlerRegistration> : winrt::impl::hash_base {};
-    template<> struct hash<winrt::Windows::System::IAppUriHandlerRegistration2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IAppUriHandlerRegistrationManager> : winrt::impl::hash_base {};
-    template<> struct hash<winrt::Windows::System::IAppUriHandlerRegistrationManager2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IAppUriHandlerRegistrationManagerStatics> : winrt::impl::hash_base {};
-    template<> struct hash<winrt::Windows::System::IAppUriHandlerRegistrationManagerStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IDateTimeSettingsStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IDispatcherQueue> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IDispatcherQueue2> : winrt::impl::hash_base {};
@@ -4647,7 +4438,6 @@ namespace std
     template<> struct hash<winrt::Windows::System::IDispatcherQueueTimer> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IFolderLauncherOptions> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IKnownUserPropertiesStatics> : winrt::impl::hash_base {};
-    template<> struct hash<winrt::Windows::System::IKnownUserPropertiesStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::ILaunchUriResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::ILauncherOptions> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::ILauncherOptions2> : winrt::impl::hash_base {};
@@ -4676,7 +4466,6 @@ namespace std
     template<> struct hash<winrt::Windows::System::ITimeZoneSettingsStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::ITimeZoneSettingsStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUser> : winrt::impl::hash_base {};
-    template<> struct hash<winrt::Windows::System::IUser2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserAuthenticationStatusChangeDeferral> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserAuthenticationStatusChangingEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserChangedEventArgs> : winrt::impl::hash_base {};
@@ -4686,7 +4475,6 @@ namespace std
     template<> struct hash<winrt::Windows::System::IUserPicker> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserPickerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserStatics> : winrt::impl::hash_base {};
-    template<> struct hash<winrt::Windows::System::IUserStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserWatcher> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::AppActivationResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::AppDiagnosticInfo> : winrt::impl::hash_base {};

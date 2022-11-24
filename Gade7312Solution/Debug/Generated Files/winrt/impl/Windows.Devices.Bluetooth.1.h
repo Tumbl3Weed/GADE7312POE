@@ -57,14 +57,16 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth
     };
     struct __declspec(empty_bases) IBluetoothDevice2 :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothDevice2>
+        impl::consume_t<IBluetoothDevice2>,
+        impl::require<winrt::Windows::Devices::Bluetooth::IBluetoothDevice2, winrt::Windows::Devices::Bluetooth::IBluetoothDevice>
     {
         IBluetoothDevice2(std::nullptr_t = nullptr) noexcept {}
         IBluetoothDevice2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IBluetoothDevice3 :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothDevice3>
+        impl::consume_t<IBluetoothDevice3>,
+        impl::require<winrt::Windows::Devices::Bluetooth::IBluetoothDevice3, winrt::Windows::Devices::Bluetooth::IBluetoothDevice, winrt::Windows::Devices::Bluetooth::IBluetoothDevice2>
     {
         IBluetoothDevice3(std::nullptr_t = nullptr) noexcept {}
         IBluetoothDevice3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
@@ -106,7 +108,8 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth
     };
     struct __declspec(empty_bases) IBluetoothDeviceStatics2 :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothDeviceStatics2>
+        impl::consume_t<IBluetoothDeviceStatics2>,
+        impl::require<winrt::Windows::Devices::Bluetooth::IBluetoothDeviceStatics2, winrt::Windows::Devices::Bluetooth::IBluetoothDeviceStatics>
     {
         IBluetoothDeviceStatics2(std::nullptr_t = nullptr) noexcept {}
         IBluetoothDeviceStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
@@ -139,27 +142,6 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth
         IBluetoothLEAppearanceSubcategoriesStatics(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEAppearanceSubcategoriesStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) IBluetoothLEConnectionParameters :
-        winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothLEConnectionParameters>
-    {
-        IBluetoothLEConnectionParameters(std::nullptr_t = nullptr) noexcept {}
-        IBluetoothLEConnectionParameters(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
-    };
-    struct __declspec(empty_bases) IBluetoothLEConnectionPhy :
-        winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothLEConnectionPhy>
-    {
-        IBluetoothLEConnectionPhy(std::nullptr_t = nullptr) noexcept {}
-        IBluetoothLEConnectionPhy(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
-    };
-    struct __declspec(empty_bases) IBluetoothLEConnectionPhyInfo :
-        winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothLEConnectionPhyInfo>
-    {
-        IBluetoothLEConnectionPhyInfo(std::nullptr_t = nullptr) noexcept {}
-        IBluetoothLEConnectionPhyInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
-    };
     struct __declspec(empty_bases) IBluetoothLEDevice :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBluetoothLEDevice>
@@ -169,7 +151,8 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth
     };
     struct __declspec(empty_bases) IBluetoothLEDevice2 :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothLEDevice2>
+        impl::consume_t<IBluetoothLEDevice2>,
+        impl::require<winrt::Windows::Devices::Bluetooth::IBluetoothLEDevice2, winrt::Windows::Devices::Bluetooth::IBluetoothLEDevice>
     {
         IBluetoothLEDevice2(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEDevice2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
@@ -195,13 +178,6 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth
         IBluetoothLEDevice5(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEDevice5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) IBluetoothLEDevice6 :
-        winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothLEDevice6>
-    {
-        IBluetoothLEDevice6(std::nullptr_t = nullptr) noexcept {}
-        IBluetoothLEDevice6(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
-    };
     struct __declspec(empty_bases) IBluetoothLEDeviceStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBluetoothLEDeviceStatics>
@@ -215,27 +191,6 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth
     {
         IBluetoothLEDeviceStatics2(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEDeviceStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
-    };
-    struct __declspec(empty_bases) IBluetoothLEPreferredConnectionParameters :
-        winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothLEPreferredConnectionParameters>
-    {
-        IBluetoothLEPreferredConnectionParameters(std::nullptr_t = nullptr) noexcept {}
-        IBluetoothLEPreferredConnectionParameters(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
-    };
-    struct __declspec(empty_bases) IBluetoothLEPreferredConnectionParametersRequest :
-        winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothLEPreferredConnectionParametersRequest>
-    {
-        IBluetoothLEPreferredConnectionParametersRequest(std::nullptr_t = nullptr) noexcept {}
-        IBluetoothLEPreferredConnectionParametersRequest(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
-    };
-    struct __declspec(empty_bases) IBluetoothLEPreferredConnectionParametersStatics :
-        winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBluetoothLEPreferredConnectionParametersStatics>
-    {
-        IBluetoothLEPreferredConnectionParametersStatics(std::nullptr_t = nullptr) noexcept {}
-        IBluetoothLEPreferredConnectionParametersStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IBluetoothSignalStrengthFilter :
         winrt::Windows::Foundation::IInspectable,

@@ -27,13 +27,6 @@ WINRT_EXPORT namespace winrt::Windows::System::Profile
         IAnalyticsVersionInfo(std::nullptr_t = nullptr) noexcept {}
         IAnalyticsVersionInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) IAnalyticsVersionInfo2 :
-        winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IAnalyticsVersionInfo2>
-    {
-        IAnalyticsVersionInfo2(std::nullptr_t = nullptr) noexcept {}
-        IAnalyticsVersionInfo2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
-    };
     struct __declspec(empty_bases) IAppApplicabilityStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IAppApplicabilityStatics>
@@ -96,13 +89,6 @@ WINRT_EXPORT namespace winrt::Windows::System::Profile
     {
         ISharedModeSettingsStatics2(std::nullptr_t = nullptr) noexcept {}
         ISharedModeSettingsStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
-    };
-    struct __declspec(empty_bases) ISmartAppControlPolicyStatics :
-        winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<ISmartAppControlPolicyStatics>
-    {
-        ISmartAppControlPolicyStatics(std::nullptr_t = nullptr) noexcept {}
-        ISmartAppControlPolicyStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ISystemIdentificationInfo :
         winrt::Windows::Foundation::IInspectable,

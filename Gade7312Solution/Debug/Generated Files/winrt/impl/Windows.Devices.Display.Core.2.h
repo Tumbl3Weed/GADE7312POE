@@ -31,8 +31,7 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Display::Core
         DisplayAdapter(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayAdapter(ptr, take_ownership_from_abi) {}
         static auto FromId(winrt::Windows::Graphics::DisplayAdapterId const& id);
     };
-    struct __declspec(empty_bases) DisplayDevice : winrt::Windows::Devices::Display::Core::IDisplayDevice,
-        impl::require<DisplayDevice, winrt::Windows::Devices::Display::Core::IDisplayDevice2>
+    struct __declspec(empty_bases) DisplayDevice : winrt::Windows::Devices::Display::Core::IDisplayDevice
     {
         DisplayDevice(std::nullptr_t) noexcept {}
         DisplayDevice(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayDevice(ptr, take_ownership_from_abi) {}
@@ -74,14 +73,12 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Display::Core
         DisplayManagerResultWithState(std::nullptr_t) noexcept {}
         DisplayManagerResultWithState(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayManagerResultWithState(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) DisplayModeInfo : winrt::Windows::Devices::Display::Core::IDisplayModeInfo,
-        impl::require<DisplayModeInfo, winrt::Windows::Devices::Display::Core::IDisplayModeInfo2>
+    struct __declspec(empty_bases) DisplayModeInfo : winrt::Windows::Devices::Display::Core::IDisplayModeInfo
     {
         DisplayModeInfo(std::nullptr_t) noexcept {}
         DisplayModeInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayModeInfo(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) DisplayPath : winrt::Windows::Devices::Display::Core::IDisplayPath,
-        impl::require<DisplayPath, winrt::Windows::Devices::Display::Core::IDisplayPath2>
+    struct __declspec(empty_bases) DisplayPath : winrt::Windows::Devices::Display::Core::IDisplayPath
     {
         DisplayPath(std::nullptr_t) noexcept {}
         DisplayPath(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayPath(ptr, take_ownership_from_abi) {}
@@ -98,8 +95,7 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Display::Core
         DisplayScanout(std::nullptr_t) noexcept {}
         DisplayScanout(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayScanout(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) DisplaySource : winrt::Windows::Devices::Display::Core::IDisplaySource,
-        impl::require<DisplaySource, winrt::Windows::Devices::Display::Core::IDisplaySource2>
+    struct __declspec(empty_bases) DisplaySource : winrt::Windows::Devices::Display::Core::IDisplaySource
     {
         DisplaySource(std::nullptr_t) noexcept {}
         DisplaySource(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplaySource(ptr, take_ownership_from_abi) {}
@@ -124,22 +120,15 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Display::Core
         DisplayTarget(std::nullptr_t) noexcept {}
         DisplayTarget(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayTarget(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) DisplayTask : winrt::Windows::Devices::Display::Core::IDisplayTask,
-        impl::require<DisplayTask, winrt::Windows::Devices::Display::Core::IDisplayTask2>
+    struct __declspec(empty_bases) DisplayTask : winrt::Windows::Devices::Display::Core::IDisplayTask
     {
         DisplayTask(std::nullptr_t) noexcept {}
         DisplayTask(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayTask(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) DisplayTaskPool : winrt::Windows::Devices::Display::Core::IDisplayTaskPool,
-        impl::require<DisplayTaskPool, winrt::Windows::Devices::Display::Core::IDisplayTaskPool2>
+    struct __declspec(empty_bases) DisplayTaskPool : winrt::Windows::Devices::Display::Core::IDisplayTaskPool
     {
         DisplayTaskPool(std::nullptr_t) noexcept {}
         DisplayTaskPool(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayTaskPool(ptr, take_ownership_from_abi) {}
-    };
-    struct __declspec(empty_bases) DisplayTaskResult : winrt::Windows::Devices::Display::Core::IDisplayTaskResult
-    {
-        DisplayTaskResult(std::nullptr_t) noexcept {}
-        DisplayTaskResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Display::Core::IDisplayTaskResult(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) DisplayView : winrt::Windows::Devices::Display::Core::IDisplayView
     {

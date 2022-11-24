@@ -43,7 +43,6 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Activation
     struct ILaunchActivatedEventArgs;
     struct ILockScreenActivatedEventArgs;
     struct ILockScreenCallActivatedEventArgs;
-    struct IPhoneCallActivatedEventArgs;
     struct IPrint3DWorkflowActivatedEventArgs;
     struct IPrintTaskSettingsActivatedEventArgs;
     struct IProtocolActivatedEventArgs;
@@ -146,7 +145,6 @@ WINRT_EXPORT namespace winrt::Windows::UI::WebUI
     struct WebUINavigatedDeferral;
     struct WebUINavigatedEventArgs;
     struct WebUINavigatedOperation;
-    struct WebUIPhoneCallActivatedEventArgs;
     struct WebUIPrint3DWorkflowActivatedEventArgs;
     struct WebUIPrintTaskSettingsActivatedEventArgs;
     struct WebUIPrintWorkflowForegroundTaskActivatedEventArgs;
@@ -234,7 +232,6 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::WebUI::WebUINavigatedDeferral>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::WebUI::WebUINavigatedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::WebUI::WebUINavigatedOperation>{ using type = class_category; };
-    template <> struct category<winrt::Windows::UI::WebUI::WebUIPhoneCallActivatedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::WebUI::WebUIPrintWorkflowForegroundTaskActivatedEventArgs>{ using type = class_category; };
@@ -304,7 +301,6 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::WebUI::WebUINavigatedDeferral> = L"Windows.UI.WebUI.WebUINavigatedDeferral";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::WebUI::WebUINavigatedEventArgs> = L"Windows.UI.WebUI.WebUINavigatedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::WebUI::WebUINavigatedOperation> = L"Windows.UI.WebUI.WebUINavigatedOperation";
-    template <> inline constexpr auto& name_v<winrt::Windows::UI::WebUI::WebUIPhoneCallActivatedEventArgs> = L"Windows.UI.WebUI.WebUIPhoneCallActivatedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs> = L"Windows.UI.WebUI.WebUIPrint3DWorkflowActivatedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs> = L"Windows.UI.WebUI.WebUIPrintTaskSettingsActivatedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::WebUI::WebUIPrintWorkflowForegroundTaskActivatedEventArgs> = L"Windows.UI.WebUI.WebUIPrintWorkflowForegroundTaskActivatedEventArgs";
@@ -411,7 +407,6 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::UI::WebUI::WebUINavigatedDeferral>{ using type = winrt::Windows::UI::WebUI::IWebUINavigatedDeferral; };
     template <> struct default_interface<winrt::Windows::UI::WebUI::WebUINavigatedEventArgs>{ using type = winrt::Windows::UI::WebUI::IWebUINavigatedEventArgs; };
     template <> struct default_interface<winrt::Windows::UI::WebUI::WebUINavigatedOperation>{ using type = winrt::Windows::UI::WebUI::IWebUINavigatedOperation; };
-    template <> struct default_interface<winrt::Windows::UI::WebUI::WebUIPhoneCallActivatedEventArgs>{ using type = winrt::Windows::ApplicationModel::Activation::IPhoneCallActivatedEventArgs; };
     template <> struct default_interface<winrt::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs>{ using type = winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs; };
     template <> struct default_interface<winrt::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs>{ using type = winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs; };
     template <> struct default_interface<winrt::Windows::UI::WebUI::WebUIPrintWorkflowForegroundTaskActivatedEventArgs>{ using type = winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs; };

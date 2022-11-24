@@ -4,3 +4,6 @@ D:\Vega\Gade7312\Gade7312Solution\Debug\GlewGlfw.vcxproj.MdMergeInputs.cache
 D:\Vega\Gade7312\Gade7312Solution\Debug\GlewGlfw.vcxproj.cppwinrt_plat.cache
 D:\Vega\Gade7312\Gade7312Solution\Debug\GlewGlfw.vcxproj.cppwinrt_comp.cache
 D:\Vega\Gade7312\Gade7312Solution\Debug\GlewGlfw.exe
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\Debug\GlewGlfw.vcxproj.MdMergeInputs.cache
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\Debug\GlewGlfw.vcxproj.cppwinrt_plat.cache
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\Debug\GlewGlfw.vcxproj.cppwinrt_comp.cache

@@ -47,6 +47,7 @@ GLfloat lastFrame = 0.0f;
 
 //Animate 
 bool animating = false;
+bool cameraLocked;
 
 int main()
 {
@@ -312,7 +313,7 @@ int main()
 	//Create and load texture replace it with your own image path.
 	int width, height, nrChannels;
 
-	unsigned char* data = SOIL_load_image("res/images/bitmapheightmapSmall.png", &width, &height, &nrChannels, 0);
+	unsigned char* data = SOIL_load_image("res/images/bitmapheightmap.png", &width, &height, &nrChannels, 0);
 
 	if (data)
 	{
@@ -491,6 +492,11 @@ int main()
 	SOIL_free_image_data(HM_Image4);
 	glBindTexture(GL_TEXTURE_2D, 0);
 #pragma endregion
+
+	// Skybox Code Snippets
+
+		// Skybox Texture Creation Method Declaration
+	GLuint CreateSkyboxTexture(GLuint texture, vector<std::string> faces, int width, int height);
 
 	// *** CODE FOR CHESS PIECE - Knight *** //
 #pragma region CODE FOR CHESS PIECE - Knight
@@ -764,13 +770,13 @@ int main()
 	glm::vec3 TablePositions[] =
 	{
 		// Row 1
-		glm::vec3(-3.0f, 0.5f, 3.0f),
-		glm::vec3(2.0f, 0.5f, 3.0f),
+		glm::vec3(-3.0f, -1.0f, 0.0f),
+		glm::vec3(2.0f, -1.0f, 0.0f),
 
 
 		// Row 2
-		glm::vec3(-3.0f, 0.5f, -4.0f),
-		glm::vec3(2.0f, 0.5f, -4.0f),
+		glm::vec3(-3.0f, -1.0f, -4.0f),
+		glm::vec3(2.0f, -1.0f, -4.0f),
 
 	};
 
@@ -1290,7 +1296,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Pawn(1.0f);
-		view_Pawn = camera.GetViewMatrix();
+		view_Pawn = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Pawn = glGetUniformLocation(ourShaderPawn.Program, "model");
@@ -1350,7 +1356,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Knight(1.0f);
-		view_Knight = camera.GetViewMatrix();
+		view_Knight = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Knight = glGetUniformLocation(ourShaderKnight.Program, "model");
@@ -1412,7 +1418,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Rook(1.0f);
-		view_Rook = camera.GetViewMatrix();
+		view_Rook = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Rook = glGetUniformLocation(ourShaderPawn.Program, "model");
@@ -1474,7 +1480,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Bishop(1.0f);
-		view_Bishop = camera.GetViewMatrix();
+		view_Bishop = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Bishop = glGetUniformLocation(ourShaderBishop.Program, "model");
@@ -1535,7 +1541,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Chair(1.0f);
-		view_Chair = camera.GetViewMatrix();
+		view_Chair = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Chair = glGetUniformLocation(ourShaderChair.Program, "model");
@@ -1557,18 +1563,19 @@ int main()
 			{
 				// Activate White Texture
 				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glBindTexture(GL_TEXTURE_2D, textureBoarder);
 				glUniform1i(glGetUniformLocation(ourShaderChair.Program, "ourTexture1"), 0);
-				model_Chair = glm::translate(model_Chair, ChairPositions[i] + glm::vec3(-5, -10, 0));
+				model_Chair = glm::translate(model_Chair, ChairPositions[i] + glm::vec3(3, -10, -12));
+				model_Chair = glm::rotate(model_Chair, 1.5f, glm::vec3(0.0f, -1.0f, 0.0f));
 			}
 			else
 			{
 				// Activate Black Texture
 				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, pawnTextureB);
+				glBindTexture(GL_TEXTURE_2D, textureBoarder);
 				glUniform1i(glGetUniformLocation(ourShaderChair.Program, "ourTexture1"), 0);
-				model_Chair = glm::translate(model_Chair, ChairPositions[i] + glm::vec3(5, -10, 0));
-				model_Chair = glm::rotate(model_Chair, 3.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+				model_Chair = glm::translate(model_Chair, ChairPositions[i] + glm::vec3(-2, -10, 5));
+				model_Chair = glm::rotate(model_Chair, 1.5f, glm::vec3(0.0f, 1.0f, 0.0f));
 			}
 
 			// Calculate the model matrix for each object and pass it to the shader before drawing
@@ -1589,7 +1596,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Gazebo(1.0f);
-		view_Gazebo = camera.GetViewMatrix();
+		view_Gazebo = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Gazebo = glGetUniformLocation(ourShaderGazebo.Program, "model");
@@ -1609,7 +1616,7 @@ int main()
 			{
 				// Activate White Texture
 				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glBindTexture(GL_TEXTURE_2D, textureBoarder);
 				glUniform1i(glGetUniformLocation(ourShaderGazebo.Program, "ourTexture1"), 0);
 			}
 			else
@@ -1623,7 +1630,7 @@ int main()
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Gazebo(1.0f);
 
-			model_Gazebo = glm::translate(model_Gazebo, GazeboPositions[i]);
+			model_Gazebo = glm::translate(model_Gazebo, GazeboPositions[i] + glm::vec3(5, -10, -4));
 
 			glUniformMatrix4fv(modelLoc_Gazebo, 1, GL_FALSE, glm::value_ptr(model_Gazebo));
 
@@ -1642,7 +1649,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Table(1.0f);
-		view_Table = camera.GetViewMatrix();
+		view_Table = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Table = glGetUniformLocation(ourShaderTable.Program, "model");
@@ -1662,7 +1669,7 @@ int main()
 			{
 				// Activate White Texture
 				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, pawnTextureW);
+				glBindTexture(GL_TEXTURE_2D, textureBlack);
 				glUniform1i(glGetUniformLocation(ourShaderTable.Program, "ourTexture1"), 0);
 			}
 			else
@@ -1676,7 +1683,7 @@ int main()
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Table(1.0f);
 
-			model_Table = glm::translate(model_Table, TablePositions[i]);
+			model_Table = glm::translate(model_Table, TablePositions[i] + glm::vec3(3, -10.5, -1));
 
 			glUniformMatrix4fv(modelLoc_Table, 1, GL_FALSE, glm::value_ptr(model_Table));
 
@@ -1695,7 +1702,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_King(1.0f);
-		view_King = camera.GetViewMatrix();
+		view_King = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_King = glGetUniformLocation(ourShaderKing.Program, "model");
@@ -1756,7 +1763,7 @@ int main()
 
 		// Create camera transformation
 		glm::mat4 view_Queen(1.0f);
-		view_Queen = camera.GetViewMatrix();
+		view_Queen = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Queen = glGetUniformLocation(ourShaderQueen.Program, "model");
@@ -1816,7 +1823,7 @@ int main()
 
 		// Create camera transformation ***
 		glm::mat4 view_Board(1.0f);
-		view_Board = camera.GetViewMatrix();
+		view_Board = camera.GetViewMatrix(cameraLocked);
 
 		// Get the uniform locations for our matrices
 		GLint modelLoc_Board = glGetUniformLocation(ourShaderBoard.Program, "model");
@@ -1894,7 +1901,7 @@ int main()
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100000.0f);
-		glm::mat4 view = camera.GetViewMatrix();
+		glm::mat4 view = camera.GetViewMatrix(cameraLocked);
 		GLint projLoc = glGetUniformLocation(ourShader.Program, "projection");
 		GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
 
@@ -1954,6 +1961,7 @@ int main()
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &IBO);
 
+
 	// Terminate GLFW and clear any resources from GLFW
 	glfwTerminate();
 
@@ -1984,22 +1992,26 @@ void ProcessInput(GLFWwindow* window)
 	// Camera controls
 	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
 	{
-		camera.ProcessKeyboard(FORWARD, deltaTime / 2);
+		if (!cameraLocked)
+			camera.ProcessKeyboard(FORWARD, deltaTime / 2);
 	}
 
 	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
 	{
-		camera.ProcessKeyboard(BACKWARD, deltaTime / 2);
+		if (!cameraLocked)
+			camera.ProcessKeyboard(BACKWARD, deltaTime / 2);
 	}
 
-	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
+	if (keys[GLFW_KEY_A])
 	{
-		camera.ProcessKeyboard(LEFT, deltaTime / 2);
+		if (!cameraLocked)
+			camera.ProcessKeyboard(LEFT, deltaTime / 2);
 	}
 
-	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
+	if (keys[GLFW_KEY_D])
 	{
-		camera.ProcessKeyboard(RIGHT, deltaTime / 2);
+		if (!cameraLocked)
+			camera.ProcessKeyboard(RIGHT, deltaTime / 2);
 	}
 }
 
@@ -2017,8 +2029,22 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int modi
 		{
 			keys[key] = true;
 		}
+
 		else if (action == GLFW_RELEASE)
 		{
+			if (keys[GLFW_KEY_TAB]) {
+				cameraLocked = !cameraLocked;
+			}
+			if (keys[GLFW_KEY_LEFT])
+			{
+				cameraLocked = true;
+				camera.ProcessKeyboard(LEFT);
+			}
+			if (keys[GLFW_KEY_RIGHT])
+			{
+				cameraLocked = true;
+				camera.ProcessKeyboard(RIGHT);
+			}
 			keys[key] = false;
 		}
 	}
@@ -2055,3 +2081,33 @@ void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 	camera.ProcessMouseScroll(yOffset);
 }
 // *** CREATE 3D CHESS BOARD ON TERRAIN *** //
+
+// Method
+GLuint CreateTexture(GLuint texture, const char* img, int width, int height)
+{
+	// Create and load texture
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Actual texture loading code
+	unsigned char* textureImg = SOIL_load_image(img, &width, &height, 0, SOIL_LOAD_RGBA);
+
+	// Specify 2D texture image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImg);
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(textureImg);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	return texture;
+}
+
