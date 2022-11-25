@@ -1,14 +1,14 @@
 ﻿  GlewGlfw.cpp
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(230,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
 D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(231,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1214,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(907,6): warning C4101: 'widthPawn': unreferenced local variable
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(907,17): warning C4101: 'heightPawn': unreferenced local variable
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2010,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2011,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2015,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2016,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2018,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2019,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
-D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2027,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(232,16): warning C4244: 'initializing': conversion from 'size_t' to 'float', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(1277,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(970,6): warning C4101: 'widthPawn': unreferenced local variable
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(970,17): warning C4101: 'heightPawn': unreferenced local variable
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2073,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2074,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2078,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2079,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2081,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2082,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\GlewGlfw.cpp(2090,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
   GlewGlfw.vcxproj -> D:\2022VEGA\GADE\C++\POE\GADE7312POE\Gade7312Solution\Debug\GlewGlfw.exe
