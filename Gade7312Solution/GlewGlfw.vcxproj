@@ -36,7 +36,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -158,6 +158,8 @@
     <None Include="core.vs" />
     <None Include="coreBoard.frag" />
     <None Include="coreBoard.vs" />
+    <None Include="coreSkybox.frag" />
+    <None Include="coreSkybox.vs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

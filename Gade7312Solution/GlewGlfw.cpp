@@ -193,7 +193,7 @@ int main()
 
 	// Create and load texture
 	int widthB = 0, heightB = 0;
-	
+
 	GLuint textureWhite = 0;
 	textureWhite = CreateTexture(textureWhite, "res/images/Whitemarbletexture.jpg", widthB, heightB);
 
@@ -208,7 +208,7 @@ int main()
 
 	GLuint textureDarkwood = 0;
 	textureDarkwood = CreateTexture(textureDarkwood, "res/images/Darkwood.png", widthB, heightB);
-	
+
 	// *** CODE FOR CHESS BOARD *** //
 
 	// Positions of different cubes ***
@@ -342,11 +342,12 @@ int main()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned), &indices[0], GL_STATIC_DRAW);
 
-	
+
 
 	// Skybox Code Snippets
 
 		// Skybox Texture Creation Method Declaration
+	GLuint texture = 0;
 	GLuint CreateSkyboxTexture(GLuint texture, vector<std::string> faces, int width, int height);
 
 	// *** CODE FOR CHESS PIECE - Knight *** //
@@ -1111,6 +1112,88 @@ int main()
 
 #pragma endregion
 
+#pragma region SKYBOX
+
+	//Build & Compile Shader Program for Skybox
+	Shader skyboxShader("coreSkybox.vs", "coreSkybox.frag");
+
+	float skyboxVertices[] = {
+		// positions          
+		-1.0f,  1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+		 1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		 1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		-1.0f,  1.0f, -1.0f,
+		 1.0f,  1.0f, -1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		 1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		 1.0f, -1.0f,  1.0f
+	};
+
+	// Generate the vertex arrays and vertex buffers and save them into variables
+	unsigned int skyboxVAO, skyboxVBO;
+	glGenVertexArrays(1, &skyboxVAO);
+	glGenBuffers(1, &skyboxVBO);
+
+	// Bind the vertex array object
+	glBindVertexArray(skyboxVAO);
+
+	// Bind and set the vertex buffers
+	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+
+	// Create the vertex pointer and enable the vertex array
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	// Load textures
+	vector<std::string> skyboxFaces
+	{
+		"res/images/a/Skybox/px.png",
+		"res/images/a/Skybox/nx.png",
+		"res/images/a/Skybox/py.png",
+		"res/images/a/Skybox/ny.png",
+		"res/images/a/Skybox/pz.png",
+		"res/images/a/Skybox/nz.png"
+	};
+
+	// Skybox texture variable
+	GLuint skyboxTexture = 0;
+	skyboxTexture = CreateSkyboxTexture(skyboxTexture, skyboxFaces, width, height);
+#pragma endregion
+
 	// GAME LOOP
 	while (!glfwWindowShouldClose(window))
 	{
@@ -1143,7 +1226,7 @@ int main()
 		// Create Projection Matrix
 		glm::mat4 projection_Pawn(1.0f);
 		//Perspective view ***
-		projection_Pawn = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+		projection_Pawn = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation
 		glm::mat4 view_Pawn(1.0f);
@@ -1203,7 +1286,7 @@ int main()
 		// Create Projection Matrix
 		glm::mat4 projection_Knight(1.0f);
 		//Perspective view ***
-		projection_Knight = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+		projection_Knight = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation
 		glm::mat4 view_Knight(1.0f);
@@ -1265,7 +1348,7 @@ int main()
 		// Create Projection Matrix
 		glm::mat4 projection_Rook(1.0f);
 		//Perspective view ***
-		projection_Rook = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+		projection_Rook = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation
 		glm::mat4 view_Rook(1.0f);
@@ -1327,7 +1410,7 @@ int main()
 		// Create Projection Matrix
 		glm::mat4 projection_Bishop(1.0f);
 		//Perspective view ***
-		projection_Bishop = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+		projection_Bishop = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation
 		glm::mat4 view_Bishop(1.0f);
@@ -1388,7 +1471,7 @@ int main()
 		// Create Projection Matrix
 		glm::mat4 projection_Chair(1.0f);
 		//Perspective view ***
-		projection_Chair = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+		projection_Chair = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation
 		glm::mat4 view_Chair(1.0f);
@@ -1443,7 +1526,7 @@ int main()
 		// Create Projection Matrix
 		glm::mat4 projection_Gazebo(1.0f);
 		//Perspective view ***
-		projection_Gazebo = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+		projection_Gazebo = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation
 		glm::mat4 view_Gazebo(1.0f);
@@ -1467,7 +1550,7 @@ int main()
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, textureDarkwood);
 			glUniform1i(glGetUniformLocation(ourShaderGazebo.Program, "ourTexture1"), 0);
-			
+
 
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Gazebo(1.0f);
@@ -1487,7 +1570,7 @@ int main()
 		// Create Projection Matrix
 		glm::mat4 projection_Table(1.0f);
 		//Perspective view ***
-		projection_Table = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+		projection_Table = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation
 		glm::mat4 view_Table(1.0f);
@@ -1510,7 +1593,7 @@ int main()
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, textureDarkwood);
 			glUniform1i(glGetUniformLocation(ourShaderTable.Program, "ourTexture1"), 0);
-			
+
 
 			// Calculate the model matrix for each object and pass it to the shader before drawing
 			glm::mat4 model_Table(1.0f);
@@ -1530,7 +1613,7 @@ int main()
 		// Create Projection Matrix
 		glm::mat4 projection_King(1.0f);
 		//Perspective view ***
-		projection_King = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+		projection_King = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation
 		glm::mat4 view_King(1.0f);
@@ -1591,7 +1674,7 @@ int main()
 		// Create Projection Matrix
 		glm::mat4 projection_Queen(1.0f);
 		//Perspective view ***
-		projection_Queen = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+		projection_Queen = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation
 		glm::mat4 view_Queen(1.0f);
@@ -1651,7 +1734,7 @@ int main()
 		// Create Projection Matrix *** (moved into while loop in order to update zoom)
 		glm::mat4 projection_Board(1.0f);
 		//Perspective view ***
-		projection_Board = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100.0f);
+		projection_Board = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100000.0f);
 
 		// Create camera transformation ***
 		glm::mat4 view_Board(1.0f);
@@ -1750,7 +1833,7 @@ int main()
 
 		for (int strip = 0; strip < numStrips; strip++)
 		{
-			
+
 
 			//Activate HM texture
 			glActiveTexture(GL_TEXTURE0);
@@ -1762,6 +1845,38 @@ int main()
 				GL_UNSIGNED_INT, // index data type
 				(void*)(sizeof(GLuint) * (numTrisPerStrip + 2) * strip)); // offset to starting index
 		}
+
+		// Skybox Code in INSIDE while loop
+#pragma region SKYBOX WHILE LOOP
+		// draw skybox as last
+		// change depth function so depth test passes when values are equal to depth buffer's content
+		glDepthFunc(GL_LEQUAL);
+
+		skyboxShader.Use();
+
+		// Create Projection Matrix
+		glm::mat4 projection_Skybox = glm::perspective(glm::radians(camera.GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100000.0f);
+
+		// Create camera transformation
+		// remove translation from the view matrix
+		glm::mat4 view_Skybox = glm::mat4(glm::mat3(camera.GetViewMatrix(cameraLocked)));
+
+		// Get the uniform locations for our matrices
+		GLint viewLoc_Skybox = glGetUniformLocation(skyboxShader.Program, "view");
+		GLint projLoc_Skybox = glGetUniformLocation(skyboxShader.Program, "projection");
+
+		// Pass locations to shaders ***
+		glUniformMatrix4fv(viewLoc_Skybox, 1, GL_FALSE, glm::value_ptr(view_Skybox));
+		glUniformMatrix4fv(projLoc_Skybox, 1, GL_FALSE, glm::value_ptr(projection_Skybox));
+
+		// skybox cube
+		glBindVertexArray(skyboxVAO);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, skyboxTexture);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		glBindVertexArray(0);
+		glDepthFunc(GL_LESS); // set depth function back to default
+#pragma endregion
 
 		glBindVertexArray(0); // Unbinding
 

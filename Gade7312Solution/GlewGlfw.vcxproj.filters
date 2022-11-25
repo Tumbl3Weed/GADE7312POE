@@ -36,6 +36,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="packages.config" />
+    <None Include="coreSkybox.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="coreSkybox.frag">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
