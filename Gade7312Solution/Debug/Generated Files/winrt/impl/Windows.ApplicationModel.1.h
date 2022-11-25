@@ -27,6 +27,20 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         IAppInfo2(std::nullptr_t = nullptr) noexcept {}
         IAppInfo2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IAppInfo3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppInfo3>
+    {
+        IAppInfo3(std::nullptr_t = nullptr) noexcept {}
+        IAppInfo3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppInfo4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppInfo4>
+    {
+        IAppInfo4(std::nullptr_t = nullptr) noexcept {}
+        IAppInfo4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IAppInfoStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IAppInfoStatics>
@@ -40,6 +54,13 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     {
         IAppInstallerInfo(std::nullptr_t = nullptr) noexcept {}
         IAppInstallerInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppInstallerInfo2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppInstallerInfo2>
+    {
+        IAppInstallerInfo2(std::nullptr_t = nullptr) noexcept {}
+        IAppInstallerInfo2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IAppInstance :
         winrt::Windows::Foundation::IInspectable,
@@ -83,12 +104,26 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         IEnteredBackgroundEventArgs(std::nullptr_t = nullptr) noexcept {}
         IEnteredBackgroundEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IFullTrustProcessLaunchResult :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IFullTrustProcessLaunchResult>
+    {
+        IFullTrustProcessLaunchResult(std::nullptr_t = nullptr) noexcept {}
+        IFullTrustProcessLaunchResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IFullTrustProcessLauncherStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IFullTrustProcessLauncherStatics>
     {
         IFullTrustProcessLauncherStatics(std::nullptr_t = nullptr) noexcept {}
         IFullTrustProcessLauncherStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IFullTrustProcessLauncherStatics2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IFullTrustProcessLauncherStatics2>
+    {
+        IFullTrustProcessLauncherStatics2(std::nullptr_t = nullptr) noexcept {}
+        IFullTrustProcessLauncherStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ILeavingBackgroundEventArgs :
         winrt::Windows::Foundation::IInspectable,

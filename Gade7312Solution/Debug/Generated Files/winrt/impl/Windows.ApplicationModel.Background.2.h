@@ -99,6 +99,9 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
         static auto GetAccessStatus();
         static auto GetAccessStatus(param::hstring const& applicationId);
         static auto RequestAccessKindAsync(winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind const& requestedAccess, param::hstring const& reason);
+        static auto RequestAccessKindForModernStandbyAsync(winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind const& requestedAccess, param::hstring const& reason);
+        static auto GetAccessStatusForModernStandby();
+        static auto GetAccessStatusForModernStandby(param::hstring const& applicationId);
     };
     struct __declspec(empty_bases) BackgroundTaskBuilder : winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder,
         impl::require<BackgroundTaskBuilder, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder2, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder3, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder4, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder5>

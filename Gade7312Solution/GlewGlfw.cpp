@@ -3,6 +3,7 @@
 #include <vector>
 #include <list>
 #include <iterator>
+#include <cmath>
 using namespace std;
 
 // GLEW

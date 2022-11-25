@@ -42,6 +42,18 @@
     <None Include="coreSkybox.frag">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="lamp.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="lamp.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="lighting.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="lighting.vs">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">

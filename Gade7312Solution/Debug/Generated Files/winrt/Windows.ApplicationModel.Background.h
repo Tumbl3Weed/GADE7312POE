@@ -202,6 +202,24 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IBackgroundExecutionManagerStatics2)->RequestAccessKindAsync(static_cast<int32_t>(requestedAccess), *(void**)(&reason), &operation));
         return winrt::Windows::Foundation::IAsyncOperation<bool>{ operation, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<bool>) consume_Windows_ApplicationModel_Background_IBackgroundExecutionManagerStatics3<D>::RequestAccessKindForModernStandbyAsync(winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind const& requestedAccess, param::hstring const& reason) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IBackgroundExecutionManagerStatics3)->RequestAccessKindForModernStandbyAsync(static_cast<int32_t>(requestedAccess), *(void**)(&reason), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<bool>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus) consume_Windows_ApplicationModel_Background_IBackgroundExecutionManagerStatics3<D>::GetAccessStatusForModernStandby() const
+    {
+        winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IBackgroundExecutionManagerStatics3)->GetAccessStatusForModernStandby(reinterpret_cast<int32_t*>(&result)));
+        return result;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus) consume_Windows_ApplicationModel_Background_IBackgroundExecutionManagerStatics3<D>::GetAccessStatusForModernStandby(param::hstring const& applicationId) const
+    {
+        winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IBackgroundExecutionManagerStatics3)->GetAccessStatusForModernStandbyForApplication(*(void**)(&applicationId), reinterpret_cast<int32_t*>(&result)));
+        return result;
+    }
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_ApplicationModel_Background_IBackgroundTask<D>::Run(winrt::Windows::ApplicationModel::Background::IBackgroundTaskInstance const& taskInstance) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IBackgroundTask)->Run(*(void**)(&taskInstance)));
@@ -1353,6 +1371,34 @@ namespace winrt::impl
             clear_abi(operation);
             typename D::abi_guard guard(this->shim());
             *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<bool>>(this->shim().RequestAccessKindAsync(*reinterpret_cast<winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind const*>(&requestedAccess), *reinterpret_cast<hstring const*>(&reason)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Background::IBackgroundExecutionManagerStatics3> : produce_base<D, winrt::Windows::ApplicationModel::Background::IBackgroundExecutionManagerStatics3>
+    {
+        int32_t __stdcall RequestAccessKindForModernStandbyAsync(int32_t requestedAccess, void* reason, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<bool>>(this->shim().RequestAccessKindForModernStandbyAsync(*reinterpret_cast<winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind const*>(&requestedAccess), *reinterpret_cast<hstring const*>(&reason)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetAccessStatusForModernStandby(int32_t* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus>(this->shim().GetAccessStatusForModernStandby());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetAccessStatusForModernStandbyForApplication(void* applicationId, int32_t* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus>(this->shim().GetAccessStatusForModernStandby(*reinterpret_cast<hstring const*>(&applicationId)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2967,6 +3013,18 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
     {
         return impl::call_factory<BackgroundExecutionManager, IBackgroundExecutionManagerStatics2>([&](IBackgroundExecutionManagerStatics2 const& f) { return f.RequestAccessKindAsync(requestedAccess, reason); });
     }
+    inline auto BackgroundExecutionManager::RequestAccessKindForModernStandbyAsync(winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind const& requestedAccess, param::hstring const& reason)
+    {
+        return impl::call_factory<BackgroundExecutionManager, IBackgroundExecutionManagerStatics3>([&](IBackgroundExecutionManagerStatics3 const& f) { return f.RequestAccessKindForModernStandbyAsync(requestedAccess, reason); });
+    }
+    inline auto BackgroundExecutionManager::GetAccessStatusForModernStandby()
+    {
+        return impl::call_factory_cast<winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus(*)(IBackgroundExecutionManagerStatics3 const&), BackgroundExecutionManager, IBackgroundExecutionManagerStatics3>([](IBackgroundExecutionManagerStatics3 const& f) { return f.GetAccessStatusForModernStandby(); });
+    }
+    inline auto BackgroundExecutionManager::GetAccessStatusForModernStandby(param::hstring const& applicationId)
+    {
+        return impl::call_factory<BackgroundExecutionManager, IBackgroundExecutionManagerStatics3>([&](IBackgroundExecutionManagerStatics3 const& f) { return f.GetAccessStatusForModernStandby(applicationId); });
+    }
     inline BackgroundTaskBuilder::BackgroundTaskBuilder() :
         BackgroundTaskBuilder(impl::call_factory_cast<BackgroundTaskBuilder(*)(winrt::Windows::Foundation::IActivationFactory const&), BackgroundTaskBuilder>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<BackgroundTaskBuilder>(); }))
     {
@@ -3299,6 +3357,7 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IBackgroundCondition> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IBackgroundExecutionManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IBackgroundExecutionManagerStatics2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::IBackgroundExecutionManagerStatics3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IBackgroundTask> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder2> : winrt::impl::hash_base {};

@@ -9,6 +9,7 @@ static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.210806.1"), "Mismatche
 #include "winrt/Windows.UI.h"
 #include "winrt/impl/Windows.ApplicationModel.Core.2.h"
 #include "winrt/impl/Windows.Foundation.2.h"
+#include "winrt/impl/Windows.UI.2.h"
 #include "winrt/impl/Windows.UI.StartScreen.2.h"
 #include "winrt/impl/Windows.UI.Shell.2.h"
 namespace winrt::impl
@@ -38,6 +39,68 @@ namespace winrt::impl
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_Shell_ISecurityAppManager<D>::UpdateState(winrt::Windows::UI::Shell::SecurityAppKind const& kind, winrt::guid const& guidRegistration, winrt::Windows::UI::Shell::SecurityAppState const& state, winrt::Windows::UI::Shell::SecurityAppSubstatus const& substatus, winrt::Windows::Foundation::Uri const& detailsUri) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::ISecurityAppManager)->UpdateState(static_cast<int32_t>(kind), impl::bind_in(guidRegistration), static_cast<int32_t>(state), static_cast<int32_t>(substatus), *(void**)(&detailsUri)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::WindowId) consume_Windows_UI_Shell_IShareWindowCommandEventArgs<D>::WindowId() const
+    {
+        winrt::Windows::UI::WindowId value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandEventArgs)->get_WindowId(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::Shell::ShareWindowCommand) consume_Windows_UI_Shell_IShareWindowCommandEventArgs<D>::Command() const
+    {
+        winrt::Windows::UI::Shell::ShareWindowCommand value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandEventArgs)->get_Command(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_Shell_IShareWindowCommandEventArgs<D>::Command(winrt::Windows::UI::Shell::ShareWindowCommand const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandEventArgs)->put_Command(static_cast<int32_t>(value)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_Shell_IShareWindowCommandSource<D>::Start() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandSource)->Start());
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_Shell_IShareWindowCommandSource<D>::Stop() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandSource)->Stop());
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_Shell_IShareWindowCommandSource<D>::ReportCommandChanged() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandSource)->ReportCommandChanged());
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_UI_Shell_IShareWindowCommandSource<D>::CommandRequested(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::ShareWindowCommandSource, winrt::Windows::UI::Shell::ShareWindowCommandEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandSource)->add_CommandRequested(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_UI_Shell_IShareWindowCommandSource<D>::CommandRequested_revoker consume_Windows_UI_Shell_IShareWindowCommandSource<D>::CommandRequested(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::ShareWindowCommandSource, winrt::Windows::UI::Shell::ShareWindowCommandEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, CommandRequested_revoker>(this, CommandRequested(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_Shell_IShareWindowCommandSource<D>::CommandRequested(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandSource)->remove_CommandRequested(impl::bind_in(token)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_UI_Shell_IShareWindowCommandSource<D>::CommandInvoked(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::ShareWindowCommandSource, winrt::Windows::UI::Shell::ShareWindowCommandEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandSource)->add_CommandInvoked(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_UI_Shell_IShareWindowCommandSource<D>::CommandInvoked_revoker consume_Windows_UI_Shell_IShareWindowCommandSource<D>::CommandInvoked(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::ShareWindowCommandSource, winrt::Windows::UI::Shell::ShareWindowCommandEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, CommandInvoked_revoker>(this, CommandInvoked(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_Shell_IShareWindowCommandSource<D>::CommandInvoked(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandSource)->remove_CommandInvoked(impl::bind_in(token)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::Shell::ShareWindowCommandSource) consume_Windows_UI_Shell_IShareWindowCommandSourceStatics<D>::GetForCurrentView() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IShareWindowCommandSourceStatics)->GetForCurrentView(&result));
+        return winrt::Windows::UI::Shell::ShareWindowCommandSource{ result, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_UI_Shell_ITaskbarManager<D>::IsSupported() const
     {
@@ -152,6 +215,103 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::UI::Shell::IShareWindowCommandEventArgs> : produce_base<D, winrt::Windows::UI::Shell::IShareWindowCommandEventArgs>
+    {
+        int32_t __stdcall get_WindowId(struct struct_Windows_UI_WindowId* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::UI::WindowId>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::UI::WindowId>(this->shim().WindowId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Command(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::UI::Shell::ShareWindowCommand>(this->shim().Command());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Command(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Command(*reinterpret_cast<winrt::Windows::UI::Shell::ShareWindowCommand const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Shell::IShareWindowCommandSource> : produce_base<D, winrt::Windows::UI::Shell::IShareWindowCommandSource>
+    {
+        int32_t __stdcall Start() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Start();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall Stop() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Stop();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ReportCommandChanged() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ReportCommandChanged();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_CommandRequested(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().CommandRequested(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::ShareWindowCommandSource, winrt::Windows::UI::Shell::ShareWindowCommandEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_CommandRequested(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CommandRequested(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_CommandInvoked(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().CommandInvoked(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::ShareWindowCommandSource, winrt::Windows::UI::Shell::ShareWindowCommandEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_CommandInvoked(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CommandInvoked(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Shell::IShareWindowCommandSourceStatics> : produce_base<D, winrt::Windows::UI::Shell::IShareWindowCommandSourceStatics>
+    {
+        int32_t __stdcall GetForCurrentView(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::UI::Shell::ShareWindowCommandSource>(this->shim().GetForCurrentView());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::UI::Shell::ITaskbarManager> : produce_base<D, winrt::Windows::UI::Shell::ITaskbarManager>
     {
         int32_t __stdcall get_IsSupported(bool* value) noexcept final try
@@ -257,6 +417,10 @@ WINRT_EXPORT namespace winrt::Windows::UI::Shell
         SecurityAppManager(impl::call_factory_cast<SecurityAppManager(*)(winrt::Windows::Foundation::IActivationFactory const&), SecurityAppManager>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<SecurityAppManager>(); }))
     {
     }
+    inline auto ShareWindowCommandSource::GetForCurrentView()
+    {
+        return impl::call_factory_cast<winrt::Windows::UI::Shell::ShareWindowCommandSource(*)(IShareWindowCommandSourceStatics const&), ShareWindowCommandSource, IShareWindowCommandSourceStatics>([](IShareWindowCommandSourceStatics const& f) { return f.GetForCurrentView(); });
+    }
     inline auto TaskbarManager::GetDefault()
     {
         return impl::call_factory_cast<winrt::Windows::UI::Shell::TaskbarManager(*)(ITaskbarManagerStatics const&), TaskbarManager, ITaskbarManagerStatics>([](ITaskbarManagerStatics const& f) { return f.GetDefault(); });
@@ -268,11 +432,16 @@ namespace std
     template<> struct hash<winrt::Windows::UI::Shell::IAdaptiveCard> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::IAdaptiveCardBuilderStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ISecurityAppManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::IShareWindowCommandEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::IShareWindowCommandSource> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::IShareWindowCommandSourceStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ITaskbarManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ITaskbarManager2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ITaskbarManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::AdaptiveCardBuilder> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::SecurityAppManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::ShareWindowCommandEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::ShareWindowCommandSource> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::TaskbarManager> : winrt::impl::hash_base {};
 #endif
 }

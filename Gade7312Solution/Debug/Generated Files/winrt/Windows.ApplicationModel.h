@@ -64,6 +64,19 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInfo2)->get_Package(&value));
         return winrt::Windows::ApplicationModel::Package{ value, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppExecutionContext) consume_Windows_ApplicationModel_IAppInfo3<D>::ExecutionContext() const
+    {
+        winrt::Windows::ApplicationModel::AppExecutionContext value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInfo3)->get_ExecutionContext(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(com_array<hstring>) consume_Windows_ApplicationModel_IAppInfo4<D>::SupportedFileExtensions() const
+    {
+        uint32_t value_impl_size{};
+        void** value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInfo4)->get_SupportedFileExtensions(&value_impl_size, &value));
+        return com_array<hstring>{ value, value_impl_size, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInfo) consume_Windows_ApplicationModel_IAppInfoStatics<D>::Current() const
     {
         void* value{};
@@ -87,6 +100,96 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo)->get_Uri(&value));
         return winrt::Windows::Foundation::Uri{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::OnLaunch() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_OnLaunch(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(uint32_t) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::HoursBetweenUpdateChecks() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_HoursBetweenUpdateChecks(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::ShowPrompt() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_ShowPrompt(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::UpdateBlocksActivation() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_UpdateBlocksActivation(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::AutomaticBackgroundTask() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_AutomaticBackgroundTask(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::ForceUpdateFromAnyVersion() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_ForceUpdateFromAnyVersion(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::IsAutoRepairEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_IsAutoRepairEnabled(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::PackageVersion) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::Version() const
+    {
+        winrt::Windows::ApplicationModel::PackageVersion value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_Version(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::DateTime) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::LastChecked() const
+    {
+        winrt::Windows::Foundation::DateTime value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_LastChecked(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IReference<winrt::Windows::Foundation::DateTime>) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::PausedUntil() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_PausedUntil(&value));
+        return winrt::Windows::Foundation::IReference<winrt::Windows::Foundation::DateTime>{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::UpdateUris() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_UpdateUris(&value));
+        return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::RepairUris() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_RepairUris(&value));
+        return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::DependencyPackageUris() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_DependencyPackageUris(&value));
+        return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::OptionalPackageUris() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_OptionalPackageUris(&value));
+        return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInstallerPolicySource) consume_Windows_ApplicationModel_IAppInstallerInfo2<D>::PolicySource() const
+    {
+        winrt::Windows::ApplicationModel::AppInstallerPolicySource value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstallerInfo2)->get_PolicySource(reinterpret_cast<int32_t*>(&value)));
+        return value;
     }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_ApplicationModel_IAppInstance<D>::Key() const
     {
@@ -154,6 +257,18 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs)->GetDeferral(&value));
         return winrt::Windows::Foundation::Deferral{ value, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::FullTrustLaunchResult) consume_Windows_ApplicationModel_IFullTrustProcessLaunchResult<D>::LaunchResult() const
+    {
+        winrt::Windows::ApplicationModel::FullTrustLaunchResult value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult)->get_LaunchResult(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::hresult) consume_Windows_ApplicationModel_IFullTrustProcessLaunchResult<D>::ExtendedError() const
+    {
+        winrt::hresult value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult)->get_ExtendedError(put_abi(value)));
+        return value;
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncAction) consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics<D>::LaunchFullTrustProcessForCurrentAppAsync() const
     {
         void* asyncAction{};
@@ -177,6 +292,18 @@ namespace winrt::impl
         void* asyncAction{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics)->LaunchFullTrustProcessForAppWithParametersAsync(*(void**)(&fullTrustPackageRelativeAppId), *(void**)(&parameterGroupId), &asyncAction));
         return winrt::Windows::Foundation::IAsyncAction{ asyncAction, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>) consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics2<D>::LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(param::hstring const& commandLine) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2)->LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(*(void**)(&commandLine), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>) consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics2<D>::LaunchFullTrustProcessForAppWithArgumentsAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& commandLine) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2)->LaunchFullTrustProcessForAppWithArgumentsAsync(*(void**)(&fullTrustPackageRelativeAppId), *(void**)(&commandLine), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>{ operation, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Deferral) consume_Windows_ApplicationModel_ILeavingBackgroundEventArgs<D>::GetDeferral() const
     {
@@ -1124,6 +1251,34 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IAppInfo3> : produce_base<D, winrt::Windows::ApplicationModel::IAppInfo3>
+    {
+        int32_t __stdcall get_ExecutionContext(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::AppExecutionContext>(this->shim().ExecutionContext());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IAppInfo4> : produce_base<D, winrt::Windows::ApplicationModel::IAppInfo4>
+    {
+        int32_t __stdcall get_SupportedFileExtensions(uint32_t* __valueSize, void*** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            std::tie(*__valueSize, *value) = detach_abi(this->shim().SupportedFileExtensions());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::IAppInfoStatics> : produce_base<D, winrt::Windows::ApplicationModel::IAppInfoStatics>
     {
@@ -1152,6 +1307,7 @@ namespace winrt::impl
         }
         catch (...) { return to_hresult(); }
     };
+#endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::IAppInstallerInfo> : produce_base<D, winrt::Windows::ApplicationModel::IAppInstallerInfo>
@@ -1161,6 +1317,124 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Foundation::Uri>(this->shim().Uri());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IAppInstallerInfo2> : produce_base<D, winrt::Windows::ApplicationModel::IAppInstallerInfo2>
+    {
+        int32_t __stdcall get_OnLaunch(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().OnLaunch());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_HoursBetweenUpdateChecks(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().HoursBetweenUpdateChecks());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ShowPrompt(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().ShowPrompt());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_UpdateBlocksActivation(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().UpdateBlocksActivation());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AutomaticBackgroundTask(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().AutomaticBackgroundTask());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ForceUpdateFromAnyVersion(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().ForceUpdateFromAnyVersion());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsAutoRepairEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsAutoRepairEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Version(struct struct_Windows_ApplicationModel_PackageVersion* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::ApplicationModel::PackageVersion>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::PackageVersion>(this->shim().Version());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_LastChecked(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::DateTime>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::DateTime>(this->shim().LastChecked());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_PausedUntil(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IReference<winrt::Windows::Foundation::DateTime>>(this->shim().PausedUntil());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_UpdateUris(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>>(this->shim().UpdateUris());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_RepairUris(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>>(this->shim().RepairUris());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DependencyPackageUris(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>>(this->shim().DependencyPackageUris());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_OptionalPackageUris(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>>(this->shim().OptionalPackageUris());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_PolicySource(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::AppInstallerPolicySource>(this->shim().PolicySource());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1292,6 +1566,27 @@ namespace winrt::impl
     };
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult> : produce_base<D, winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult>
+    {
+        int32_t __stdcall get_LaunchResult(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::FullTrustLaunchResult>(this->shim().LaunchResult());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ExtendedError(winrt::hresult* value) noexcept final try
+        {
+            zero_abi<winrt::hresult>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::hresult>(this->shim().ExtendedError());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics> : produce_base<D, winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics>
     {
         int32_t __stdcall LaunchFullTrustProcessForCurrentAppAsync(void** asyncAction) noexcept final try
@@ -1323,6 +1618,28 @@ namespace winrt::impl
             clear_abi(asyncAction);
             typename D::abi_guard guard(this->shim());
             *asyncAction = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().LaunchFullTrustProcessForAppAsync(*reinterpret_cast<hstring const*>(&fullTrustPackageRelativeAppId), *reinterpret_cast<hstring const*>(&parameterGroupId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2> : produce_base<D, winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2>
+    {
+        int32_t __stdcall LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(void* commandLine, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>>(this->shim().LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(*reinterpret_cast<hstring const*>(&commandLine)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall LaunchFullTrustProcessForAppWithArgumentsAsync(void* fullTrustPackageRelativeAppId, void* commandLine, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>>(this->shim().LaunchFullTrustProcessForAppWithArgumentsAsync(*reinterpret_cast<hstring const*>(&fullTrustPackageRelativeAppId), *reinterpret_cast<hstring const*>(&commandLine)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2740,6 +3057,14 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     {
         return impl::call_factory<FullTrustProcessLauncher, IFullTrustProcessLauncherStatics>([&](IFullTrustProcessLauncherStatics const& f) { return f.LaunchFullTrustProcessForAppAsync(fullTrustPackageRelativeAppId, parameterGroupId); });
     }
+    inline auto FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(param::hstring const& commandLine)
+    {
+        return impl::call_factory<FullTrustProcessLauncher, IFullTrustProcessLauncherStatics2>([&](IFullTrustProcessLauncherStatics2 const& f) { return f.LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(commandLine); });
+    }
+    inline auto FullTrustProcessLauncher::LaunchFullTrustProcessForAppWithArgumentsAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& commandLine)
+    {
+        return impl::call_factory<FullTrustProcessLauncher, IFullTrustProcessLauncherStatics2>([&](IFullTrustProcessLauncherStatics2 const& f) { return f.LaunchFullTrustProcessForAppWithArgumentsAsync(fullTrustPackageRelativeAppId, commandLine); });
+    }
     inline auto LimitedAccessFeatures::TryUnlockFeature(param::hstring const& featureId, param::hstring const& token, param::hstring const& attestation)
     {
         return impl::call_factory<LimitedAccessFeatures, ILimitedAccessFeaturesStatics>([&](ILimitedAccessFeaturesStatics const& f) { return f.TryUnlockFeature(featureId, token, attestation); });
@@ -2775,15 +3100,20 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::IAppDisplayInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInfo2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IAppInfo3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IAppInfo4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInfoStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInstallerInfo> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IAppInstallerInfo2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInstance> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInstanceStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::ICameraApplicationManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IDesignModeStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IDesignModeStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::ILimitedAccessFeatureRequestResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::ILimitedAccessFeaturesStatics> : winrt::impl::hash_base {};
@@ -2831,6 +3161,7 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::CameraApplicationManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::DesignMode> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::FullTrustProcessLauncher> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::LeavingBackgroundEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::LimitedAccessFeatureRequestResult> : winrt::impl::hash_base {};

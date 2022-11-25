@@ -40,7 +40,7 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         AppDisplayInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IAppDisplayInfo(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) AppInfo : winrt::Windows::ApplicationModel::IAppInfo,
-        impl::require<AppInfo, winrt::Windows::ApplicationModel::IAppInfo2>
+        impl::require<AppInfo, winrt::Windows::ApplicationModel::IAppInfo2, winrt::Windows::ApplicationModel::IAppInfo3, winrt::Windows::ApplicationModel::IAppInfo4>
     {
         AppInfo(std::nullptr_t) noexcept {}
         AppInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IAppInfo(ptr, take_ownership_from_abi) {}
@@ -48,7 +48,8 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         static auto GetFromAppUserModelId(param::hstring const& appUserModelId);
         static auto GetFromAppUserModelIdForUser(winrt::Windows::System::User const& user, param::hstring const& appUserModelId);
     };
-    struct __declspec(empty_bases) AppInstallerInfo : winrt::Windows::ApplicationModel::IAppInstallerInfo
+    struct __declspec(empty_bases) AppInstallerInfo : winrt::Windows::ApplicationModel::IAppInstallerInfo,
+        impl::require<AppInstallerInfo, winrt::Windows::ApplicationModel::IAppInstallerInfo2>
     {
         AppInstallerInfo(std::nullptr_t) noexcept {}
         AppInstallerInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IAppInstallerInfo(ptr, take_ownership_from_abi) {}
@@ -79,6 +80,11 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         EnteredBackgroundEventArgs(std::nullptr_t) noexcept {}
         EnteredBackgroundEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) FullTrustProcessLaunchResult : winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult
+    {
+        FullTrustProcessLaunchResult(std::nullptr_t) noexcept {}
+        FullTrustProcessLaunchResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult(ptr, take_ownership_from_abi) {}
+    };
     struct FullTrustProcessLauncher
     {
         FullTrustProcessLauncher() = delete;
@@ -86,6 +92,8 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         static auto LaunchFullTrustProcessForCurrentAppAsync(param::hstring const& parameterGroupId);
         static auto LaunchFullTrustProcessForAppAsync(param::hstring const& fullTrustPackageRelativeAppId);
         static auto LaunchFullTrustProcessForAppAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& parameterGroupId);
+        static auto LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(param::hstring const& commandLine);
+        static auto LaunchFullTrustProcessForAppWithArgumentsAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& commandLine);
     };
     struct __declspec(empty_bases) LeavingBackgroundEventArgs : winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs
     {

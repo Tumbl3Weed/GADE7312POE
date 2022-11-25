@@ -1323,6 +1323,7 @@ namespace std
     template<> struct hash<winrt::Windows::UI::WebUI::WebUINavigatedDeferral> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::WebUI::WebUINavigatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::WebUI::WebUINavigatedOperation> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::WebUI::WebUIPhoneCallActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::WebUI::WebUIPrintWorkflowForegroundTaskActivatedEventArgs> : winrt::impl::hash_base {};

@@ -51,6 +51,24 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         ForceTargetAppShutdown = 0x1,
         ApplyUpdateIfAvailable = 0x2,
     };
+    enum class AppExecutionContext : int32_t
+    {
+        Unknown = 0,
+        Host = 1,
+        Guest = 2,
+    };
+    enum class AppInstallerPolicySource : int32_t
+    {
+        Default = 0,
+        System = 1,
+    };
+    enum class FullTrustLaunchResult : int32_t
+    {
+        Success = 0,
+        AccessDenied = 1,
+        FileNotFound = 2,
+        Unknown = 3,
+    };
     enum class LimitedAccessFeatureStatus : int32_t
     {
         Unavailable = 0,
@@ -92,15 +110,20 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     struct IAppDisplayInfo;
     struct IAppInfo;
     struct IAppInfo2;
+    struct IAppInfo3;
+    struct IAppInfo4;
     struct IAppInfoStatics;
     struct IAppInstallerInfo;
+    struct IAppInstallerInfo2;
     struct IAppInstance;
     struct IAppInstanceStatics;
     struct ICameraApplicationManagerStatics;
     struct IDesignModeStatics;
     struct IDesignModeStatics2;
     struct IEnteredBackgroundEventArgs;
+    struct IFullTrustProcessLaunchResult;
     struct IFullTrustProcessLauncherStatics;
+    struct IFullTrustProcessLauncherStatics2;
     struct ILeavingBackgroundEventArgs;
     struct ILimitedAccessFeatureRequestResult;
     struct ILimitedAccessFeaturesStatics;
@@ -148,6 +171,7 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     struct CameraApplicationManager;
     struct DesignMode;
     struct EnteredBackgroundEventArgs;
+    struct FullTrustProcessLaunchResult;
     struct FullTrustProcessLauncher;
     struct LeavingBackgroundEventArgs;
     struct LimitedAccessFeatureRequestResult;
@@ -180,15 +204,20 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::IAppDisplayInfo>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInfo>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInfo2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::IAppInfo3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::IAppInfo4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInfoStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInstallerInfo>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::IAppInstallerInfo2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInstance>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInstanceStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::ICameraApplicationManagerStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IDesignModeStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IDesignModeStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::ILimitedAccessFeatureRequestResult>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::ILimitedAccessFeaturesStatics>{ using type = interface_category; };
@@ -236,6 +265,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::CameraApplicationManager>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::DesignMode>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::FullTrustProcessLauncher>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::LeavingBackgroundEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::LimitedAccessFeatureRequestResult>{ using type = class_category; };
@@ -261,6 +291,9 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::SuspendingEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::SuspendingOperation>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::AddResourcePackageOptions>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::AppExecutionContext>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::AppInstallerPolicySource>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::FullTrustLaunchResult>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::LimitedAccessFeatureStatus>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::PackageContentGroupState>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::PackageSignatureKind>{ using type = enum_category; };
@@ -275,6 +308,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::CameraApplicationManager> = L"Windows.ApplicationModel.CameraApplicationManager";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::DesignMode> = L"Windows.ApplicationModel.DesignMode";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs> = L"Windows.ApplicationModel.EnteredBackgroundEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult> = L"Windows.ApplicationModel.FullTrustProcessLaunchResult";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::FullTrustProcessLauncher> = L"Windows.ApplicationModel.FullTrustProcessLauncher";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::LeavingBackgroundEventArgs> = L"Windows.ApplicationModel.LeavingBackgroundEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::LimitedAccessFeatureRequestResult> = L"Windows.ApplicationModel.LimitedAccessFeatureRequestResult";
@@ -300,6 +334,9 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::SuspendingEventArgs> = L"Windows.ApplicationModel.SuspendingEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::SuspendingOperation> = L"Windows.ApplicationModel.SuspendingOperation";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::AddResourcePackageOptions> = L"Windows.ApplicationModel.AddResourcePackageOptions";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::AppExecutionContext> = L"Windows.ApplicationModel.AppExecutionContext";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::AppInstallerPolicySource> = L"Windows.ApplicationModel.AppInstallerPolicySource";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::FullTrustLaunchResult> = L"Windows.ApplicationModel.FullTrustLaunchResult";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::LimitedAccessFeatureStatus> = L"Windows.ApplicationModel.LimitedAccessFeatureStatus";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::PackageContentGroupState> = L"Windows.ApplicationModel.PackageContentGroupState";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::PackageSignatureKind> = L"Windows.ApplicationModel.PackageSignatureKind";
@@ -310,15 +347,20 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppDisplayInfo> = L"Windows.ApplicationModel.IAppDisplayInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInfo> = L"Windows.ApplicationModel.IAppInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInfo2> = L"Windows.ApplicationModel.IAppInfo2";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInfo3> = L"Windows.ApplicationModel.IAppInfo3";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInfo4> = L"Windows.ApplicationModel.IAppInfo4";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInfoStatics> = L"Windows.ApplicationModel.IAppInfoStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInstallerInfo> = L"Windows.ApplicationModel.IAppInstallerInfo";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInstallerInfo2> = L"Windows.ApplicationModel.IAppInstallerInfo2";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInstance> = L"Windows.ApplicationModel.IAppInstance";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInstanceStatics> = L"Windows.ApplicationModel.IAppInstanceStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::ICameraApplicationManagerStatics> = L"Windows.ApplicationModel.ICameraApplicationManagerStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IDesignModeStatics> = L"Windows.ApplicationModel.IDesignModeStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IDesignModeStatics2> = L"Windows.ApplicationModel.IDesignModeStatics2";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs> = L"Windows.ApplicationModel.IEnteredBackgroundEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult> = L"Windows.ApplicationModel.IFullTrustProcessLaunchResult";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics> = L"Windows.ApplicationModel.IFullTrustProcessLauncherStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2> = L"Windows.ApplicationModel.IFullTrustProcessLauncherStatics2";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs> = L"Windows.ApplicationModel.ILeavingBackgroundEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::ILimitedAccessFeatureRequestResult> = L"Windows.ApplicationModel.ILimitedAccessFeatureRequestResult";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::ILimitedAccessFeaturesStatics> = L"Windows.ApplicationModel.ILimitedAccessFeaturesStatics";
@@ -362,15 +404,20 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppDisplayInfo>{ 0x1AEB1103,0xE4D4,0x41AA,{ 0xA4,0xF6,0xC4,0xA2,0x76,0xE7,0x9E,0xAC } }; // 1AEB1103-E4D4-41AA-A4F6-C4A276E79EAC
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInfo>{ 0xCF7F59B3,0x6A09,0x4DE8,{ 0xA6,0xC0,0x57,0x92,0xD5,0x68,0x80,0xD1 } }; // CF7F59B3-6A09-4DE8-A6C0-5792D56880D1
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInfo2>{ 0xBE4B1F5A,0x2098,0x431B,{ 0xBD,0x25,0xB3,0x08,0x78,0x74,0x8D,0x47 } }; // BE4B1F5A-2098-431B-BD25-B30878748D47
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInfo3>{ 0x09A78E46,0x93A4,0x46DE,{ 0x93,0x97,0x08,0x43,0xB5,0x71,0x15,0xEA } }; // 09A78E46-93A4-46DE-9397-0843B57115EA
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInfo4>{ 0x2F34BDEB,0x1609,0x4554,{ 0x9F,0x33,0x12,0xE1,0xE8,0x03,0xE0,0xD4 } }; // 2F34BDEB-1609-4554-9F33-12E1E803E0D4
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInfoStatics>{ 0xCF1F782A,0xE48B,0x4F0C,{ 0x9B,0x0B,0x79,0xC3,0xF8,0x95,0x7D,0xD7 } }; // CF1F782A-E48B-4F0C-9B0B-79C3F8957DD7
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInstallerInfo>{ 0x29AB2AC0,0xD4F6,0x42A3,{ 0xAD,0xCD,0xD6,0x58,0x3C,0x65,0x95,0x08 } }; // 29AB2AC0-D4F6-42A3-ADCD-D6583C659508
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInstallerInfo2>{ 0xD20F1388,0x8256,0x597C,{ 0x85,0x11,0xC8,0x4E,0xC5,0x0D,0x5E,0x2B } }; // D20F1388-8256-597C-8511-C84EC50D5E2B
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInstance>{ 0x675F2B47,0xF25F,0x4532,{ 0x9F,0xD6,0x36,0x33,0xE0,0x63,0x4D,0x01 } }; // 675F2B47-F25F-4532-9FD6-3633E0634D01
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInstanceStatics>{ 0x9D11E77F,0x9EA6,0x47AF,{ 0xA6,0xEC,0x46,0x78,0x4C,0x5B,0xA2,0x54 } }; // 9D11E77F-9EA6-47AF-A6EC-46784C5BA254
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::ICameraApplicationManagerStatics>{ 0x9599DDCE,0x9BD3,0x435C,{ 0x80,0x54,0xC1,0xAD,0xD5,0x00,0x28,0xFE } }; // 9599DDCE-9BD3-435C-8054-C1ADD50028FE
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IDesignModeStatics>{ 0x2C3893CC,0xF81A,0x4E7A,{ 0xB8,0x57,0x76,0xA8,0x08,0x87,0xE1,0x85 } }; // 2C3893CC-F81A-4E7A-B857-76A80887E185
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IDesignModeStatics2>{ 0x80CF8137,0xB064,0x4858,{ 0xBE,0xC8,0x3E,0xBA,0x22,0x35,0x75,0x35 } }; // 80CF8137-B064-4858-BEC8-3EBA22357535
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs>{ 0xF722DCC2,0x9827,0x403D,{ 0xAA,0xED,0xEC,0xCA,0x9A,0xC1,0x73,0x98 } }; // F722DCC2-9827-403D-AAED-ECCA9AC17398
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult>{ 0x8917D888,0xEDFB,0x515F,{ 0x8E,0x22,0x5E,0xBC,0xEB,0x69,0xDF,0xD9 } }; // 8917D888-EDFB-515F-8E22-5EBCEB69DFD9
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics>{ 0xD784837F,0x1100,0x3C6B,{ 0xA4,0x55,0xF6,0x26,0x2C,0xC3,0x31,0xB6 } }; // D784837F-1100-3C6B-A455-F6262CC331B6
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2>{ 0x8B8ED72F,0xB65C,0x56CF,{ 0xA1,0xA7,0x2B,0xF7,0x7C,0xBC,0x6E,0xA8 } }; // 8B8ED72F-B65C-56CF-A1A7-2BF77CBC6EA8
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs>{ 0x39C6EC9A,0xAE6E,0x46F9,{ 0xA0,0x7A,0xCF,0xC2,0x3F,0x88,0x73,0x3E } }; // 39C6EC9A-AE6E-46F9-A07A-CFC23F88733E
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::ILimitedAccessFeatureRequestResult>{ 0xD45156A6,0x1E24,0x5DDD,{ 0xAB,0xB4,0x61,0x88,0xAB,0xA4,0xD5,0xBF } }; // D45156A6-1E24-5DDD-ABB4-6188ABA4D5BF
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::ILimitedAccessFeaturesStatics>{ 0x8BE612D4,0x302B,0x5FBF,{ 0xA6,0x32,0x1A,0x99,0xE4,0x3E,0x89,0x25 } }; // 8BE612D4-302B-5FBF-A632-1A99E43E8925
@@ -416,6 +463,7 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::ApplicationModel::AppInstallerInfo>{ using type = winrt::Windows::ApplicationModel::IAppInstallerInfo; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::AppInstance>{ using type = winrt::Windows::ApplicationModel::IAppInstance; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs>{ using type = winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs; };
+    template <> struct default_interface<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>{ using type = winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::LeavingBackgroundEventArgs>{ using type = winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::LimitedAccessFeatureRequestResult>{ using type = winrt::Windows::ApplicationModel::ILimitedAccessFeatureRequestResult; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Package>{ using type = winrt::Windows::ApplicationModel::IPackage; };
@@ -464,6 +512,20 @@ namespace winrt::impl
             virtual int32_t __stdcall get_Package(void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::ApplicationModel::IAppInfo3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ExecutionContext(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::IAppInfo4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_SupportedFileExtensions(uint32_t* __valueSize, void***) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::ApplicationModel::IAppInfoStatics>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -478,6 +540,27 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall get_Uri(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::IAppInstallerInfo2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_OnLaunch(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_HoursBetweenUpdateChecks(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ShowPrompt(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_UpdateBlocksActivation(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_AutomaticBackgroundTask(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_ForceUpdateFromAnyVersion(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_IsAutoRepairEnabled(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_Version(struct struct_Windows_ApplicationModel_PackageVersion*) noexcept = 0;
+            virtual int32_t __stdcall get_LastChecked(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_PausedUntil(void**) noexcept = 0;
+            virtual int32_t __stdcall get_UpdateUris(void**) noexcept = 0;
+            virtual int32_t __stdcall get_RepairUris(void**) noexcept = 0;
+            virtual int32_t __stdcall get_DependencyPackageUris(void**) noexcept = 0;
+            virtual int32_t __stdcall get_OptionalPackageUris(void**) noexcept = 0;
+            virtual int32_t __stdcall get_PolicySource(int32_t*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::ApplicationModel::IAppInstance>
@@ -528,6 +611,14 @@ namespace winrt::impl
             virtual int32_t __stdcall GetDeferral(void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_LaunchResult(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ExtendedError(winrt::hresult*) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -536,6 +627,14 @@ namespace winrt::impl
             virtual int32_t __stdcall LaunchFullTrustProcessForCurrentAppWithParametersAsync(void*, void**) noexcept = 0;
             virtual int32_t __stdcall LaunchFullTrustProcessForAppAsync(void*, void**) noexcept = 0;
             virtual int32_t __stdcall LaunchFullTrustProcessForAppWithParametersAsync(void*, void*, void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(void*, void**) noexcept = 0;
+            virtual int32_t __stdcall LaunchFullTrustProcessForAppWithArgumentsAsync(void*, void*, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs>
@@ -954,6 +1053,24 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_ApplicationModel_IAppInfo2<D>;
     };
     template <typename D>
+    struct consume_Windows_ApplicationModel_IAppInfo3
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppExecutionContext) ExecutionContext() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::IAppInfo3>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_IAppInfo3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_IAppInfo4
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(com_array<hstring>) SupportedFileExtensions() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::IAppInfo4>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_IAppInfo4<D>;
+    };
+    template <typename D>
     struct consume_Windows_ApplicationModel_IAppInfoStatics
     {
         [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInfo) Current() const;
@@ -972,6 +1089,29 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::ApplicationModel::IAppInstallerInfo>
     {
         template <typename D> using type = consume_Windows_ApplicationModel_IAppInstallerInfo<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_IAppInstallerInfo2
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) OnLaunch() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(uint32_t) HoursBetweenUpdateChecks() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) ShowPrompt() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) UpdateBlocksActivation() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) AutomaticBackgroundTask() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) ForceUpdateFromAnyVersion() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) IsAutoRepairEnabled() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::PackageVersion) Version() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::DateTime) LastChecked() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::IReference<winrt::Windows::Foundation::DateTime>) PausedUntil() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>) UpdateUris() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>) RepairUris() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>) DependencyPackageUris() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Foundation::Uri>) OptionalPackageUris() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInstallerPolicySource) PolicySource() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::IAppInstallerInfo2>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_IAppInstallerInfo2<D>;
     };
     template <typename D>
     struct consume_Windows_ApplicationModel_IAppInstance
@@ -1034,6 +1174,16 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_ApplicationModel_IEnteredBackgroundEventArgs<D>;
     };
     template <typename D>
+    struct consume_Windows_ApplicationModel_IFullTrustProcessLaunchResult
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::FullTrustLaunchResult) LaunchResult() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::hresult) ExtendedError() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_IFullTrustProcessLaunchResult<D>;
+    };
+    template <typename D>
     struct consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics
     {
         WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncAction) LaunchFullTrustProcessForCurrentAppAsync() const;
@@ -1044,6 +1194,16 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics>
     {
         template <typename D> using type = consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics2
+    {
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>) LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(param::hstring const& commandLine) const;
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>) LaunchFullTrustProcessForAppWithArgumentsAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& commandLine) const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics2<D>;
     };
     template <typename D>
     struct consume_Windows_ApplicationModel_ILeavingBackgroundEventArgs
